@@ -49,23 +49,50 @@
 							$nom_gift = $gift['titre'];
 							$link_gift = $gift['lien'];
 							$description_gift = $gift['description'];
+							$id_gift = $gift['id'];
 					?>
 
 					<li>
-						<p class="gift-title"><?php echo $nom_gift; ?></p>
-						<?php if($link_gift): ?>
-						<a href="<?php echo $link_gift; ?>" class="gift-link"><?php echo file_get_contents("img/link.svg"); ?></a>
-						<?php endif; ?>
+						<div class="wrapper-title">
+							<p class="gift-title"><?php echo $nom_gift; ?></p>
+							<?php if($link_gift): ?>
+								<a href="<?php echo $link_gift; ?>" class="gift-link"><?php echo file_get_contents("img/link.svg"); ?></a>
+							<?php endif; ?>
+							<span class="ico-edit"><?php echo file_get_contents("img/ico-edit.svg"); ?></span>
+						</div>
+						
 						<?php if($description_gift): ?>
 						<p class="gift-description"><?php echo $description_gift; ?></p>
 						<?php endif; ?>
+
+						<?php //Le formulaire, pour edition ?>
+						<form class="form-gift form-edit" action="update-gift.php" method="post">
+							<div class="wrapper-gift-input">
+								<span><?php echo file_get_contents("img/ico-item.svg"); ?></span>
+								<input type="text" name="gift-name" required placeholder="Désignation" value="<?php echo $nom_gift; ?>">
+							</div>
+							<div class="wrapper-gift-input">
+								<span><?php echo file_get_contents("img/link.svg"); ?></span>
+								<input type="text" name="gift-url" placeholder="Lien optionnel" value="<?php echo $link_gift; ?>">
+							</div>
+							
+							<textarea name="gift-description" id="" rows="3" placeholder="Détail optionnel"><?php echo $description_gift; ?></textarea>
+
+							<input type="hidden" value="<?php echo $id_gift; ?>" name="id-gift">
+
+							<input type="submit" class="bt bt-edit-gift" value="Modifier le cadeau">
+
+							<div class="wrapper-bt-edit-gift">
+								<span class="cancel-edit-gift bt-cancel">Annuler</span>
+							</div>
+						</form>
 					</li>
 
 					<?php endwhile; ?>
 
 				</ul>
 
-				<form class="form-gift" action="add-gift.php" method="post">
+				<form class="form-gift form-add" action="add-gift.php" method="post">
 					<div class="wrapper-gift-input">
 						<span><?php echo file_get_contents("img/ico-item.svg"); ?></span>
 						<input type="text" name="gift-name" required placeholder="Désignation">
@@ -121,10 +148,10 @@
 	// Ouverture et fermeture du form d'ajout cadeau
 
 	$('.bt-add-gift').click(function(){
-		$(this).parent().parent().find('.form-gift').toggleClass('open');
+		$(this).parent().parent().find('.form-add').toggleClass('open');
 		$grid.masonry();
-		$(this).toggleClass('bt open');
-		$(this).parent().parent().find('.form-gift').slideToggle(function(){
+		$(this).toggleClass('bt open bt-cancel');
+		$(this).parent().parent().find('.form-add').slideToggle(function(){
 			$grid.masonry();
 		});
 
@@ -137,6 +164,25 @@
 		}
 
 	});
+
+	// Edition des cadeaux
+
+	$('.ico-edit').click(function(){
+		$('.form-edit').slideUp(function(){
+			$grid.masonry();
+		});
+		$(this).parent().parent().find('.form-edit').slideToggle(function(){
+			$grid.masonry();
+		});
+	});
+
+	$('.cancel-edit-gift').click(function(){
+		$(this).parent().parent().slideToggle(function(){
+			$grid.masonry();
+		});
+	});
+
+
 
 </script>
 </body>
