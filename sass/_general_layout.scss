@@ -131,7 +131,8 @@ footer{
 		}
 
 		&:hover{
-			.ico-edit{
+			.ico-edit,
+			.ico-trash{
 				opacity: 1;
 			}
 		}
@@ -298,7 +299,7 @@ footer{
 .wrapper-title{
 
 	position: relative;
-	padding-right: 25px;
+	padding-right: 50px;
 
 	p{
 		
@@ -312,11 +313,29 @@ footer{
 		opacity: 0;
 	}
 
+	.ico-trash{
+		transition: opacity ease .25s;
+		position: absolute;
+		right: 30px;
+		top: 3px;
+		opacity: 0;
+
+		&:hover svg{
+			fill: $rouge;
+			
+		}
+
+		button{
+			background: none;
+			border: 0;
+		}
+	}
+
 	svg{
 		transition: fill ease .25s;
 		cursor: pointer;
-		width: 18px;
-		height: auto;
+		width: auto;
+		height: 20px;
 		fill: #c7c7c7;
 
 		&:hover{

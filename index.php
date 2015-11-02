@@ -56,9 +56,13 @@
 						<div class="wrapper-title">
 							<p class="gift-title"><?php echo $nom_gift; ?></p>
 							<?php if($link_gift): ?>
-								<a href="<?php echo $link_gift; ?>" class="gift-link"><?php echo file_get_contents("img/link.svg"); ?></a>
+								<a title="Lien vers le cadeau" href="<?php echo $link_gift; ?>" class="gift-link"><?php echo file_get_contents("img/link.svg"); ?></a>
 							<?php endif; ?>
-							<span class="ico-edit"><?php echo file_get_contents("img/ico-edit.svg"); ?></span>
+							<form class="ico-trash" title="Supprimer le cadeau" action="delete-gift.php" method="post">
+								<input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
+								<span class="submit-delete"><?php echo file_get_contents("img/ico-trash.svg"); ?></span>
+							</form>
+							<span class="ico-edit" title="Éditer le cadeau"><?php echo file_get_contents("img/ico-edit.svg"); ?></span>
 						</div>
 						
 						<?php if($description_gift): ?>
@@ -180,6 +184,12 @@
 		$(this).parent().parent().slideToggle(function(){
 			$grid.masonry();
 		});
+	});
+
+	// Suppression cadeau
+
+	$('.submit-delete').click(function(){
+		$(this).parent().submit();
 	});
 
 
