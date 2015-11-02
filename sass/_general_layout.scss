@@ -1,0 +1,280 @@
+*{
+	box-sizing: border-box;
+}
+
+html{
+	font-size: 62.5%;
+	background-color: #162436;
+	height: 100%;
+}
+
+body{
+	position:relative;
+	background: radial-gradient(circle at center, rgba(#49596d, .7), rgba(#162436, 0) 70%), ;
+	min-height: 100%;
+
+}
+
+// Typo
+
+body{
+	font-family: 'Lato', 'Arial', sans-serif;
+	font-size: 1.5rem;
+}
+
+// Décor Noel
+
+#snow{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	overflow: hidden;
+
+	*{
+		transform: scale(1.5) !important;
+	}
+}
+
+.logo{
+	padding-top: 50px;
+	text-align: center;
+	
+	svg{
+		width: 300px;
+		height: auto;
+	}
+}
+
+footer{
+	width: 100%;
+	height: 250px;
+	background: url('img/bas-neige.png') no-repeat center top;
+	text-align: center;
+	margin-top: 50px;
+
+	&::after{
+		content:url('img/cadeaux.png');
+		position: absolute;
+		bottom: 20px;
+		left: calc(50% - 136px);
+	}
+}
+
+// Autre
+
+.wrapper{
+	max-width: 90%;
+	margin: 0 auto;
+}
+
+.content{
+	margin-top: 80px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	column-count: 3;
+
+}
+
+// USER
+
+.grid-sizer{
+	@include width-above(1301px){
+		width: calc(100%/3 - 100px/3);
+	}
+	
+
+	@include width-below(1300px){
+		width: calc(50% - 25px);
+	}
+
+	@include width-below(700px){
+		width: 100%;
+	}
+}
+
+.user{
+	align-self: flex-start;
+	vertical-align: top;
+	background-color: $blanc;
+	border-radius: 5px;
+	padding: 120px 30px 30px;
+	margin-bottom: 85px;
+	position: relative;
+	
+
+	@include width-above(1301px){
+		width: calc(100%/3 - 100px/3);
+	}
+	
+
+	@include width-below(1300px){
+		width: calc(50% - 25px);
+	}
+
+	@include width-below(700px){
+		width: 100%;
+	}
+
+	h2{
+		text-transform: uppercase;
+		color: $rouge;
+		font-size: 2rem;
+		text-align: center;
+		font-weight: 900;
+		margin-bottom: 20px;
+	}
+
+	li{
+		border-bottom: 1px solid #e0e0e6;
+		padding: 10px;
+
+		&:first-child{
+			border-top: 1px solid #e0e0e6;
+		}
+	}
+
+	.gift-title{
+		color: $bleu-typo;
+		font-weight: 700;
+		line-height: 1.3em;
+		display: inline-block;
+	}
+
+	.gift-link{
+		display: inline-block;
+		position: relative;
+		top: 4px;
+		margin-left: 4px;
+		svg{
+			transition: fill ease .15s;
+			width: 20px;
+			height: auto;
+			fill: $bleu-typo;
+		}
+
+		&:hover{
+			svg{
+				fill: $vert;
+			}
+		}
+	}
+
+	.gift-description{
+		color: rgba($bleu-typo, .75);
+		font-size: 1.3rem;
+		line-height: 1.4em;
+		margin-top: 5px;
+	}
+
+	// avatar
+
+	.illu{
+
+		position: absolute;
+		top: -50px;
+		left: calc(50% - 80px); // - la moitié de la largeur + le padding
+		background-color: $blanc;
+		padding: 20px 20px 0 ;
+		border-radius: 100%;
+
+		svg{
+			width: 120px;
+			height: auto;
+		}		
+	}
+
+	// Bouton
+
+	.form-gift,
+	.wrapper-bt{
+		text-align: center;
+		margin-top: 20px;
+	}
+
+	.form-gift{
+		display: none;
+	}
+
+	.bt{
+		transition: all ease .15s;
+		font-family: 'Lato';
+		display: inline-block;
+		background-color: $vert;
+		padding: 14px 20px 12px;
+		color: #fff;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-weight: 700;
+		font-size: 1.3rem;
+		border-radius: 6px;
+		box-shadow: 3px 3px 0 darken($vert, 15%);
+		border:0;
+		cursor: pointer;
+		line-height: 1.3em;
+
+		&:hover{
+			background-color: darken($vert, 10%);
+			box-shadow: 3px 3px 0 darken($vert, 35%);
+		}
+	}
+
+	// Form ajout cadeau
+
+	input[type="text"],
+	textarea{
+		transition: border-color ease .2s;
+		width: 100%;
+		font-family: 'Lato';
+		color: $bleu-typo;
+		font-size: 1.4rem;
+		border: 1px solid #e0e0e6;
+		padding: 9px 15px 7px;
+		border-radius: 4px;
+
+		&:focus{
+			border-color: darken(#e0e0e6, 15%);
+		}
+	}
+
+	input[type="text"]{
+		margin-bottom: 5px;
+		padding-left: 40px;
+	}
+
+	textarea{
+		margin-bottom: 20px;
+		resize: vertical;
+		color: rgba($bleu-typo, .75);
+		font-size: 1.3rem;
+		line-height: 1.4em;
+		margin-top: 5px;
+	}
+
+	.wrapper-gift-input{
+
+		position: relative;
+
+		span{
+			position: absolute;
+			top: 8px;
+			left: 11px;
+
+			svg{
+				width: 20px;
+				height: auto;
+				fill: $bleu-typo;
+				
+			}
+		}
+	}
+}
+
+
+
+
+
+
