@@ -183,7 +183,7 @@ footer{
 		padding: 20px 20px 0 ;
 		border-radius: 100%;
 
-		svg{
+		svg, img{
 			width: 120px;
 			height: auto;
 		}		
@@ -392,6 +392,59 @@ footer{
 		font-size: 1.3rem;
 		text-decoration: underline;
 		cursor: pointer;
+	}
+}
+
+.wrapper-illus{
+	display: inline-block;
+	text-align: center;
+
+	.wrapper-illustration{
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 20px;
+	}
+
+	svg{
+		width: 75px;
+		height: auto;
+	}
+
+	label{
+		transition: opacity ease .25s;
+		display: inline-block;
+		position: relative;
+		opacity: .25;
+
+		&:hover{
+			cursor: pointer;
+		}
+	}
+
+	input{
+		display: none;
+	}
+
+	input[type="radio"]:checked + label{
+		opacity: 1;
+	}
+}
+
+.modal-user{
+	h3{
+		font-weight: 900;
+		text-transform: uppercase;
+		text-align: center;
+		color: $bleu-typo;
+		margin: 20px 0;
+	}
+
+	.bt{
+		margin: 0 auto;
+	}
+
+	.wrapper-gift-input span svg{
+		width: 17px;
 	}
 }
 

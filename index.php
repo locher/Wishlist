@@ -31,11 +31,12 @@
 
 					$nom_personne = $export_user['nom_personne'];
 					$id_personne = $export_user['id_personne'];
+					$id_illu = $export_user['choix-illu'];
 			?>
 
 			<div class="user">
 				<div class="illu">
-					<?php echo file_get_contents("img/perso2.svg"); ?>
+					<img src="img/perso<?php echo($id_illu);?>.png">
 				</div>
 				<h2><?php echo $nom_personne ?></h2>
 				<ul>
@@ -130,7 +131,63 @@
 			<?php endwhile; 
 			?>
 
+
+
+			<div class="modal-add-user modal-user user">
+				<form action="add-user.php" method="post">
+
+					<div class="illu">
+						<img src="img/perso1.png" alt="">
+					</div>
+
+					<h2>Ajouter une personne</h2>
+
+					<div class="wrapper-gift-input">
+						<span><?php echo file_get_contents("img/ico-user.svg"); ?></span>
+						<input class="input-name" type="text" name="username" placeholder="Prénom">
+					</div>
+	
+					<h3>Choisir l'illustration</h3>
+
+					<div class="wrapper-illus">
+
+						<div class="wrapper-illustration">
+							<input name="choix-illu" type="radio" id="radio1" checked class="perso1">
+							<label for="radio1"><?php echo file_get_contents("img/perso1.svg"); ?></label>
+							
+						</div>
+
+						<?php for($i=2; $i<=8; $i++): ?>
+						
+						<div class="wrapper-illustration">
+							<input name="choix-illu" type="radio" id="radio<?php echo $i; ?>" class="perso<?php echo $i; ?>">
+							<label for="radio<?php echo($i); ?>"><?php echo file_get_contents("img/perso".$i.".svg"); ?></label>
+							
+						</div>
+
+						<?php endfor; ?>
+
+					</div>
+
+					<div class="wrapper-bt wrapper-add">
+						<input type="submit" value="Ajouter le nouvel utilisateur" class="bt">
+					</div>
+
+				</form>
+			</div>
+
+
+
+		</div>
+
+		
+
+		<div class="add-user">
+			<button class="bt">Ajouter une personne</button>
+		</div>
+
 		</div>	
+
 
 	</div>
 
@@ -203,6 +260,29 @@
 	$('.annuler-suppression').click(function(){
 		$(this).parent().fadeOut();
 	});
+
+	// Modal ajouter personne
+
+		// Le titre change quand on tape
+
+	$('.input-name').keyup(function(){
+		$(this).parent().parent().find('h2').html($(this).val());
+
+		if($(this).parent().parent().find('h2').html() == ''){
+			$(this).parent().parent().find('h2').html('Ajouter une personne');
+		}
+	});
+
+		// L'illu change quand on la sélectionne
+
+	$('.wrapper-illus').change(function(){
+		var illu_name = $('.wrapper-illus input[type="radio"]:checked').attr('class');
+		$(this).parent().parent().find('.illu').html('<img src="img/'+illu_name+'.png"/>');
+	});
+
+	
+
+
 
 
 
