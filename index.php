@@ -84,9 +84,7 @@
 
 				<div class="wrapper-bt wrapper-add">
 					<button class="bt bt-add-gift">Ajouter un cadeau</button>
-				</div>
-
-				
+				</div>				
 
 			</div>
 
@@ -120,13 +118,25 @@
 
 	$grid;
 
+	// Ouverture et fermeture du form d'ajout cadeau
+
 	$('.bt-add-gift').click(function(){
-		$(this).parent().parent().find('.form-gift').slideDown(function(){
+		$(this).parent().parent().find('.form-gift').toggleClass('open');
+		$grid.masonry();
+		$(this).toggleClass('bt open');
+		$(this).parent().parent().find('.form-gift').slideToggle(function(){
 			$grid.masonry();
 		});
-		$(this).hide();
-	});
 
+		if($(this).hasClass('open')){
+			$(this).html('Annuler')
+		}
+
+		else{
+			$(this).html('Ajouter un cadeau');
+		}
+
+	});
 
 </script>
 </body>

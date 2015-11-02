@@ -150,7 +150,7 @@ footer{
 		top: 4px;
 		margin-left: 4px;
 		svg{
-			transition: fill ease .15s;
+			transition: fill ease .20s;
 			width: 20px;
 			height: auto;
 			fill: $bleu-typo;
@@ -200,7 +200,7 @@ footer{
 	}
 
 	.bt{
-		transition: all ease .15s;
+		transition: all ease .20s;
 		font-family: 'Lato';
 		display: inline-block;
 		background-color: $vert;
@@ -220,6 +220,18 @@ footer{
 			background-color: darken($vert, 10%);
 			box-shadow: 3px 3px 0 darken($vert, 35%);
 		}
+	}
+
+	.bt-add-gift.open{
+		transition: all ease .2s;
+		font-family: 'Lato';
+		font-weight: 700;
+		font-size: 1.4rem;
+		text-decoration: underline;
+		background: none;
+		border:0;
+		color: $rouge;
+		cursor:pointer;
 	}
 
 	// Form ajout cadeau
@@ -247,7 +259,7 @@ footer{
 
 	textarea{
 		margin-bottom: 20px;
-		resize: vertical;
+		resize: none;
 		color: rgba($bleu-typo, .75);
 		font-size: 1.3rem;
 		line-height: 1.4em;
