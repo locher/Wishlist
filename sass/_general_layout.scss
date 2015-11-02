@@ -224,6 +224,11 @@ footer{
 		&.bt-edit-gift{
 			background-color: $bleu-typo;
 			box-shadow: 3px 3px 0 darken($bleu-typo, 15%);
+
+			&:hover{
+				background-color: darken($bleu-typo, 10%);
+				box-shadow: 3px 3px 0 darken($bleu-typo, 35%);
+			}
 		}
 	}
 

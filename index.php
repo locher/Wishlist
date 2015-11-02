@@ -78,7 +78,7 @@
 							
 							<textarea name="gift-description" id="" rows="3" placeholder="Détail optionnel"><?php echo $description_gift; ?></textarea>
 
-							<input type="hidden" value="<?php echo $id_gift; ?>" name="id-gift">
+							<input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
 
 							<input type="submit" class="bt bt-edit-gift" value="Modifier le cadeau">
 
