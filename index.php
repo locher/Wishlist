@@ -58,10 +58,18 @@
 							<?php if($link_gift): ?>
 								<a title="Lien vers le cadeau" href="<?php echo $link_gift; ?>" class="gift-link"><?php echo file_get_contents("img/link.svg"); ?></a>
 							<?php endif; ?>
-							<form class="ico-trash" title="Supprimer le cadeau" action="delete-gift.php" method="post">
-								<input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
-								<span class="submit-delete"><?php echo file_get_contents("img/ico-trash.svg"); ?></span>
-							</form>
+
+							<span class="submit-delete ico-trash"><?php echo file_get_contents("img/ico-trash.svg"); ?></span>
+
+							<div class="confirmation-suppression">
+									<p>Êtes-vous sûr ?</p>
+									<form action="delete-gift.php" method="post">
+										<input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
+										<input type="submit" class="confirm-suppression bt" value="Oui" />
+									</form>
+									<p class="annuler-suppression">Non, annuler</p>
+							</div>
+
 							<span class="ico-edit" title="Éditer le cadeau"><?php echo file_get_contents("img/ico-edit.svg"); ?></span>
 						</div>
 						
@@ -189,7 +197,11 @@
 	// Suppression cadeau
 
 	$('.submit-delete').click(function(){
-		$(this).parent().submit();
+		$(this).parent().find('.confirmation-suppression').fadeIn();
+	});
+
+	$('.annuler-suppression').click(function(){
+		$(this).parent().fadeOut();
 	});
 
 

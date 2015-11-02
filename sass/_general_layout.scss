@@ -123,6 +123,7 @@ footer{
 	}
 
 	li{
+		position: relative;
 		border-bottom: 1px solid #e0e0e6;
 		padding: 10px;
 
@@ -298,7 +299,6 @@ footer{
 
 .wrapper-title{
 
-	position: relative;
 	padding-right: 50px;
 
 	p{
@@ -308,16 +308,16 @@ footer{
 	.ico-edit{
 		transition: opacity ease .25s;
 		position: absolute;
-		right: 0;
-		top: 3px;
+		right: 10px;
+		top: 13px;
 		opacity: 0;
 	}
 
 	.ico-trash{
 		transition: opacity ease .25s;
 		position: absolute;
-		right: 30px;
-		top: 3px;
+		right: 43px;
+		top: 13px;
 		opacity: 0;
 
 		&:hover svg{
@@ -348,9 +348,51 @@ footer{
 	margin: 20px 0;
 }
 
+// Confirmation suppression
+
+.confirmation-suppression{
+	display: none;
+	position: absolute;
+	background-color: rgba(#000, .85);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 7px 15px;
+	z-index: 100;
 
 
 
+	p{
+		color: $blanc;
+		font-weight: 900;
+		display: inline-block;
+		margin-right: 5px;
+		vertical-align: middle;
+	}
 
+	form{
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.bt{
+		padding: 5px 9px 3px;
+		background-color: $rouge;
+		box-shadow: none;
+
+		&:hover{
+			background-color: darken($rouge, 15%);
+			box-shadow: none;
+		}
+	}
+
+	.annuler-suppression{
+		margin-left: 10px;
+		font-size: 1.3rem;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
 
 
