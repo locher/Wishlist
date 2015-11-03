@@ -259,7 +259,7 @@
 					<div class="wrapper-gift-input">
 						<span>
 							<svg viewBox="0 0 100 100" class="icon">
-								<use xlink:href="#icon-ico-trash"></use>
+								<use xlink:href="#icon-ico-user"></use>
 							</svg>
 						</span>
 						<input class="input-name" type="text" name="username" placeholder="Prénom" required>
