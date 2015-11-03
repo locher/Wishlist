@@ -259,7 +259,7 @@ $('.edit-user form').on('submit', function(e) {
     }
 });
 
-// delete AJAX
+// delete gift et user AJAX
 
 $('.confirmation-suppression form').on('submit', function(e) {
     e.preventDefault();

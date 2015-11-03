@@ -14,7 +14,13 @@ $statement2 = $bdd->prepare("DELETE FROM liste WHERE la_personne = :user_id");
 $statement2->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $statement2->execute();
 
-header("location:index.php"); 
+	//L'ajax
+
+	$reponse = 'success';
+	echo json_encode(array(
+		'reponse'=>$reponse
+	));
+
 
 
 ?>
