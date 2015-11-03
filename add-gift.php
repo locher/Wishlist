@@ -23,13 +23,18 @@ if(isset($gift_title)&&($gift_title!='')){
 	//L'ajax
 
 	$reponse = 'success';
+
+	$gift_id = $bdd->lastInsertId();
+
+
 	echo json_encode(array(
 		'reponse'=>$reponse,
 		'gift_title'=>$gift_title,
 		'gift_url'=>$gift_url,
-		'gift_description'=>$gift_description
-
+		'gift_description'=>$gift_description,
+		'gift_id' =>$gift_id
 	));
+
 }
 
 ?>

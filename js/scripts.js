@@ -24,7 +24,8 @@ $grid;
 
 // Ouverture et fermeture du form d'ajout cadeau
 
-$('.bt-add-gift').click(function(){
+
+$('body').on('click', '.bt-add-gift', function(){
 	$(this).parent().parent().find('.form-add').toggleClass('open');
 	$grid.masonry();
 	$(this).toggleClass('bt open bt-cancel');
@@ -39,12 +40,11 @@ $('.bt-add-gift').click(function(){
 	else{
 		$(this).html('Ajouter un cadeau');
 	}
-
 });
 
 // Edition des cadeaux
 
-$('.ico-edit').click(function(){
+$('body').on('click', '.ico-edit', function(){
 	$('.form-edit').slideUp(function(){
 		$grid.masonry();
 	});
@@ -53,7 +53,7 @@ $('.ico-edit').click(function(){
 	});
 });
 
-$('.cancel-edit-gift').click(function(){
+$('body').on('click', '.cancel-edit-gift', function(){
 	$(this).parent().parent().slideToggle(function(){
 		$grid.masonry();
 	});
@@ -61,11 +61,11 @@ $('.cancel-edit-gift').click(function(){
 
 // Suppression cadeau
 
-$('.submit-delete').click(function(){
+$('body').on('click', '.submit-delete', function(){
 	$(this).parent().find('.confirmation-suppression').fadeIn();
 });
 
-$('.annuler-suppression').click(function(){
+$('body').on('click', '.annuler-suppression', function(){
 	$(this).parent().fadeOut();
 });
 
@@ -97,14 +97,14 @@ $('.modal-add-user .wrapper-illus').change(function(){
 
 // Afficher le modal au click sur 'ajouter un perso'
 
-$('.add-user button').click(function(){
+$('body').on('click', '.add-user button', function(){
 	$('.modal-user').fadeIn(function(){
 		$grid.masonry();
 	})
 });
 
 // La virer si on annule
-$('.modal-user .bt-cancel').click(function(){
+$('body').on('click', '.modal-user .bt-cancel', function(){
 	$('.modal-user').fadeOut(function(){
 		$grid.masonry();
 	})
@@ -112,7 +112,7 @@ $('.modal-user .bt-cancel').click(function(){
 
 // faire apparaitre l'edit des user
 
-$('.ico-edit-user').click(function(){
+$('body').on('click', '.ico-edit-user', function(){
 	$(this).parent().parent().find('.edit-user').slideToggle(function(){
 		$grid.masonry();
 	});
@@ -120,7 +120,7 @@ $('.ico-edit-user').click(function(){
 
 // ranger l'edit user si on annule
 
-$('.edit-user .bt-cancel').click(function(){
+$('body').on('click', '.edit-user .bt-cancel', function(){
 	$(this).parent().parent().parent().slideToggle(function(){
 		$grid.masonry();
 	});
@@ -151,17 +151,65 @@ $('.edit-user .wrapper-illus').change(function(){
 });
 
 // Delete user
-
-$('.ico-delete-user').click(function(){
+$('body').on('click', '.ico-delete-user', function(){
 	$(this).parent().find('.confirmation-suppression').fadeIn();
 });
 
 
+// Ajout cadeau AJAX
 
+$('body').on('submit', '.form-add', function(e){
+    e.preventDefault();
+
+    var $this = $(this);
+
+    // Je récupère les valeurs
+    var gift_title = $(this).find('input[name="gift-name"]').val();
+    var gift_url = $(this).find('input[name="gift-url"]').val();
+    var gift_description = $(this).find('input[name="gift-description"]').val();
+    var gift_user = $(this).find('input[name="gift-user"]').val();
+
+    // Je vérifie une première fois pour ne pas lancer la requête HTTP
+    // si je sais que mon PHP renverra une erreur
+    if(gift_title === '') {
+        alert('Les champs doivent êtres remplis');
+    } else {
+        // Envoi de la requête HTTP en mode asynchrone
+        $.ajax({
+            url: $this.attr('action'), 
+            type: $this.attr('method'),
+            data: $this.serialize(),
+            dataType: 'json', // JSON
+            success: function(json) {
+                if(json.reponse === 'success') {
+                	gift_title = json.gift_title;
+                	gift_url = json.gift_url;
+                	gift_description = json.gift_description;
+                    var gift_id = json.gift_id;
+
+                    var gift_url_code = '';
+                    var gift_description_code = '';
+
+                    if(gift_url != ''){
+                        gift_url_code = '<a title="Lien vers le cadeau" href="'+gift_url+'" class="gift-link"><svg viewBox="0 0 100 100" class="icon"><use xlink:href="#icon-link"></use></svg></a>'
+                    }
+
+                     if(gift_description != ''){
+                        gift_description_code = '<p class="gift-description">'+gift_description+'</p>'
+                    }
+
+                    $this.parent().find('ul').append('<li><div class="wrapper-title"><p class="gift-title">'+gift_title+'</p>'+gift_url_code+'<span class="submit-delete ico-trash"><svg viewBox="0 0 100 100" class="icon"><use xlink:href="#icon-ico-trash"></use></svg></span><div class="confirmation-suppression"><p>Êtes-vous sûr ?</p><form action="delete-gift.php" method="post"><input type="hidden" value="'+gift_id+'" name="gift-id"><input type="submit" class="confirm-suppression bt" value="Oui" /></form><p class="annuler-suppression">Non, annuler</p></div><span class="ico-edit" title="Éditer le cadeau"><svg viewBox="0 0 100 100" class="icon"><use xlink:href="#icon-ico-edit"></use></svg></span></div>'+gift_description_code+'<form class="form-gift form-edit" action="update-gift.php" method="post"><div class="wrapper-gift-input"><span><svg viewBox="0 0 100 100" class="icon"><use xlink:href="#icon-ico-item"></use></svg></span><input type="text" name="gift-name" required placeholder="Désignation" value="'+gift_title+'"></div><div class="wrapper-gift-input"><span><svg viewBox="0 0 100 100" class="icon"><use xlink:href="#icon-link"></use></svg></span><input type="text" name="gift-url" placeholder="Lien optionnel" value="'+gift_url+'"></div><textarea name="gift-description" id="" rows="3" placeholder="Détail optionnel">'+gift_description+'</textarea><input type="hidden" value="'+gift_id+'" name="gift-id"><input type="submit" class="bt bt-edit-gift" value="Modifier le cadeau"><div class="wrapper-bt-edit-gift"><span class="cancel-edit-gift bt-cancel">Annuler</span></div></form></li>').children(':last').hide().fadeIn(1000);               
+                }
+
+                $this.find("input[type=text], textarea").val("");
+                
+            }
+        });
+    }
+});
 
 // Edit cadeau ajax
-
-$('.form-edit').on('submit', function(e) {
+$('body').on('submit', '.form-edit', function(e){
     e.preventDefault();
 
     var $this = $(this);
@@ -221,8 +269,7 @@ $('.form-edit').on('submit', function(e) {
 });
 
 // Edit user AJAX
-
-$('.edit-user form').on('submit', function(e) {
+$('body').on('submit', '.edit-user form', function(e){
     e.preventDefault();
 
     var $this = $(this);
@@ -260,8 +307,7 @@ $('.edit-user form').on('submit', function(e) {
 });
 
 // delete gift et user AJAX
-
-$('.confirmation-suppression form').on('submit', function(e) {
+$('body').on('submit', '.confirmation-suppression form', function(e){
     e.preventDefault();
 
     var $this = $(this);
