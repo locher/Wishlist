@@ -334,8 +334,6 @@ $('body').on('submit', '.confirmation-suppression form', function(e){
     });
 });
 
-
-
 });
 	
 })(jQuery, this);

@@ -1,3 +1,4 @@
+<?php include('inc/config.php'); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
 			<?php 
 				include('inc/bdd.php');
 
-				$users = $bdd->query('SELECT * FROM personne ORDER BY nom_personne ASC');
+				$users = $bdd->query('SELECT * FROM '.$bdd_users.' ORDER BY nom_personne ASC');
 
 				while($export_user = $users->fetch()):
 
@@ -122,7 +123,7 @@
 
 					<?php 
 
-						$gifts = $bdd->query('SELECT * FROM liste WHERE la_personne = '.$id_personne.' ORDER BY titre ASC');
+						$gifts = $bdd->query('SELECT * FROM '.$bdd_gifts.' WHERE la_personne = '.$id_personne.' ORDER BY titre ASC');
 					?>
 
 					<?php

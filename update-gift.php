@@ -1,6 +1,8 @@
 <?php 
 
 include('inc/bdd.php');
+include('inc/config.php');
+
 $bdd->query('SET NAMES "utf8"');
 
 
@@ -12,7 +14,7 @@ $gift_id = $_POST['gift-id'];
 
 if(isset($gift_title)&&($gift_title!='')){
 
-	$statement = $bdd->prepare("UPDATE liste SET titre = :title, lien = :lien, description = :description WHERE id = :id");
+	$statement = $bdd->prepare("UPDATE ".$bdd_gifts." SET titre = :title, lien = :lien, description = :description WHERE id = :id");
 
 	$statement->bindParam(':title', $gift_title, PDO::PARAM_STR);
 	$statement->bindParam(':lien', $gift_url, PDO::PARAM_STR);
