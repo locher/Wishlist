@@ -155,7 +155,74 @@ $('.edit-user .wrapper-illus').change(function(){
 $('.ico-delete-user').click(function(){
 	$(this).parent().find('.confirmation-suppression').fadeIn();
 });
-		
-	});
+
+
+
+// Edit cadeau ajax
+
+$('.form-edit').on('submit', function(e) {
+    e.preventDefault();
+
+    var $this = $(this);
+
+    // Je récupère les valeurs
+    var gift_title = $(this).find('input[name="gift-name"]').val();
+    var gift_url = $(this).find('input[name="gift-url"]').val();
+    var gift_description = $(this).find('input[name="gift-description"]').val();
+    var gift_user = $(this).find('input[name="gift-user"]').val();
+
+    // Je vérifie une première fois pour ne pas lancer la requête HTTP
+    // si je sais que mon PHP renverra une erreur
+    if(gift_title === '') {
+        alert('Les champs doivent êtres remplis');
+    } else {
+        // Envoi de la requête HTTP en mode asynchrone
+        $.ajax({
+            url: $this.attr('action'), 
+            type: $this.attr('method'),
+            data: $this.serialize(),
+            dataType: 'json', // JSON
+            success: function(json) {
+                if(json.reponse === 'success') {
+                	gift_title = json.gift_title;
+                	gift_url = json.gift_url;
+                	gift_description = json.gift_description;
+
+                	//ce qui se passe si succès
+                	
+                	$this.parent().find('.gift-title').html(gift_title);
+
+                    // Gérer le lien
+                    $this.parent().find('.gift-link').remove();
+
+                    if(gift_url != ''){
+                        $this.parent().find('.wrapper-title').append('<a title="Lien vers le cadeau" href="'+gift_url+'" class="gift-link"><svg viewBox="0 0 100 100" class="icon"><use xlink:href="#icon-link"></use></svg></a>');
+                    }
+
+                    //Gérer la description
+
+                    $this.parent().find('.gift-description').remove();
+
+                    if(gift_description != ''){
+                        $this.parent().find('.wrapper-title').after('<p class="gift-description">'+gift_description+'</p>');
+                    }
+                	
+                	$this.slideUp(function(){
+                		$grid.masonry();
+                	});
+
+                } else {
+                    alert('Erreur : '+ json.reponse);
+                }
+            }
+        });
+    }
+});
+
+
+
+
+
+});
 	
 })(jQuery, this);
