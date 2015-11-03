@@ -158,6 +158,7 @@ $('.ico-delete-user').click(function(){
 
 
 
+
 // Edit cadeau ajax
 
 $('.form-edit').on('submit', function(e) {
@@ -258,6 +259,32 @@ $('.edit-user form').on('submit', function(e) {
     }
 });
 
+// delete AJAX
+
+$('.confirmation-suppression form').on('submit', function(e) {
+    e.preventDefault();
+
+    var $this = $(this);
+
+    $.ajax({
+        url: $this.attr('action'), 
+        type: $this.attr('method'),
+        data: $this.serialize(),
+        dataType: 'json', // JSON
+        success: function(json) {
+            if(json.reponse === 'success') {
+
+                //ce qui se passe si succès
+                $this.parent().parent().parent().fadeOut(function(){
+                    $grid.masonry();
+                })
+
+            } else {
+                alert('Erreur : '+ json.reponse);
+            }
+        }
+    });
+});
 
 
 
