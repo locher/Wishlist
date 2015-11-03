@@ -44,6 +44,15 @@
 					<h2><?php echo $nom_personne ?></h2>
 					<span class="ico-delete-user"><?php echo file_get_contents("img/ico-trash.svg"); ?></span>
 					<span class="ico-edit-user"><?php echo file_get_contents("img/ico-edit.svg"); ?></span>
+
+					<div class="confirmation-suppression">
+							<p>Êtes-vous sûr ?</p>
+							<form action="delete-user.php" method="post">
+								<input type="hidden" value="<?php echo $id_personne; ?>" name="user-id">
+								<input type="submit" class="confirm-suppression bt" value="Oui" />
+							</form>
+							<p class="annuler-suppression">Non, annuler</p>
+					</div>
 				</div>
 				
 
@@ -98,6 +107,9 @@
 					<?php 
 
 						$gifts = $bdd->query('SELECT * FROM liste WHERE la_personne = '.$id_personne.' ORDER BY titre ASC');
+					?>
+
+					<?php
 
 						while($gift = $gifts->fetch()):
 
@@ -106,6 +118,9 @@
 							$description_gift = $gift['description'];
 							$id_gift = $gift['id'];
 					?>
+					
+
+					
 
 					<li>
 						<div class="wrapper-title">
@@ -403,6 +418,12 @@
 	$('.edit-user .wrapper-illus').change(function(){
 		var illu_name = $(this).find('input[type="radio"]:checked').attr('class');
 		$(this).parent().parent().parent().find('.illu').html('<img src="img/'+illu_name+'.png"/>');
+	});
+
+	// Delete user
+
+	$('.ico-delete-user').click(function(){
+		$(this).parent().find('.confirmation-suppression').fadeIn();
 	});
 
 
