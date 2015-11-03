@@ -31,7 +31,7 @@
 
 					$nom_personne = $export_user['nom_personne'];
 					$id_personne = $export_user['id_personne'];
-					$id_illu = $export_user['choix-illu'];
+					$id_illu = $export_user['choix_illu'];
 			?>
 
 			<div class="user">
@@ -144,7 +144,7 @@
 
 					<div class="wrapper-gift-input">
 						<span><?php echo file_get_contents("img/ico-user.svg"); ?></span>
-						<input class="input-name" type="text" name="username" placeholder="Prénom">
+						<input class="input-name" type="text" name="username" placeholder="Prénom" required>
 					</div>
 	
 					<h3>Choisir l'illustration</h3>
@@ -152,7 +152,7 @@
 					<div class="wrapper-illus">
 
 						<div class="wrapper-illustration">
-							<input name="choix-illu" type="radio" id="radio1" checked class="perso1">
+							<input name="choix-illu" type="radio" id="radio1" checked value="1" class="perso1">
 							<label for="radio1"><?php echo file_get_contents("img/perso1.svg"); ?></label>
 							
 						</div>
@@ -160,7 +160,7 @@
 						<?php for($i=2; $i<=8; $i++): ?>
 						
 						<div class="wrapper-illustration">
-							<input name="choix-illu" type="radio" id="radio<?php echo $i; ?>" class="perso<?php echo $i; ?>">
+							<input value="<?php echo $i; ?>" name="choix-illu" type="radio" id="radio<?php echo $i; ?>" class="perso<?php echo $i; ?>">
 							<label for="radio<?php echo($i); ?>"><?php echo file_get_contents("img/perso".$i.".svg"); ?></label>
 							
 						</div>
@@ -171,6 +171,10 @@
 
 					<div class="wrapper-bt wrapper-add">
 						<input type="submit" value="Ajouter le nouvel utilisateur" class="bt">
+					</div>
+
+					<div class="wrapper-bt">
+						<span class="cancel-add-user bt-cancel">Annuler</span>
 					</div>
 
 				</form>
@@ -266,10 +270,17 @@
 		// Le titre change quand on tape
 
 	$('.input-name').keyup(function(){
-		$(this).parent().parent().find('h2').html($(this).val());
 
-		if($(this).parent().parent().find('h2').html() == ''){
+		var nom_personne = $(this).val();
+		var phrase_ajout = 'Ajouter '+nom_personne;
+
+		$(this).parent().parent().find('h2').html(nom_personne);
+
+		$(this).parent().parent().find('input[type="submit"]').attr('value',phrase_ajout);
+
+		if(nom_personne == ''){
 			$(this).parent().parent().find('h2').html('Ajouter une personne');
+			$(this).parent().parent().find('input[type="submit"]').attr('value','Ajouter la personne');
 		}
 	});
 
@@ -278,6 +289,21 @@
 	$('.wrapper-illus').change(function(){
 		var illu_name = $('.wrapper-illus input[type="radio"]:checked').attr('class');
 		$(this).parent().parent().find('.illu').html('<img src="img/'+illu_name+'.png"/>');
+	});
+
+	// Afficher le modal au click sur 'ajouter un perso'
+
+	$('.add-user button').click(function(){
+		$('.modal-user').fadeIn(function(){
+			$grid.masonry();
+		})
+	});
+
+	// La virer si on annule
+	$('.modal-user .bt-cancel').click(function(){
+		$('.modal-user').fadeOut(function(){
+			$grid.masonry();
+		})
 	});
 
 	

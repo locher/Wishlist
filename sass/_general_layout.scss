@@ -189,63 +189,6 @@ footer{
 		}		
 	}
 
-	// Bouton
-
-	.form-gift,
-	.wrapper-bt{
-		text-align: center;
-		margin-top: 20px;
-	}
-
-	.form-gift{
-		display: none;
-	}
-
-	.bt{
-		transition: all ease .20s;
-		font-family: 'Lato';
-		display: inline-block;
-		background-color: $vert;
-		padding: 14px 20px 12px;
-		color: #fff;
-		text-decoration: none;
-		text-transform: uppercase;
-		font-weight: 700;
-		font-size: 1.3rem;
-		border-radius: 6px;
-		box-shadow: 3px 3px 0 darken($vert, 15%);
-		border:0;
-		cursor: pointer;
-		line-height: 1.3em;
-
-		&:hover{
-			background-color: darken($vert, 10%);
-			box-shadow: 3px 3px 0 darken($vert, 35%);
-		}
-
-		&.bt-edit-gift{
-			background-color: $bleu-typo;
-			box-shadow: 3px 3px 0 darken($bleu-typo, 15%);
-
-			&:hover{
-				background-color: darken($bleu-typo, 10%);
-				box-shadow: 3px 3px 0 darken($bleu-typo, 35%);
-			}
-		}
-	}
-
-	.bt-cancel{
-		transition: all ease .2s;
-		font-family: 'Lato';
-		font-weight: 700;
-		font-size: 1.4rem;
-		text-decoration: underline;
-		background: none;
-		border:0;
-		color: $rouge;
-		cursor:pointer;
-	}
-
 	// Form ajout cadeau
 
 	input[type="text"],
@@ -295,6 +238,63 @@ footer{
 			}
 		}
 	}
+}
+
+// Bouton
+
+.form-gift,
+.wrapper-bt{
+	text-align: center;
+	margin-top: 20px;
+}
+
+.form-gift{
+	display: none;
+}
+
+.bt{
+	transition: all ease .20s;
+	font-family: 'Lato';
+	display: inline-block;
+	background-color: $vert;
+	padding: 14px 20px 12px;
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 1.3rem;
+	border-radius: 6px;
+	box-shadow: 3px 3px 0 darken($vert, 15%);
+	border:0;
+	cursor: pointer;
+	line-height: 1.3em;
+
+	&:hover{
+		background-color: darken($vert, 10%);
+		box-shadow: 3px 3px 0 darken($vert, 35%);
+	}
+
+	&.bt-edit-gift{
+		background-color: $bleu-typo;
+		box-shadow: 3px 3px 0 darken($bleu-typo, 15%);
+
+		&:hover{
+			background-color: darken($bleu-typo, 10%);
+			box-shadow: 3px 3px 0 darken($bleu-typo, 35%);
+		}
+	}
+}
+
+.bt-cancel{
+	transition: all ease .2s;
+	font-family: 'Lato';
+	font-weight: 700;
+	font-size: 1.4rem;
+	text-decoration: underline;
+	background: none;
+	border:0;
+	color: $rouge;
+	cursor:pointer;
 }
 
 .wrapper-title{
@@ -431,6 +431,9 @@ footer{
 }
 
 .modal-user{
+
+	display: none;
+
 	h3{
 		font-weight: 900;
 		text-transform: uppercase;
@@ -448,4 +451,11 @@ footer{
 	}
 }
 
+.add-user{
+	text-align: center;
+
+	.bt{
+
+	}
+}
 
