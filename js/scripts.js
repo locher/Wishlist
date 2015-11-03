@@ -97,10 +97,12 @@ $('.modal-add-user .wrapper-illus').change(function(){
 
 // Afficher le modal au click sur 'ajouter un perso'
 
-$('body').on('click', '.add-user button', function(){
+$('body').on('click', '.add-user button', function(){    
 	$('.modal-user').fadeIn(function(){
 		$grid.masonry();
 	})
+    var pos_modal = $('#modal-add-user').offset();
+    $(window).scrollTo(pos_modal.top - 200,300);
 });
 
 // La virer si on annule

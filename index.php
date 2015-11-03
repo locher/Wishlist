@@ -210,7 +210,7 @@
 
 				</ul>
 
-				<form class="form-gift form-add" action="add-gift.php" method="post">
+				<form class="form-gift form-add" action="add-gift.php" method="post" id="add-user">
 					<div class="wrapper-gift-input">
 						<span>
 							<svg viewBox="0 0 100 100" class="icon">
@@ -246,7 +246,7 @@
 
 
 
-			<div class="modal-add-user modal-user user">
+			<div class="modal-add-user modal-user user" id="modal-add-user">
 				<form action="add-user.php" method="post">
 
 					<div class="illu">
@@ -319,6 +319,7 @@
 <script src="js/snowstorm-min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="js/masonry.pkgd.min.js"></script>
+<script src="js/jquery.scrollTo.min.js"></script>
 <script src="js/scripts.js"></script>
 
 </body>
