@@ -10,6 +10,10 @@
 </head>
 <body>
 
+	<div class="svg-wrapper" aria-hidden="true">
+		<?php echo file_get_contents('img/svg-prod/sprite/svgs.svg'); ?>
+	</div>	
+
 	<div id="snow"></div>
 
 	<div class="wrapper">
@@ -34,7 +38,7 @@
 					$id_illu = $export_user['choix_illu'];
 			?>
 
-			<div class="user">
+			<div class="user" id="user<?php echo $id_personne;?>">
 				<div class="illu">
 					<img src="img/perso<?php echo($id_illu);?>.png">
 				</div>
@@ -42,8 +46,16 @@
 				<div class="wrapper-username">
 					
 					<h2><?php echo $nom_personne ?></h2>
-					<span class="ico-delete-user"><?php echo file_get_contents("img/ico-trash.svg"); ?></span>
-					<span class="ico-edit-user"><?php echo file_get_contents("img/ico-edit.svg"); ?></span>
+						<span class="ico-delete-user">
+							<svg viewBox="0 0 100 100" class="icon">
+								<use xlink:href="#icon-ico-trash"></use>
+							</svg>
+						</span>
+					<span class="ico-edit-user">
+						<svg viewBox="0 0 100 100" class="icon">
+							<use xlink:href="#icon-ico-edit"></use>
+						</svg>
+					</span>
 
 					<div class="confirmation-suppression">
 							<p>Êtes-vous sûr ?</p>
@@ -63,7 +75,11 @@
 						<input type="hidden" value="<?php echo $id_personne; ?>" name="id_personne">
 
 						<div class="wrapper-gift-input">
-							<span><?php echo file_get_contents("img/ico-user.svg"); ?></span>
+							<span>
+								<svg viewBox="0 0 100 100" class="icon">
+									<use xlink:href="#icon-ico-user"></use>
+								</svg>
+							</span>
 							<input class="input-name" type="text" name="username" placeholder="Prénom" required value="<?php echo($nom_personne);?>">
 						</div>
 		
@@ -102,7 +118,7 @@
 				</div>
 
 
-				<ul>
+				<ul class="gift-list">
 
 					<?php 
 
@@ -126,10 +142,18 @@
 						<div class="wrapper-title">
 							<p class="gift-title"><?php echo $nom_gift; ?></p>
 							<?php if($link_gift): ?>
-								<a title="Lien vers le cadeau" href="<?php echo $link_gift; ?>" class="gift-link"><?php echo file_get_contents("img/link.svg"); ?></a>
+								<a title="Lien vers le cadeau" href="<?php echo $link_gift; ?>" class="gift-link">
+									<svg viewBox="0 0 100 100" class="icon">
+										<use xlink:href="#icon-link"></use>
+									</svg>
+								</a>
 							<?php endif; ?>
 
-							<span class="submit-delete ico-trash"><?php echo file_get_contents("img/ico-trash.svg"); ?></span>
+							<span class="submit-delete ico-trash">
+								<svg viewBox="0 0 100 100" class="icon">
+									<use xlink:href="#icon-ico-trash"></use>
+								</svg>
+							</span>
 
 							<div class="confirmation-suppression">
 									<p>Êtes-vous sûr ?</p>
@@ -140,7 +164,11 @@
 									<p class="annuler-suppression">Non, annuler</p>
 							</div>
 
-							<span class="ico-edit" title="Éditer le cadeau"><?php echo file_get_contents("img/ico-edit.svg"); ?></span>
+							<span class="ico-edit" title="Éditer le cadeau">
+								<svg viewBox="0 0 100 100" class="icon">
+									<use xlink:href="#icon-ico-edit"></use>
+								</svg>
+							</span>
 						</div>
 						
 						<?php if($description_gift): ?>
@@ -150,11 +178,19 @@
 						<?php //Le formulaire, pour edition ?>
 						<form class="form-gift form-edit" action="update-gift.php" method="post">
 							<div class="wrapper-gift-input">
-								<span><?php echo file_get_contents("img/ico-item.svg"); ?></span>
+								<span>
+									<svg viewBox="0 0 100 100" class="icon">
+										<use xlink:href="#icon-ico-item"></use>
+									</svg>
+								</span>
 								<input type="text" name="gift-name" required placeholder="Désignation" value="<?php echo $nom_gift; ?>">
 							</div>
 							<div class="wrapper-gift-input">
-								<span><?php echo file_get_contents("img/link.svg"); ?></span>
+								<span>
+									<svg viewBox="0 0 100 100" class="icon">
+										<use xlink:href="#icon-link"></use>
+									</svg>
+								</span>
 								<input type="text" name="gift-url" placeholder="Lien optionnel" value="<?php echo $link_gift; ?>">
 							</div>
 							
@@ -176,11 +212,19 @@
 
 				<form class="form-gift form-add" action="add-gift.php" method="post">
 					<div class="wrapper-gift-input">
-						<span><?php echo file_get_contents("img/ico-item.svg"); ?></span>
+						<span>
+							<svg viewBox="0 0 100 100" class="icon">
+								<use xlink:href="#icon-ico-item"></use>
+							</svg>
+						</span>
 						<input type="text" name="gift-name" required placeholder="Désignation">
 					</div>
 					<div class="wrapper-gift-input">
-						<span><?php echo file_get_contents("img/link.svg"); ?></span>
+						<span>
+							<svg viewBox="0 0 100 100" class="icon">
+								<use xlink:href="#icon-link"></use>
+							</svg>
+						</span>
 						<input type="text" name="gift-url" placeholder="Lien optionnel">
 					</div>
 					
@@ -212,7 +256,11 @@
 					<h2>Ajouter une personne</h2>
 
 					<div class="wrapper-gift-input">
-						<span><?php echo file_get_contents("img/ico-user.svg"); ?></span>
+						<span>
+							<svg viewBox="0 0 100 100" class="icon">
+								<use xlink:href="#icon-ico-user"></use>
+							</svg>
+						</span>
 						<input class="input-name" type="text" name="username" placeholder="Prénom" required>
 					</div>
 	
@@ -275,3 +323,6 @@
 
 </body>
 </html>
+
+
+
