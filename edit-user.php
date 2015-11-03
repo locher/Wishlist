@@ -9,7 +9,12 @@ $choix_illu = $_POST['choix-illu'.$id_personne];
 
 if(isset($username)&&($username!='')){
 
-	$bdd->query("UPDATE personne SET nom_personne = '".$username."', choix_illu = '".$choix_illu."' WHERE id_personne = '".$id_personne."'");
+	$statement = $bdd->prepare("UPDATE personne SET nom_personne = :nom, choix_illu = :choix_illu WHERE id_personne = :id_personne");
+
+	$statement->bindParam(':nom', $username, PDO::PARAM_STR);
+	$statement->bindParam(':choix_illu', $choix_illu, PDO::PARAM_INT);
+	$statement->bindParam(':id_personne', $id_personne, PDO::PARAM_INT);
+	$statement->execute();
 
 	header("location:index.php"); 
 

@@ -12,8 +12,15 @@ $gift_id = $_POST['gift-id'];
 
 if(isset($gift_title)&&($gift_title!='')){
 
-	$bdd->query("UPDATE liste SET titre = '".$gift_title."', lien = '".$gift_url."', description = '".$gift_description."' WHERE id = ".$gift_id."");
+	$statement = $bdd->prepare("UPDATE liste SET titre = :title, lien = :lien, description = :description WHERE id = :id");
 
+	$statement->bindParam(':title', $gift_title, PDO::PARAM_STR);
+	$statement->bindParam(':lien', $gift_url, PDO::PARAM_STR);
+	$statement->bindParam(':description', $gift_description, PDO::PARAM_STR);
+	$statement->bindParam(':id', $gift_id, PDO::PARAM_INT);
+
+
+	$statement->execute();
 	header("location:index.php"); 
 
 }
