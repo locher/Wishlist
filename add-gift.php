@@ -20,9 +20,16 @@ if(isset($gift_title)&&($gift_title!='')){
 
 	$statement->execute();
 
+	//L'ajax
 
-	header("location:index.php"); 
+	$reponse = 'success';
+	echo json_encode(array(
+		'reponse'=>$reponse,
+		'gift_title'=>$gift_title,
+		'gift_url'=>$gift_url,
+		'gift_description'=>$gift_description
 
+	));
 }
 
 ?>

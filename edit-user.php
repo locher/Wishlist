@@ -16,7 +16,13 @@ if(isset($username)&&($username!='')){
 	$statement->bindParam(':id_personne', $id_personne, PDO::PARAM_INT);
 	$statement->execute();
 
-	header("location:index.php"); 
+	//L'ajax
+
+	$reponse = 'success';
+	echo json_encode(array(
+		'reponse'=>$reponse,
+		'username'=>$username
+	));
 
 }
 

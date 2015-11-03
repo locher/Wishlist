@@ -219,6 +219,44 @@ $('.form-edit').on('submit', function(e) {
     }
 });
 
+// Edit user AJAX
+
+$('.edit-user form').on('submit', function(e) {
+    e.preventDefault();
+
+    var $this = $(this);
+
+    // Je récupère les valeurs
+    var username = $(this).find('input[name="username"]').val();
+
+    // Je vérifie une première fois pour ne pas lancer la requête HTTP
+    // si je sais que mon PHP renverra une erreur
+    if(username === '') {
+        alert('Les champs doivent êtres remplis');
+    } else {
+        // Envoi de la requête HTTP en mode asynchrone
+        $.ajax({
+            url: $this.attr('action'), 
+            type: $this.attr('method'),
+            data: $this.serialize(),
+            dataType: 'json', // JSON
+            success: function(json) {
+                if(json.reponse === 'success') {
+                    username = json.username;
+
+                    //ce qui se passe si succès
+                    $this.parent().parent().find('h2').text(username);
+                    $this.parent().slideUp(function(){
+                        $grid.masonry();
+                    })
+
+                } else {
+                    alert('Erreur : '+ json.reponse);
+                }
+            }
+        });
+    }
+});
 
 
 
