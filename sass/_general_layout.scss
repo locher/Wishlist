@@ -24,6 +24,7 @@ body{
 body{
 	font-family: 'Lato', 'Arial', sans-serif;
 	font-size: 1.5rem;
+	padding-bottom: 250px;
 }
 
 // Décor Noel
@@ -58,6 +59,8 @@ footer{
 	background: url('img/bas-neige.png') no-repeat center top;
 	text-align: center;
 	margin-top: 50px;
+	position: absolute;
+	bottom: 0;
 
 	&::after{
 		content:url('img/cadeaux.png');
@@ -75,7 +78,6 @@ footer{
 
 	@include width-below(500px){
 		max-width: 100%;
-		padding: 0 10px;
 	}
 }
 
