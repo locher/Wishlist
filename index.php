@@ -345,7 +345,7 @@
 
 		// L'illu change quand on la sélectionne
 
-	$('.wrapper-illus').change(function(){
+	$('.modal-add-user .wrapper-illus').change(function(){
 		var illu_name = $(this).find('input[type="radio"]:checked').attr('class');
 		$(this).parent().parent().find('.illu').html('<img src="img/'+illu_name+'.png"/>');
 	});
@@ -390,19 +390,17 @@
 		var nom_personne = $(this).val();
 		var phrase_ajout = 'Modifier '+nom_personne;
 
-		$(this).parent().parent().parent().parent().find('h2').html(nom_personne);
 
 		$(this).parent().parent().find('input[type="submit"]').attr('value',phrase_ajout);
 
 		if(nom_personne == ''){
-			$(this).parent().parent().parent().parent().find('h2').html('Nom de la personne');
 			$(this).parent().parent().find('input[type="submit"]').attr('value','Modifier la personne');
 		}
 	});
 
 		// L'illu change quand on la sélectionne
 
-	$('.wrapper-illus').change(function(){
+	$('.edit-user .wrapper-illus').change(function(){
 		var illu_name = $(this).find('input[type="radio"]:checked').attr('class');
 		$(this).parent().parent().parent().find('.illu').html('<img src="img/'+illu_name+'.png"/>');
 	});
