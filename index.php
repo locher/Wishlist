@@ -134,6 +134,7 @@
                                 ?>
                                 
                                         <form action="delete_reservation.php" method="post">
+                                            <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
                                             <input type="submit" value="Annuler ma réservation">
                                         </form>
                                 
