@@ -78,7 +78,10 @@
 								</a>
 							<?php endif; ?>
 							
-							<?php if($id_personne == $_SESSION['user']): ?>
+							<?php 
+                                //Chaque personne identifié peut modifier sa propre liste
+                                if($id_personne == $_SESSION['user']):
+                            ?>
 
 							<span class="submit-delete ico-trash">
 								<svg viewBox="0 0 100 100" class="icon">
@@ -101,11 +104,63 @@
 								</svg>
 							</span>
 							
-							<?php else:?>
+							<?php 
+                                //Si on est pas le propriétaire la liste, on gère la réservation
+                                else:                                
+                                // On récupère l'état de réservation, la personne qui l'a éventuellement réservé
+                                $resa = $bdd->query('SELECT reserve,IdUser_resa FROM '.$bdd_gifts.' WHERE id = '.$id_gift);
+                                
+                            	while($export_resa = $resa->fetch()):
+                                $etat_reservation = $export_resa['reserve'];
+                                $user_reservation = $export_resa['IdUser_resa'];
+                            ?>
+                            
+                                <?php
+                                    //Si le cadeau n'est pas réservé, j'affiche le bouton "réserver"
+                                    if($etat_reservation == 0):
+                                ?>
+                            
 							    <form action="gift-reservation.php" method="post">
 							        <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
 							        <input type="submit" value="Réserver">
-							    </form>						
+							    </form>
+                          
+                                <?php 
+                                    // Si le cadeau est réservé
+                                    else:
+                            
+                                        //Si il est réservé par moi, je peux annuler
+                                        if($user_reservation == $_SESSION['user']):
+                                ?>
+                                
+                                        <form action="delete_reservation.php" method="post">
+                                            <input type="submit" value="Annuler ma réservation">
+                                        </form>
+                                
+                                <?php
+
+                                        //Si il est réservé par qqun d'autre, j'affiche ce qqun d'autre
+                                        else:
+                                        $mec_resa = $bdd->query('SELECT nom_personne FROM '.$bdd_gifts.' INNER JOIN '.$bdd_users.' ON '.$bdd_gifts.'.IdUser_resa = '.$bdd_users.'.id_personne WHERE id = '.$id_gift);
+                                        while($export_mec = $mec_resa->fetch()):
+                                        $nom_dumec = $export_mec['nom_personne'];
+                                        echo $nom_dumec;
+                                        endwhile;
+                                ?>
+                                
+                                        
+                                
+                                <?php
+                                        endif;
+                                ?>
+                           
+                                <?php endif;?>
+                            
+                            
+                            <?php 
+                                endwhile;                    
+                            ?> 	
+							    					
 							<?php endif;?>
 							
 						</div>
