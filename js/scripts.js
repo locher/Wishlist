@@ -5,11 +5,12 @@
 		'use strict';
 		
 		// Neige
-
+/*
 snowStorm.flakesMaxActive = 80000;
 snowStorm.animationInterval = 25;
 snowStorm.followMouse = false;
 snowStorm.targetElement = "snow";
+*/
 
 // Masonry
 
