@@ -15,7 +15,7 @@ if(isset($id_user)&&($id_user!='')){
 }
 
 else{
-    echo "un truc a chié";
+    header('Location: login.php');
 }
 
 ?>

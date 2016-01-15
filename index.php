@@ -67,7 +67,9 @@
 					
 					<li>
 						<div class="wrapper-title">
+						
 							<p class="gift-title"><?php echo $nom_gift; ?></p>
+							
 							<?php if($link_gift): ?>
 								<a title="Lien vers le cadeau" href="<?php echo $link_gift; ?>" class="gift-link">
 									<svg viewBox="0 0 100 100" class="icon">
@@ -99,6 +101,11 @@
 								</svg>
 							</span>
 							
+							<?php else:?>
+							    <form action="gift-reservation.php" method="post">
+							        <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
+							        <input type="submit" value="Réserver">
+							    </form>						
 							<?php endif;?>
 							
 						</div>
