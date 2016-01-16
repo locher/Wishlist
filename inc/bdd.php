@@ -2,7 +2,7 @@
 
 	try
 	{
-	    $bdd = new PDO('mysql:host=localhost;dbname=noel', 'root', 'root');
+	    $bdd = new PDO('mysql:host=localhost;dbname=kdo', 'root', 'root');
 	}
 
 	catch (Exception $e)

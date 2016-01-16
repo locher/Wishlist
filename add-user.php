@@ -18,7 +18,7 @@ if(isset($username)&&($username!='')){
 
 	$statement->execute();
 
-	header("location:index.php");
+	header("location:login.php");
 
 }
 

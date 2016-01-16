@@ -1,4 +1,10 @@
-<?php include('inc/config.php'); ?>
+<?php
+    session_start(); 
+    if(!isset($_SESSION['user']) && empty($_SESSION['user'])){
+        header('Location: login.php');
+    }
+    include('inc/config.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,85 +50,14 @@
 					<img src="img/perso<?php echo($id_illu);?>.png">
 				</div>
 
-				<div class="wrapper-username">
-					
+				<div class="wrapper-username">					
 					<h2><?php echo $nom_personne ?></h2>
-						<span class="ico-delete-user">
-							<svg viewBox="0 0 100 100" class="icon">
-								<use xlink:href="#icon-ico-trash"></use>
-							</svg>
-						</span>
-					<span class="ico-edit-user">
-						<svg viewBox="0 0 100 100" class="icon">
-							<use xlink:href="#icon-ico-edit"></use>
-						</svg>
-					</span>
-
-					<div class="confirmation-suppression">
-							<p>Êtes-vous sûr ?</p>
-							<form action="delete-user.php" method="post">
-								<input type="hidden" value="<?php echo $id_personne; ?>" name="user-id">
-								<input type="submit" class="confirm-suppression bt" value="Oui" />
-							</form>
-							<p class="annuler-suppression">Non, annuler</p>
-					</div>
-				</div>
-				
-
-				<div class="edit-user">
-
-					<form action="edit-user.php" method="post">
-
-						<input type="hidden" value="<?php echo $id_personne; ?>" name="id_personne">
-
-						<div class="wrapper-gift-input">
-							<span>
-								<svg viewBox="0 0 100 100" class="icon">
-									<use xlink:href="#icon-ico-user"></use>
-								</svg>
-							</span>
-							<input class="input-name" type="text" name="username" placeholder="Prénom" required value="<?php echo($nom_personne);?>">
-						</div>
-		
-						<h3>Choisir l'illustration</h3>
-
-						<div class="wrapper-illus">
-
-							<div class="wrapper-illustration">
-								<input name="choix-illu<?php echo($id_personne); ?>" type="radio" id="radio1-<?php echo($id_personne); ?>" value="1" class="perso1" <?php if('perso'.$id_illu == 'perso1'){echo 'checked';}?>>
-								<label for="radio1-<?php echo($id_personne); ?>"><img src="img/perso1.png" alt=""></label>
-								
-							</div>
-
-							<?php for($i=2; $i<=8; $i++): ?>
-							
-							<div class="wrapper-illustration">
-								<input value="<?php echo $i; ?>" name="choix-illu<?php echo($id_personne); ?>" type="radio" id="radio<?php echo $i; ?>-<?php echo($id_personne); ?>" class="perso<?php echo $i; ?>" <?php if('perso'.$id_illu == 'perso'.$i){echo 'checked';}?>>
-								<label for="radio<?php echo($i); ?>-<?php echo($id_personne); ?>"><img src="img/perso<?php echo($i); ?>.png" alt=""></label>
-								
-							</div>
-
-							<?php endfor; ?>
-
-						</div>
-
-						<div class="wrapper-bt wrapper-add">
-							<input type="submit" value="Modifier la personne" class="bt">
-						</div>
-
-						<div class="wrapper-bt">
-							<span class="cancel-add-user bt-cancel">Annuler</span>
-						</div>
-
-					</form>
-
 				</div>
 
 
 				<ul class="gift-list">
 
 					<?php 
-
 						$gifts = $bdd->query('SELECT * FROM '.$bdd_gifts.' WHERE la_personne = '.$id_personne.' ORDER BY titre ASC');
 					?>
 
@@ -134,14 +69,19 @@
 							$link_gift = $gift['lien'];
 							$description_gift = $gift['description'];
 							$id_gift = $gift['id'];
+                            $resa_gift = $gift['reserve'];
+                            $resa_par = $gift['IdUser_resa'];
 					?>
 					
-
 					
-
-					<li>
+					
+					<li <?php //Si le cadeau est réservé et qu'on est pas sur notre propre liste, on le marque différemment
+                        if($resa_gift == true && $id_personne != $_SESSION['user']) echo 'class="reserve"';?>
+                    >
 						<div class="wrapper-title">
+						
 							<p class="gift-title"><?php echo $nom_gift; ?></p>
+							
 							<?php if($link_gift): ?>
 								<a title="Lien vers le cadeau" href="<?php echo $link_gift; ?>" class="gift-link">
 									<svg viewBox="0 0 100 100" class="icon">
@@ -149,6 +89,11 @@
 									</svg>
 								</a>
 							<?php endif; ?>
+							
+							<?php 
+                                //Chaque personne identifié peut modifier sa propre liste
+                                if($id_personne == $_SESSION['user']):
+                            ?>
 
 							<span class="submit-delete ico-trash">
 								<svg viewBox="0 0 100 100" class="icon">
@@ -170,11 +115,85 @@
 									<use xlink:href="#icon-ico-edit"></use>
 								</svg>
 							</span>
+							
+							<?php 
+                                //Si on est pas le propriétaire la liste, on gère la réservation
+                                else:                                
+                                // On récupère l'état de réservation, la personne qui l'a éventuellement réservé
+                                $resa = $bdd->query('SELECT reserve,IdUser_resa FROM '.$bdd_gifts.' WHERE id = '.$id_gift);
+                                
+                            	while($export_resa = $resa->fetch()):
+                                $etat_reservation = $export_resa['reserve'];
+                                $user_reservation = $export_resa['IdUser_resa'];
+                            ?>
+                            
+                                <?php
+                                    //Si le cadeau n'est pas réservé, j'affiche le bouton "réserver"
+                                    if($etat_reservation == 0):
+                                ?>
+                            
+							    <form action="gift-reservation.php" method="post" id="form-resa">
+							        <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
+							        <input type="submit" value="Réserver" class="bt_resa bt">
+							    </form>
+                          
+                                <?php 
+                                    // Si le cadeau est réservé
+                                    else:
+                            
+                                        //Si il est réservé par moi, je peux annuler
+                                        if($user_reservation == $_SESSION['user']):
+                                ?>
+                                
+                                        <form action="delete_reservation.php" method="post" id="cancel_resa">
+                                            <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
+                                            <input type="submit" value="Annuler" class="bt bt_annuler" title="Tu as indiqué vouloir réserver ce cadeau. Changé d'avis ?">
+                                        </form>
+                                
+                                <?php
+                                        //Si il est réservé par qqun d'autre, j'affiche ce qqun d'autre
+                                        else:
+                                        $mec_resa = $bdd->query('SELECT nom_personne, choix_illu FROM '.$bdd_gifts.' INNER JOIN '.$bdd_users.' ON '.$bdd_gifts.'.IdUser_resa = '.$bdd_users.'.id_personne WHERE id = '.$id_gift);
+                                        while($export_mec = $mec_resa->fetch()):
+                                        $nom_dumec = $export_mec['nom_personne'];
+                                        $illu = $export_mec['choix_illu'];
+                                ?>
+                                
+                                        
+                                
+                                <?php
+                                        endwhile;
+                                ?>
+                                
+                                       <div class="resaPar" title="<?php echo $nom_dumec;?> a réservé ce cadeau">
+                                            <img src="img/perso<?php echo($illu);?>.png">
+                                            <span><?php echo $nom_dumec;?></span>
+                                        </div>
+                                        
+                                
+                                <?php
+                                        endif;
+                                ?>
+                           
+                                <?php endif;?>
+                            
+                            
+                            <?php 
+                                endwhile;                    
+                            ?> 	
+							    					
+							<?php endif;?>
+							
 						</div>
 						
 						<?php if($description_gift): ?>
 						<p class="gift-description"><?php echo $description_gift; ?></p>
 						<?php endif; ?>
+						
+                        <?php 
+                            //Chaque personne identifié peut modifier sa propre liste
+                            if($id_personne == $_SESSION['user']):
+                        ?>
 
 						<?php //Le formulaire, pour edition ?>
 						<form class="form-gift form-edit" action="update-gift.php" method="post">
@@ -205,6 +224,9 @@
 								<span class="cancel-edit-gift bt-cancel">Annuler</span>
 							</div>
 						</form>
+						
+						<?php endif; ?>
+						
 					</li>
 
 					<?php endwhile; ?>
@@ -235,78 +257,24 @@
 
 					<input type="submit" class="bt" value="Ajouter le cadeau">
 				</form>
+				
+				<?php if($id_personne == $_SESSION['user']): ?>
 
 				<div class="wrapper-bt wrapper-add">
 					<button class="bt bt-add-gift">Ajouter un cadeau</button>
-				</div>				
+				</div>
+				
+				<?php endif;?>
+    
 
 			</div>
 
 			<?php endwhile; 
 			?>
 
-
-
-			<div class="modal-add-user modal-user user" id="modal-add-user">
-				<form action="add-user.php" method="post">
-
-					<div class="illu">
-						<img src="img/perso1.png" alt="">
-					</div>
-
-					<h2>Ajouter une personne</h2>
-
-					<div class="wrapper-gift-input">
-						<span>
-							<svg viewBox="0 0 100 100" class="icon">
-								<use xlink:href="#icon-ico-user"></use>
-							</svg>
-						</span>
-						<input class="input-name" type="text" name="username" placeholder="Prénom" required>
-					</div>
-	
-					<h3>Choisir l'illustration</h3>
-
-					<div class="wrapper-illus">
-
-						<div class="wrapper-illustration">
-							<input name="choix-illu" type="radio" id="radio1" checked value="1" class="perso1">
-							<label for="radio1"><img src="img/perso1.png" alt=""></label>
-							
-						</div>
-
-						<?php for($i=2; $i<=8; $i++): ?>
-						
-						<div class="wrapper-illustration">
-							<input value="<?php echo $i; ?>" name="choix-illu" type="radio" id="radio<?php echo $i; ?>" class="perso<?php echo $i; ?>">
-							<label for="radio<?php echo($i); ?>"><img src="img/perso<?php echo($i); ?>.png" alt=""></label>
-							
-						</div>
-
-						<?php endfor; ?>
-
-					</div>
-
-					<div class="wrapper-bt wrapper-add">
-						<input type="submit" value="Ajouter le nouvel utilisateur" class="bt">
-					</div>
-
-					<div class="wrapper-bt">
-						<span class="cancel-add-user bt-cancel">Annuler</span>
-					</div>
-
-				</form>
-			</div>
-
-
-
 		</div>
 
-		
 
-		<div class="add-user">
-			<button class="bt">Ajouter une personne</button>
-		</div>
 
 		</div>	
 
@@ -317,7 +285,7 @@
 	<footer></footer>
 
 
-<script src="js/snowstorm-min.js"></script>
+<!--<script src="js/snowstorm-min.js"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="js/masonry.pkgd.min.js"></script>
 <script src="js/jquery.scrollTo.min.js"></script>
