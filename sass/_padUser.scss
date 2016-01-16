@@ -35,7 +35,7 @@
 	li{
 		position: relative;
 		border-bottom: 1px solid #e0e0e6;
-		padding: 10px;
+		padding: 11px;
 
 		&:first-child{
 			border-top: 1px solid #e0e0e6;
@@ -47,6 +47,19 @@
 				opacity: 1;
 			}
 		}
+        
+        &.reserve{
+            .gift-title,
+            .gift-link,
+            .gift-description{
+                opacity: .3;
+            }
+            
+            .gift-title,
+            .gift-description{
+                text-decoration: line-through;
+            }
+        }
 	}
 
 	.gift-title{
@@ -81,6 +94,76 @@
 		line-height: 1.4em;
 		margin-top: 5px;
 	}
+    
+    //BT Résa
+    
+    .bt_resa{
+        transition: opacity 0.3s ease .05s;
+        font-size: 1.1rem;
+        text-transform: none;
+        padding: 8px 10px 6px;
+        position: absolute;
+        right: 0;
+        top: 6px;
+        opacity: 0;
+    }
+    
+    //BT Annuler
+    
+    .bt_annuler{
+        transition: opacity 0.3s ease .05s;
+        font-size: 1.1rem;
+        text-transform: none;
+        padding: 8px 10px 6px;
+        position: absolute;
+        right: 0;
+        top: 6px;
+        background-color: $rouge;
+        box-shadow: 3px 3px 0px darken($rouge, 10%);
+        opacity: 0;
+        
+        &:hover{
+           background-color: darken($rouge, 20%);;
+            box-shadow: 3px 3px 0px darken($rouge, 40%); 
+        }
+    }
+    
+    // Résa Par
+    
+    .resaPar{
+        transition: opacity 0.3s ease .05s;
+        position: absolute;
+        right: 0;
+        top: 6px;
+        opacity: 0;
+        
+        img{
+            width: 30px;
+            height: auto;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        span{
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-left: 5px;
+            position: relative;
+            top: 2px;
+            color: $bleu-typo;
+            opacity: .6;
+        }
+    }
+    
+        li:hover{
+            .bt_resa,
+            .resaPar,
+            .bt_annuler{
+                opacity: 1;
+            }
+    }
 
 	// avatar
 

@@ -69,9 +69,11 @@
 							$link_gift = $gift['lien'];
 							$description_gift = $gift['description'];
 							$id_gift = $gift['id'];
+                            $resa_gift = $gift['reserve'];
 					?>
 					
-					<li>
+					<li <?php //Si le cadeau est réservé et qu'on est pas sur notre propre liste, on le marque différemment
+                        if($resa_gift == true && $id_personne != $_SESSION['user']) echo 'class="reserve"';?>>
 						<div class="wrapper-title">
 						
 							<p class="gift-title"><?php echo $nom_gift; ?></p>
@@ -128,7 +130,7 @@
                             
 							    <form action="gift-reservation.php" method="post">
 							        <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
-							        <input type="submit" value="Réserver">
+							        <input type="submit" value="Réserver" class="bt_resa bt">
 							    </form>
                           
                                 <?php 
@@ -141,20 +143,28 @@
                                 
                                         <form action="delete_reservation.php" method="post">
                                             <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
-                                            <input type="submit" value="Annuler ma réservation">
+                                            <input type="submit" value="Annuler" class="bt bt_annuler" title="Tu as indiqué vouloir réserver ce cadeau. Tu as changé d'avis ?">
                                         </form>
                                 
                                 <?php
-
                                         //Si il est réservé par qqun d'autre, j'affiche ce qqun d'autre
                                         else:
-                                        $mec_resa = $bdd->query('SELECT nom_personne FROM '.$bdd_gifts.' INNER JOIN '.$bdd_users.' ON '.$bdd_gifts.'.IdUser_resa = '.$bdd_users.'.id_personne WHERE id = '.$id_gift);
+                                        $mec_resa = $bdd->query('SELECT nom_personne, choix_illu FROM '.$bdd_gifts.' INNER JOIN '.$bdd_users.' ON '.$bdd_gifts.'.IdUser_resa = '.$bdd_users.'.id_personne WHERE id = '.$id_gift);
                                         while($export_mec = $mec_resa->fetch()):
                                         $nom_dumec = $export_mec['nom_personne'];
-                                        echo $nom_dumec;
+                                        $illu = $export_mec['choix_illu'];
+                                ?>
+                                
+                                        
+                                
+                                <?php
                                         endwhile;
                                 ?>
                                 
+                                       <div class="resaPar" title="<?php echo $nom_dumec;?> a réservé ce cadeau">
+                                            <img src="img/perso<?php echo($illu);?>.png">
+                                            <span><?php echo $nom_dumec;?></span>
+                                        </div>
                                         
                                 
                                 <?php
@@ -175,6 +185,11 @@
 						<?php if($description_gift): ?>
 						<p class="gift-description"><?php echo $description_gift; ?></p>
 						<?php endif; ?>
+						
+                        <?php 
+                            //Chaque personne identifié peut modifier sa propre liste
+                            if($id_personne == $_SESSION['user']):
+                        ?>
 
 						<?php //Le formulaire, pour edition ?>
 						<form class="form-gift form-edit" action="update-gift.php" method="post">
@@ -205,6 +220,9 @@
 								<span class="cancel-edit-gift bt-cancel">Annuler</span>
 							</div>
 						</form>
+						
+						<?php endif; ?>
+						
 					</li>
 
 					<?php endwhile; ?>
