@@ -6,12 +6,14 @@
 	padding: 110px 30px 30px;
 	margin-bottom: 85px;
 	position: relative;
-	
-
-	@include width-above(1301px){
+    
+    @include width-above(1921px){
+		width: calc(100%/4 - 150px/4);
+	}	
+    
+	@include width-below(1920px){
 		width: calc(100%/3 - 100px/3);
-	}
-	
+	}	
 
 	@include width-below(1300px){
 		width: calc(50% - 25px);

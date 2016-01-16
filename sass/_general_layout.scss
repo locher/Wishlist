@@ -86,7 +86,11 @@ footer{
 }
 
 .grid-sizer{
-	@include width-above(1301px){
+    @include width-above(1921px){
+		width: calc(100%/4 - 150px/4);
+	}	
+    
+	@include width-below(1920px){
 		width: calc(100%/3 - 100px/3);
 	}	
 
