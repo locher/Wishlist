@@ -200,7 +200,7 @@
 	<footer></footer>
 
 
-<!--<script src="js/snowstorm-min.js"></script>-->
+<script src="js/snowstorm-min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="js/masonry.pkgd.min.js"></script>
 <script src="js/jquery.scrollTo.min.js"></script>
