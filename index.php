@@ -132,7 +132,7 @@
                                     if($etat_reservation == 0):
                                 ?>
                             
-							    <form action="gift-reservation.php" method="post">
+							    <form action="gift-reservation.php" method="post" id="form-resa">
 							        <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
 							        <input type="submit" value="Réserver" class="bt_resa bt">
 							    </form>

@@ -334,6 +334,36 @@ $('body').on('submit', '.confirmation-suppression form', function(e){
         }
     });
 });
+        
+//Reserver un cadeau AJAX
+$('body').on('submit', '#form-resa', function(e){
+    e.preventDefault();
+
+    var $this = $(this);
+
+    $.ajax({
+        url: $this.attr('action'), 
+        type: $this.attr('method'),
+        data: $this.serialize(),
+        dataType: 'json', // JSON
+        success: function(json) {
+            if(json.reponse === 'success') {
+                var gift_id = json.gift_id;
+
+                //ce qui se passe si succès
+                console.log('c réservé');
+                $this.parent().parent().addClass('reserve');               
+                $this.parent().append('<form action="delete_reservation.php" method="post"><input type="hidden" value="'+gift_id+'" name="gift-id"><input type="submit" value="Annuler" class="bt bt_annuler" title="Tu as indiqué vouloir réserver ce cadeau. Changé d\'avis ?"></form>');
+                 $this.remove();
+
+
+            } else {
+                alert('Erreur : '+ json.reponse);
+            }
+        }
+    });
+});    
+        
 
 });
 	

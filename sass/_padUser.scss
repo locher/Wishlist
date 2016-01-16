@@ -63,6 +63,7 @@
 	}
 
 	.gift-title{
+        transition: all ease .2s;
 		color: $bleu-typo;
 		font-weight: 700;
 		line-height: 1.3em;
@@ -70,6 +71,7 @@
 	}
 
 	.gift-link{
+        transition: all ease .2s;
 		display: inline;
 		position: relative;
 		top: 3px;
