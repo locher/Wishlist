@@ -70,10 +70,14 @@
 							$description_gift = $gift['description'];
 							$id_gift = $gift['id'];
                             $resa_gift = $gift['reserve'];
+                            $resa_par = $gift['IdUser_resa'];
 					?>
 					
+					
+					
 					<li <?php //Si le cadeau est réservé et qu'on est pas sur notre propre liste, on le marque différemment
-                        if($resa_gift == true && $id_personne != $_SESSION['user']) echo 'class="reserve"';?>>
+                        if($resa_gift == true && $id_personne != $_SESSION['user']) echo 'class="reserve"';?>
+                    >
 						<div class="wrapper-title">
 						
 							<p class="gift-title"><?php echo $nom_gift; ?></p>
@@ -143,7 +147,7 @@
                                 
                                         <form action="delete_reservation.php" method="post">
                                             <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
-                                            <input type="submit" value="Annuler" class="bt bt_annuler" title="Tu as indiqué vouloir réserver ce cadeau. Tu as changé d'avis ?">
+                                            <input type="submit" value="Annuler" class="bt bt_annuler" title="Tu as indiqué vouloir réserver ce cadeau. Changé d'avis ?">
                                         </form>
                                 
                                 <?php
