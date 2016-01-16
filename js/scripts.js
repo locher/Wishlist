@@ -351,9 +351,8 @@ $('body').on('submit', '#form-resa', function(e){
                 var gift_id = json.gift_id;
 
                 //ce qui se passe si succès
-                console.log('c réservé');
                 $this.parent().parent().addClass('reserve');               
-                $this.parent().append('<form action="delete_reservation.php" method="post"><input type="hidden" value="'+gift_id+'" name="gift-id"><input type="submit" value="Annuler" class="bt bt_annuler" title="Tu as indiqué vouloir réserver ce cadeau. Changé d\'avis ?"></form>');
+                $this.parent().append('<form action="delete_reservation.php" id="cancel_resa" method="post"><input type="hidden" value="'+gift_id+'" name="gift-id"><input type="submit" value="Annuler" class="bt bt_annuler" title="Tu as indiqué vouloir réserver ce cadeau. Changé d\'avis ?"></form>');
                  $this.remove();
 
 
@@ -362,7 +361,36 @@ $('body').on('submit', '#form-resa', function(e){
             }
         }
     });
-});    
+});  
+        
+        
+//Annuler une résa AJAX
+$('body').on('submit', '#cancel_resa', function(e){
+    e.preventDefault();
+
+    var $this = $(this);
+
+    $.ajax({
+        url: $this.attr('action'), 
+        type: $this.attr('method'),
+        data: $this.serialize(),
+        dataType: 'json', // JSON
+        success: function(json) {
+            if(json.reponse === 'success') {
+                var gift_id = json.gift_id;
+
+                //ce qui se passe si succès
+                $this.parent().parent().removeClass('reserve');               
+                $this.parent().append('<form action="gift-reservation.php" method="post" id="form-resa"><input type="hidden" value="'+gift_id+'" name="gift-id"><input type="submit" value="Réserver" class="bt_resa bt"></form>');
+                 $this.remove();
+
+
+            } else {
+                alert('Erreur : '+ json.reponse);
+            }
+        }
+    });
+}); 
         
 
 });

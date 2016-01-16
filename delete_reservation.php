@@ -24,6 +24,13 @@ if(isset($id_gift)&&($id_gift!='')){
 
 
 	$statement->execute();    
+    
+    $reponse = 'success';
+    
+    echo json_encode(array(
+		'reponse'=>$reponse,
+        'gift_id'=>$id_gift
+	));
 }
 
 ?>

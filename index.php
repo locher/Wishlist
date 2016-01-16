@@ -145,7 +145,7 @@
                                         if($user_reservation == $_SESSION['user']):
                                 ?>
                                 
-                                        <form action="delete_reservation.php" method="post">
+                                        <form action="delete_reservation.php" method="post" id="cancel_resa">
                                             <input type="hidden" value="<?php echo $id_gift; ?>" name="gift-id">
                                             <input type="submit" value="Annuler" class="bt bt_annuler" title="Tu as indiqué vouloir réserver ce cadeau. Changé d'avis ?">
                                         </form>
