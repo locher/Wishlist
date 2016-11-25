@@ -280,9 +280,11 @@
 
 
 	</div>
+	
+	
 
 
-	<footer></footer>
+	<footer><div class="logout"><a href="logout.php">Se déconnecter</a></div></footer>
 
 
 <script src="js/snowstorm-min.js"></script>

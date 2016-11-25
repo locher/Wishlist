@@ -75,6 +75,7 @@ footer{
 .wrapper{
 	max-width: 90%;
 	margin: 0 auto;
+    position: relative;
 
 	@include width-below(500px){
 		max-width: 100%;
@@ -249,4 +250,13 @@ footer{
 
 input[type="text"]{
 	box-shadow: none !important;
+}
+
+// Logout
+
+.logout{
+    a{
+        color: $blanc;
+        font-weight: 700;
+    }
 }
