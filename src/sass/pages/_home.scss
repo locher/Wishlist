@@ -1,0 +1,30 @@
+.template-home{
+	.top-header{
+		margin-top: 50px;
+	}
+}
+
+.top-header{
+	&--home--intro{
+		text-align: center;
+		display: block;
+		font-size: 3.3rem;
+		font-weight: $bold;
+	}
+}
+
+.choice-client{
+	&--top{
+		text-align: center;
+		
+		span{
+			display: block;
+			font-size: 1.5rem;
+			text-transform: uppercase;
+		}
+		
+		.bt{
+			margin: 1em 0;
+		}
+	}
+}

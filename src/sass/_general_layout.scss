@@ -1,0 +1,20 @@
+*{
+	box-sizing: border-box;
+}
+
+html{
+	font-size: 62.5%;
+	background-color: $white;
+}
+
+body{
+	font-size: 1.4rem;
+	line-height: 1.25em;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: $regular;
+}
+
+.wrapper{
+	padding-left: $padding;
+	padding-right: $padding;
+}
