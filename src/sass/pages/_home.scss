@@ -1,11 +1,14 @@
-.template-home{
-	.top-header{
-		margin-top: 50px;
+.template-home {
+	.top-header {
+		margin-top: 60px;
+	}
+	.grid {
+		margin-top: 30px;
 	}
 }
 
-.top-header{
-	&--home--intro{
+.top-header {
+	&--home--intro {
 		text-align: center;
 		display: block;
 		font-size: 3.3rem;
@@ -13,18 +16,30 @@
 	}
 }
 
-.choice-client{
-	&--top{
-		text-align: center;
-		
-		span{
-			display: block;
-			font-size: 1.5rem;
-			text-transform: uppercase;
-		}
-		
-		.bt{
-			margin: 1em 0;
-		}
+.choice-client {
+	margin-top: 40px;
+}
+
+.choice-client--top {
+	text-align: center;
+	color: $grey;
+	
+	span {
+		display: block;
+		font-size: 1.5rem;
+		text-transform: uppercase;
 	}
+	.bt {
+		margin: 1em 0;
+		font-size: 1.8rem;
+	}
+}
+
+.choice-client--separator {
+	margin-top: 30px;
+}
+
+.add-account-home{
+	text-align: center;
+	margin: 30px auto;
 }
