@@ -1,3 +1,10 @@
+<?php 
+
+	require_once('inc/config.php');
+	require_once('inc/bdd.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

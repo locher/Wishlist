@@ -1,13 +1,12 @@
 <?php 
 
-	require('inc/config.php');
-	require('inc/bdd.php');
+	// LA PAGE DE LOGIN
 
 	require('template-parts/header.php');
 
 	//Get all users
 
-	$users = $bdd->query('SELECT ID, name, picture FROM '.$bdd_users.' ORDER BY name ASC');
+	$users = $bdd->query('SELECT ID, name, picture FROM '.$bdd_users.' WHERE isChildAccount = 0 ORDER BY name ASC');
 
 	while($export_user = $users->fetch()){
 		$users_list[] = [
@@ -50,7 +49,7 @@
 				<img src="src/img/avatar/avatar<?php echo $user['picture'];?>.png" alt="">
 				<div class="inner-singlePeople">
 					<h3><?php echo $user['name'];?></h3>
-					<a href="test.php?user=<?php print $user['ID'];?>" class="bt white-bt">Me connecter</a>
+					<a href="user.php?user=<?php print $user['ID'];?>" class="bt white-bt">Me connecter</a>
 				</div>
 			</li>
 			
