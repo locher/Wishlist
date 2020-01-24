@@ -71,7 +71,7 @@
 	<section class="user-infos">
 		<img src="src/img/avatar/avatar<?php echo $active_user['picture'];?>.png" alt="">
 		<div class="inner-user-infos">
-			<h3><?php echo $active_user['name'];?></h3>
+			<h1><?php echo $active_user['name'];?></h1>
 
 			<?php if($date_anniversaire):?>
 		
@@ -101,7 +101,7 @@
 			
 			<?php endif;?>
 
-			<a href="#_" class="bt white-bt">Modifier les infos</a>
+			<a href="#_" class="bt border-primary-bt">Modifier les infos</a>
 		</div>
 	</section>
 	
