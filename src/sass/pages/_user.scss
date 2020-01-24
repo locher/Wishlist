@@ -1,1 +1,21 @@
-  
+.overlay-parent{
+	position: relative;
+	
+	&:after{
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left:0;
+		background-image: linear-gradient(rgba($white, 0.7), rgba($white, 1));
+	}
+}
+
+.overlay-wish{
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

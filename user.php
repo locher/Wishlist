@@ -75,7 +75,7 @@
 				<?php echo $active_user['name'];?>
 			</h1>
 
-			<?php if($date_anniversaire):?>
+			<?php if($active_user['birthday_date']):?>
 
 			<div class="birthday-infos">
 				<div class="svg-wrapper">
@@ -87,7 +87,7 @@
 
 			<?php endif;?>
 
-			<?php if($active_user['size_top'] or $active_user['size_bottom'] or $active_user['feet']):?>
+			<?php if($active_user['size_top'] or $active_user['size_bottom'] or isset($active_user['size_feet'])):?>
 
 			<div class="size-infos">
 
@@ -111,7 +111,7 @@
 
 				<?php endif;?>
 
-				<?php if($active_user['size_feet']):?>
+				<?php if(isset($active_user['size_feet'])):?>
 				<div class="wrapper-size" title="Taille chaussure">
 					<div class="svg-wrapper">
 						<object data="src/img/svg-prod/shoe.svg" type="image/svg+xml"></object>
@@ -134,7 +134,7 @@
 	<section>
 		<h2>Mes envies</h2>
 
-		<ul class="grid">
+		<ul class="grid overlay-parent">
 
 			<li class="list_elt single-gift">
 
@@ -165,12 +165,14 @@
 
 				</div>
 			</li>
+			
+			<div class="overlay-wish">
+				<a href="" class="bt color-bt">Modifier ma liste</a>
+			</div>
 
 		</ul>
 
-		<div class="overlay-wish">
-			<a href="" class="bt color-bt">Modifier ma liste</a>
-		</div>
+		
 
 	</section>
 

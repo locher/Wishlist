@@ -19,6 +19,22 @@ body{
 	padding-right: $padding;
 }
 
+// Typo
+
+h2{
+	font-size: 1.9rem;
+	font-weight: $bold;
+}
+
+section h2{
+	padding: 0 $padding;
+	margin-bottom: 20px;
+}
+
+section + section{
+	margin-top: $padding;
+}
+
 // Header connecté
 
 .header-connected{
