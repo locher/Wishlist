@@ -54,15 +54,16 @@
 			"picture" => $export_user['picture'],
 		];
 	}
-
-	var_dump($active_user);
-
 ?>
 
 <body class="connected-user-profil">
-	<header>
-		<button>Retour</button>
-		<a href="" class="bt">Mes listes</a>
+
+	<header class="header-connected">
+		<button class="arrow left-arrow">
+			<span class="arrow-text">Retour</span>
+			<span class="arrow-shape"></span>
+		</button>
+		<a href="" class="bt border-white-bt">Mes listes</a>
 	</header>
 	
 	<?php if($active_user): ?>

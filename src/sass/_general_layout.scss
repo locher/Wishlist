@@ -18,3 +18,19 @@ body{
 	padding-left: $padding;
 	padding-right: $padding;
 }
+
+// Header connecté
+
+.header-connected{
+	background-color: $primary;
+	width: 100%;
+	padding: 12px $padding;
+	border-radius: 0 0 0 100px;
+	display: flex;
+	justify-content: space-between;
+	
+	.bt{
+		font-size: 1.3rem;
+		align-self: flex-end;
+	}
+}

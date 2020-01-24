@@ -62,6 +62,11 @@ button.bt{
 	color: $primary;
 }
 
+.border-white-bt{
+	border: 2px solid $white;
+	color: $white;
+}
+
 
 
 // Global list
@@ -135,3 +140,89 @@ button.bt{
 .gift-description{
 	margin-top: 8px;
 }
+
+
+// Arrow
+
+.arrow{
+	background:none;
+	border:0;
+	cursor: pointer;
+	
+	.arrow-text{
+		display: none;
+	}
+	.arrow-shape{
+		transition: all ease .3s;
+		display: block;
+		height: 2px;
+		width: 35px;
+		background-color: $white;
+		position: relative;
+		border-radius: 2px;
+		
+		&::before,
+		&::after{
+			transition: all ease .3s;
+			content:'';
+			display: block;
+			height: 2px;
+			width: 15px;
+			border-radius: 2px;
+			background-color: $white;
+			position: absolute;
+		}
+		
+		&::before{
+			transform: rotate(40deg);
+			transform-origin: left bottom;
+		}
+		
+		&::after{
+			transform-origin: left top;
+			transform: rotate(-40deg);
+		}
+	}
+}
+
+.arrow:hover{
+	
+	.arrow-shape{
+		width: 40px;
+		
+		&::before,
+		&::after{
+			width: 18px;
+		}
+		
+		&::before{
+			transform: rotate(35deg);
+		}
+		
+		&::after{
+			transform: rotate(-35deg);
+		}
+	}
+}
+
+.arrow:active{
+	
+	.arrow-shape{
+		
+		
+		&::before,
+		&::after{
+			transition: all ease .1s;
+		}
+		
+		&::before{
+			transform: rotate(28deg);
+		}
+		
+		&::after{
+			transform: rotate(-28deg);
+		}
+	}
+}
+
+//
