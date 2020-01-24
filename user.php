@@ -54,6 +54,19 @@
 			"picture" => $export_user['picture'],
 		];
 	}
+
+	//Récupérer les 2 derniers cadeaux de l'utilisateur connecté
+
+	$bddGifts = $bdd->query('SELECT title, description, link FROM '.$bdd_gifts.' WHERE owner = '.$_SESSION['userID'].' ORDER BY ID DESC LIMIT 2');
+		
+	while($export_gifts = $bddGifts->fetch()){
+		$lastgifts[] = [
+			"title" => $export_gifts['title'],
+			"description" => $export_gifts['description'],
+			"link" => $export_gifts['link'],
+		];
+	}
+
 ?>
 
 <body class="connected-user-profil">
@@ -130,41 +143,41 @@
 	</section>
 
 	<?php endif;?>
+	
+	<?php if(isset($export_gifts)):?>
 
 	<section>
 		<h2>Mes envies</h2>
 
 		<ul class="grid overlay-parent">
-
+			
+			<?php foreach($lastgifts as $gift): ?>
+		
 			<li class="list_elt single-gift">
 
 				<div class="gift-content">
 					<div class="gift-header">
-						<h3>Audi A4 miniature</h3>
-						<a href="#_" target="_blank" class="bt border-pink-bt">Voir le site</a>
+						<h3><?php echo $gift["title"];?></h3>
+						
+						<?php if($gift['link'] != ''):?>
+						
+						<a href="<?php echo $gift['link'];?>" target="_blank" class="bt border-pink-bt">Voir le site</a>
+						
+						<?php endif;?>
 					</div>
+					
+					<?php if($gift['description'] != ''):?>
 
 					<div class="gift-description">
-						<p>Pour aller dans la collection du bureau avec ma mégane et ma 2CV.</p>
+						<p><?php echo $gift['description'];?></p>
 					</div>
+					
+					<?php endif;?>
 
 				</div>
 			</li>
-
-			<li class="list_elt single-gift">
-
-				<div class="gift-content">
-					<div class="gift-header">
-						<h3>Audi A4 miniature</h3>
-						<a href="#_" target="_blank" class="bt border-pink-bt">Voir le site</a>
-					</div>
-
-					<div class="gift-description">
-						<p>Pour aller dans la collection du bureau avec ma mégane et ma 2CV.</p>
-					</div>
-
-				</div>
-			</li>
+			
+			<?php endforeach;?>
 			
 			<div class="overlay-wish">
 				<a href="" class="bt color-bt">Modifier ma liste</a>
@@ -175,6 +188,8 @@
 		
 
 	</section>
+	
+	<?php endif;?>
 
 	<?php 
 			if($users_list):
