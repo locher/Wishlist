@@ -262,6 +262,8 @@ button.bt{
 .birthday-infos{
 	color: $primary;
 	margin-top: 10px;
+	display: inline-flex;
+	align-items: center;
 	
 	.age{
 		font-size: 1.1rem;
@@ -272,4 +274,31 @@ button.bt{
 .size-infos{
 	margin-top: 2px;
 	color: $primary;
+	display: flex;
 }
+
+.wrapper-size{
+	display: flex;
+	align-items: center;
+	
+	& + .wrapper-size{
+		margin-left: 15px;
+	}
+}
+
+//icons svg
+
+.svg-wrapper{
+	//background-color: red;
+	display: inline-flex;
+	height: 25px;
+	margin-right: 5px;
+	
+	object{
+		margin: auto;
+		width: 22px;
+		height: 18px;
+	}
+}
+
+

@@ -8,7 +8,7 @@ module.exports = function(grunt){
 				tasks: ['sass:dev', 'autoprefixer']
 			},
 			'svg': {
-				files: ['Gruntfile.js', 'img/svg-dev/*.svg', 'img/svg-dev/sprite/*.svg'],
+				files: ['Gruntfile.js', 'src/img/svg-dev/*.svg', 'src/img/svg-dev/sprite/*.svg'],
 				tasks: ['svgmin', 'svgstore']
 			}
 		},
@@ -51,9 +51,9 @@ module.exports = function(grunt){
 	        dist: {
 	            files: [{
                     expand: true,
-                    cwd: 'img/svg-dev',
+                    cwd: 'src/img/svg-dev',
                     src: '*.svg',
-                    dest: 'img/svg-prod'
+                    dest: 'src/img/svg-prod'
                 }]
 	        }
 	    },
@@ -67,7 +67,7 @@ module.exports = function(grunt){
 		    },
 		    your_target: {
 		      files:{
-		      	'img/svg-prod/sprite/svgs.svg' : ['img/svg-dev/*.svg'],
+		      	'img/svg-prod/sprite/svgs.svg' : ['src/img/svg-dev/*.svg'],
 		      },
 		    },
 		},
