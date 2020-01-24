@@ -19,11 +19,11 @@
 
 	// // Récupérer les infos du user actif
 
-	$activeUser = $bdd->query('SELECT * FROM '.$bdd_users.' WHERE ID = '.$_SESSION['userID']);
+	$activeUser = $bdd->query('SELECT * FROM '.$bdd_users.' WHERE userID = '.$_SESSION['userID']);
 		
 	while($export_user = $activeUser->fetch()){
 		$active_user = [
-			"ID" => $export_user['ID'],
+			"ID" => $export_user['userID'],
 			"name" => $export_user['name'],
 			"isChildAccount" => $export_user['isChildAccount'],
 			"picture" => $export_user['picture'],
@@ -45,19 +45,19 @@
 	
 	//Récupérer les infos des autres user pour affichage liste
 
-	$users = $bdd->query('SELECT ID, name, picture FROM '.$bdd_users.' WHERE ID != '.$_SESSION['userID'].' ORDER BY name ASC');
+	$users = $bdd->query('SELECT userID, name, picture FROM '.$bdd_users.' WHERE userID != '.$_SESSION['userID'].' ORDER BY name ASC');
 
 	while($export_user = $users->fetch()){
 		$users_list[] = [
 			"name" => $export_user['name'],
-			"ID" => $export_user['ID'],
+			"ID" => $export_user['userID'],
 			"picture" => $export_user['picture'],
 		];
 	}
 
 	//Récupérer les 2 derniers cadeaux de l'utilisateur connecté
 
-	$bddGifts = $bdd->query('SELECT title, description, link FROM '.$bdd_gifts.' WHERE owner = '.$_SESSION['userID'].' ORDER BY ID DESC LIMIT 2');
+	$bddGifts = $bdd->query('SELECT title, description, link FROM '.$bdd_gifts.' WHERE userID = '.$_SESSION['userID'].' ORDER BY userID DESC LIMIT 2');
 		
 	while($export_gifts = $bddGifts->fetch()){
 		$lastgifts[] = [
@@ -213,10 +213,7 @@
 							<?php echo $user['name'];?>
 						</h3>
 
-						<form action="#" method="post">
-							<input type="hidden" name="userID" value="<?php print $user['ID'];?>">
-							<button class="bt white-bt">Voir la liste</button>
-						</form>
+						<a href="user-list.php?listID=<?php print $user['ID'];?>" class="bt white-bt">Voir la liste</a>
 
 					</div>
 				</li>

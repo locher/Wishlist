@@ -6,12 +6,12 @@
 
 	//Get all users
 
-	$users = $bdd->query('SELECT ID, name, picture FROM '.$bdd_users.' WHERE isChildAccount = 0 ORDER BY name ASC');
+	$users = $bdd->query('SELECT userID, name, picture FROM '.$bdd_users.' WHERE isChildAccount = 0 ORDER BY name ASC');
 
 	while($export_user = $users->fetch()){
 		$users_list[] = [
 			"name" => $export_user['name'],
-			"ID" => $export_user['ID'],
+			"ID" => $export_user['userID'],
 			"picture" => $export_user['picture'],
 		];
 	}
