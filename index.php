@@ -16,6 +16,8 @@
 		];
 	}
 
+    	//$_SESSION['userID'] = 4;
+
 ?>
 
 <body class="template-home">
@@ -49,7 +51,12 @@
 				<img src="src/img/avatar/avatar<?php echo $user['picture'];?>.png" alt="">
 				<div class="inner-singlePeople">
 					<h3><?php echo $user['name'];?></h3>
-					<a href="user.php?user=<?php print $user['ID'];?>" class="bt white-bt">Me connecter</a>
+					
+					<form action="user.php" method="post">
+						<input type="hidden" name="userID" value="<?php print $user['ID'];?>">
+						<button class="bt white-bt">Me connecter</button>
+					</form>
+					
 				</div>
 			</li>
 			
