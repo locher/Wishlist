@@ -19,7 +19,7 @@
 
 	// // Récupérer les infos du user actif
 
-	$activeUser = $bdd->query('SELECT * FROM '.$bdd_users.' WHERE userID = '.$_SESSION['userID']);
+	$activeUser = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE userID = '.$_SESSION['userID']);
 		
 	while($export_user = $activeUser->fetch()){
 		$active_user = [
@@ -45,7 +45,7 @@
 	
 	//Récupérer les infos des autres user pour affichage liste
 
-	$users = $bdd->query('SELECT userID, name, picture FROM '.$bdd_users.' WHERE userID != '.$_SESSION['userID'].' ORDER BY name ASC');
+	$users = $bdd->query('SELECT userID, name, picture FROM '.$config['db_tables']['db_users'].' WHERE userID != '.$_SESSION['userID'].' ORDER BY name ASC');
 
 	while($export_user = $users->fetch()){
 		$users_list[] = [
@@ -57,7 +57,7 @@
 
 	//Récupérer les 2 derniers cadeaux de l'utilisateur connecté
 
-	$bddGifts = $bdd->query('SELECT title, description, link FROM '.$bdd_gifts.' WHERE userID = '.$_SESSION['userID'].' ORDER BY userID DESC LIMIT 2');
+	$bddGifts = $bdd->query('SELECT title, description, link FROM '.$config['db_tables']['db_gifts'].' WHERE userID = '.$_SESSION['userID'].' ORDER BY userID DESC LIMIT 2');
 		
 	while($export_gifts = $bddGifts->fetch()){
 		$lastgifts[] = [

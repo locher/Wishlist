@@ -18,7 +18,7 @@
 
 	// // Récupérer les infos du user
 
-	$activeUser = $bdd->query('SELECT * FROM '.$bdd_users.' WHERE userID = '.$listID);
+	$activeUser = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE userID = '.$listID);
 		
 	while($export_user = $activeUser->fetch()){
 		$active_user = [
@@ -35,7 +35,7 @@
 
 	//Récupérer les derniers cadeaux de l'utilisateur connecté
 
-	$bddGifts = $bdd->query('SELECT * FROM '.$bdd_gifts.' WHERE userID = '.$listID.' ORDER BY ID DESC');
+	$bddGifts = $bdd->query('SELECT * FROM '.$config['db_tables']['db_gifts'].' WHERE userID = '.$listID.' ORDER BY ID DESC');
 		
 	while($export_gifts = $bddGifts->fetch()){
 		$lastgifts[] = [
