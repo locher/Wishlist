@@ -1,6 +1,7 @@
 <?php 
 
-require_once('inc/config.php');
+include_once('inc/config.php');
+include_once('library/functions.php');
 
 //On vérifie si on est connecté, si oui on ammène directement à la page user, sinon à la page de connexion
 

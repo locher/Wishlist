@@ -1,22 +1,10 @@
 <?php 
 
-	// LA PAGE DE LOGIN
+/* Page template : Login Page */
 
-	require('template-parts/header.php');
+include_once('template-parts/header.php');
 
-	//Get all users
-
-	$users = $bdd->query('SELECT userID, name, picture FROM '.$config['db_tables']['db_users'].' WHERE isChildAccount = 0 ORDER BY name ASC');
-
-	while($export_user = $users->fetch()){
-		$users_list[] = [
-			"name" => $export_user['name'],
-			"ID" => $export_user['userID'],
-			"picture" => $export_user['picture'],
-		];
-	}
-
-    	//$_SESSION['userID'] = 4;
+getUsers();
 
 ?>
 
@@ -31,43 +19,33 @@
 		<div class="wrapper choice-client--top">
 
 			<span>Vous êtes</span>
-			<a href="#" class="bt color-bt">Un invité</a>
+			<?php bt('#','color-bt','Un invité'); ?>
 			<p>Vous pourrez réserver un cadeau, mais n’avez pas votre liste.</p>
 			<span class="choice-client--separator">ou</span>
 
 		</div>
 		
-		<?php 
-			if($users_list):
-		?>
+		<?php if($users_list): ?>
 
 		<ul class="grid">
 			
 			<?php
-				foreach($users_list as $user):
-			?>
-
-			<li class="list_elt single-people">
-				<img src="src/img/avatar/avatar<?php echo $user['picture'];?>.png" alt="">
-				<div class="inner-singlePeople">
-					<h3><?php echo $user['name'];?></h3>
-					
-					<form action="user.php" method="post">
-						<input type="hidden" name="userID" value="<?php print $user['ID'];?>">
-						<button class="bt white-bt">Me connecter</button>
-					</form>
-					
-				</div>
-			</li>
 			
-			<?php endforeach;?>
+			foreach($users_list as $user){
+				
+				if($user['isChildAccount'] != true){
+					include('template-parts/lists/single_user.php');
+				}
+			}
+			
+			?>
+			
 		</ul>
 		
 		<?php endif;?>
 		
 		<div class="add-account-home">
-		
-			<a href="#" class="bt border-primary-bt">Créer un compte</a>
+			<?php bt('#','border-primary-bt','Créer un compte'); ?>
 		</div>
 
 	</section>
