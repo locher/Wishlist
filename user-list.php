@@ -4,7 +4,7 @@
 
 
 	//Chargement
-	require('template-parts/header.php');
+	include_once('template-parts/header.php');
 
 	//GET
 	

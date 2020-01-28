@@ -15,57 +15,14 @@
 
 	require('template-parts/header.php');
 
-	// Query
+	getUsers();
 
-	// // Récupérer les infos du user actif
-
-	$activeUser = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE userID = '.$_SESSION['userID']);
-		
-	while($export_user = $activeUser->fetch()){
-		$active_user = [
-			"ID" => $export_user['userID'],
-			"name" => $export_user['name'],
-			"isChildAccount" => $export_user['isChildAccount'],
-			"picture" => $export_user['picture'],
-			"birthday_date" => $export_user['birthday_date'],
-			"size_top" => $export_user['size_top'],
-			"size_bottom" => $export_user['size_bottom'],
-			"size_feet" => $export_user['size_feet'],
-		];
-	}
-
-	//Calcul et affichage date anniversaire
-
-	setlocale(LC_TIME, 'fr_FR'); 
-	
-	$date_anniversaire = strftime('%e %B %Y', strtotime($active_user['birthday_date']));
-
-	//age en année
-	$age = floor((time() - strtotime($active_user['birthday_date']))/60/60/24/365.25);
-	
-	//Récupérer les infos des autres user pour affichage liste
-
-	$users = $bdd->query('SELECT userID, name, picture FROM '.$config['db_tables']['db_users'].' WHERE userID != '.$_SESSION['userID'].' ORDER BY name ASC');
-
-	while($export_user = $users->fetch()){
-		$users_list[] = [
-			"name" => $export_user['name'],
-			"ID" => $export_user['userID'],
-			"picture" => $export_user['picture'],
-		];
-	}
+	// Récupérer les infos du user actif
+	$active_user = $users_list[array_search($userID, array_column($users_list, 'ID'))];
 
 	//Récupérer les 2 derniers cadeaux de l'utilisateur connecté
 
-	$bddGifts = $bdd->query('SELECT title, description, link FROM '.$config['db_tables']['db_gifts'].' WHERE userID = '.$_SESSION['userID'].' ORDER BY userID DESC LIMIT 2');
-		
-	while($export_gifts = $bddGifts->fetch()){
-		$lastgifts[] = [
-			"title" => $export_gifts['title'],
-			"description" => $export_gifts['description'],
-			"link" => $export_gifts['link'],
-		];
-	}
+	getGifts($_SESSION['userID'], 3);
 
 ?>
 
@@ -94,8 +51,8 @@
 				<div class="svg-wrapper">
 					<object data="src/img/svg-prod/baby.svg" type="image/svg+xml"></object>
 				</div>
-				<span class="birthday"><?php echo $date_anniversaire;?></span>
-				<span class="age"><?php echo $age;?> ans</span>
+				<span class="birthday"><?php echo birthdayDate($active_user['birthday_date']);?></span>
+				<span class="age"><?php echo age($active_user['birthday_date']);?> ans</span>
 			</div>
 
 			<?php endif;?>
@@ -144,14 +101,14 @@
 
 	<?php endif;?>
 	
-	<?php if(isset($export_gifts)):?>
+	<?php if(isset($gifts)):?>
 
 	<section>
 		<h2>Mes envies</h2>
 
 		<ul class="grid overlay-parent">
 			
-			<?php foreach($lastgifts as $gift): ?>
+			<?php foreach($gifts as $gift): ?>
 		
 			<li class="list_elt single-gift">
 
@@ -191,38 +148,26 @@
 	
 	<?php endif;?>
 
-	<?php 
-			if($users_list):
-		?>
+	<?php if($users_list): ?>
 
 
 	<section>
 		<h2>Voir les listes</h2>
-
-
+		
 		<ul class="grid">
-
+		
 			<?php
-				foreach($users_list as $user):
+			
+			foreach($users_list as $user){
+				if($user['ID'] != $userID){
+					echo printSingleUser($user, 'Voir la liste');
+				}
+			}
+			
 			?>
-
-				<li class="list_elt single-people">
-					<img src="src/img/avatar/avatar<?php echo $user['picture'];?>.png" alt="">
-					<div class="inner-singlePeople">
-						<h3>
-							<?php echo $user['name'];?>
-						</h3>
-
-						<a href="user-list.php?listID=<?php print $user['ID'];?>" class="bt white-bt">Voir la liste</a>
-
-					</div>
-				</li>
-
-				<?php endforeach;?>
+			
 		</ul>
-
-
-
+		
 	</section>
 
 	<?php endif;?>

@@ -19,7 +19,7 @@ getUsers();
 		<div class="wrapper choice-client--top">
 
 			<span>Vous êtes</span>
-			<?php bt('#','color-bt','Un invité'); ?>
+			<?php echo bt('#','color-bt','Un invité'); ?>
 			<p>Vous pourrez réserver un cadeau, mais n’avez pas votre liste.</p>
 			<span class="choice-client--separator">ou</span>
 
@@ -34,7 +34,7 @@ getUsers();
 			foreach($users_list as $user){
 				
 				if($user['isChildAccount'] != true){
-					include('template-parts/lists/single_user.php');
+					echo printSingleUser($user, 'Me connecter');
 				}
 			}
 			
@@ -45,7 +45,7 @@ getUsers();
 		<?php endif;?>
 		
 		<div class="add-account-home">
-			<?php bt('#','border-primary-bt','Créer un compte'); ?>
+			<?php echo bt('#','border-primary-bt','Créer un compte'); ?>
 		</div>
 
 	</section>
