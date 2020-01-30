@@ -82,7 +82,7 @@ function printSingleUser($user, $txt_bt){
 		<h3>'. $user['name'] . '</h3>
 
 		<form action="user.php" method="post">
-			<input type="hidden" name="userID" value="'. $user['ID'].'">'.bt('button', 'white-bt', $txt_bt).'
+			<input type="hidden" name="userID" value="'. $user['ID'].'">'.bt('button', 'color-bt', $txt_bt).'
 		</form>
 
 	</div>

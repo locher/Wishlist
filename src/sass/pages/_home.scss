@@ -1,45 +1,51 @@
-.template-home {
-	.top-header {
-		margin-top: 60px;
-	}
-	.grid {
-		margin-top: 30px;
-	}
-}
-
 .top-header {
+	
 	&--home--intro {
 		text-align: center;
 		display: block;
-		font-size: 3.3rem;
-		font-weight: $bold;
+		font-size: 5rem;
+		line-height: 1em;
+		font-weight: $semibold;
+		color: $primary;
+		text-transform: uppercase;
+	}
+	
+	&--sousTitre{
+		color: $primary;
+		text-transform: uppercase;
+		font-weight: $medium;
+		text-align: center;
+		opacity: .5;
 	}
 }
 
-.choice-client {
-	margin-top: 40px;
-}
-
 .choice-client--top {
+	margin-top: 40px;
 	text-align: center;
 	color: $grey;
+	color: $primary;
 	
 	span {
 		display: block;
 		font-size: 1.5rem;
 		text-transform: uppercase;
 	}
-	.bt {
-		margin: 1em 0;
-		font-size: 1.8rem;
+	
+	.home-txt{
+		//margin-top: $padding;
+		font-size: 1.3rem;
+		padding: 20px $padding $padding;
+		opacity: .5;
 	}
-}
-
-.choice-client--separator {
-	margin-top: 30px;
 }
 
 .add-account-home{
 	text-align: center;
-	margin: 30px auto;
+	margin-top: $padding;
+	position: relative;
+	z-index: 4;
+}
+
+.home-header{
+	padding: 20vw $padding $padding;
 }

@@ -11,7 +11,7 @@
 .bt{
 	transition: all ease .4s;
 	border-radius: 2em;
-	padding: .7em 1.8em;
+	padding: .75em 1.8em .7em;
 	text-decoration: none;
 	display: inline-block;
 	font-weight: $medium;
@@ -20,7 +20,7 @@
 	line-height: 1.2em;
 	
 	&:hover{
-		padding: .7em 2em;
+		padding: .75em 2em .7em;
 	}
 }
 
@@ -72,12 +72,13 @@ button.bt{
 // Global list
 
 .list_elt{
-	padding: $padding/1.75 $padding;
+	padding: $padding/2;
 	background-color: $primary;
 	color: $white;
+	border-radius: 10px;
 	
 	h3{
-		font-size: 1.6rem;
+		font-size: 1.9rem;
 	}
 }
 
@@ -98,7 +99,7 @@ button.bt{
 	}
 	
 	.inner-singlePeople{
-		margin-left: 20px;
+		margin-left: 15px;
 	}
 	
 	.bt{
@@ -107,6 +108,69 @@ button.bt{
 	
 	h3{
 		margin-left: 15px;
+	}
+}
+
+.background{
+	position: relative;
+	overflow: hidden;
+	
+	&::after{
+		content:'';
+		position: fixed;
+		top:0;
+		left:0;
+		bottom:0;
+		right: 0;
+		background-image: url('img/background.svg');
+		background-size:cover;
+		z-index: -1;
+	}
+	
+	&::before{
+		content:'';
+		position: absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		right: 0;
+		z-index: -2;
+	}
+}
+
+.white-background{
+	&::after{
+		mix-blend-mode: darken;
+		opacity: .3;
+	}
+	
+	&::before{
+		background-color: #F7F5FF;
+	}
+}
+
+.primary-background{
+	padding: $padding;
+	
+	&::after{
+		mix-blend-mode: color-burn;
+	}
+	
+	&::before{
+		background-color: $primary;
+	}
+	
+	.list_elt{
+		color: $primary;
+		background-color: $white;
+		position: relative;
+		box-shadow: 0 0 10px $primary;
+	}
+	
+	.single-people{
+		img{
+			border-color: $primary;
+		}
 	}
 }
 

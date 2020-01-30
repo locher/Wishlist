@@ -9,46 +9,42 @@ getUsers();
 ?>
 
 <body class="template-home">
-
-	<header class="top-header wrapper">
-		<span class="top-header--home--intro">Bonjour !</span>
-	</header>
-
-	<section class="choice-client">
-
-		<div class="wrapper choice-client--top">
-
-			<span>Vous êtes</span>
-			<?php echo bt('#','color-bt','Un invité'); ?>
-			<p>Vous pourrez réserver un cadeau, mais n’avez pas votre liste.</p>
-			<span class="choice-client--separator">ou</span>
-
-		</div>
+	
+	<section class="home-header white-background background">
+	
+		<h1 class="top-header--home--intro">Bonjour</h1>
+		<p class="top-header--sousTitre">C'est gentil de faire un cadeau</p>
 		
+		
+		<div class="choice-client--top">
+			<?php echo bt('#','color-bt','Me connecter en tant qu\'invité'); ?>
+			<p class="home-txt">Vous pourrez réserver un cadeau, mais n’avez pas votre liste.</p>
+			<span class="choice-client--separator">ou</span>
+		</div>
+	</section>
+	
+	<section class="list-connection primary-background background">
 		<?php if($users_list): ?>
-
-		<ul class="grid">
-			
+			<ul class="grid">
 			<?php
-			
+
 			foreach($users_list as $user){
-				
+
 				if($user['isChildAccount'] != true){
 					echo printSingleUser($user, 'Me connecter');
 				}
 			}
-			
-			?>
-			
-		</ul>
-		
-		<?php endif;?>
-		
-		<div class="add-account-home">
-			<?php echo bt('#','border-primary-bt','Créer un compte'); ?>
-		</div>
 
+			?>
+			</ul>
+
+			<?php endif;?>
+
+			<div class="add-account-home">
+				<?php echo bt('#','border-white-bt','Ajouter un compte'); ?>
+			</div>
 	</section>
+	
 </body>
 
 <?php require('template-parts/footer.php');?>
