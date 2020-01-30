@@ -1,6 +1,10 @@
 .overlay-parent{
 	position: relative;
 	
+	li{
+		opacity: .3;
+	}
+	
 	&:after{
 		content: '';
 		position: absolute;
@@ -8,14 +12,15 @@
 		right: 0;
 		bottom: 0;
 		left:0;
-		background-image: linear-gradient(rgba($white, 0.7), rgba($white, 1));
 	}
 }
 
 .overlay-wish{
 	position: absolute;
-	z-index: 2;
+	z-index: 5;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	width: 100%;
+	text-align: center;
 }

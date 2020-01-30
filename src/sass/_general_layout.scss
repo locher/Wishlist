@@ -23,12 +23,19 @@ body{
 
 h2{
 	font-size: 1.9rem;
-	font-weight: $bold;
+	font-weight: $medium;
 }
 
 section h2{
 	padding: 0 $padding;
-	margin-bottom: 20px;
+	margin-bottom: $padding;
+}
+
+.primary-background{
+	h2{
+		text-align: center;
+		color: $white;
+	}
 }
 
 // Header connecté
@@ -40,6 +47,9 @@ section h2{
 	border-radius: 0 0 0 100px;
 	display: flex;
 	justify-content: space-between;
+	position: fixed;
+	top: 0;
+	z-index: 10;
 	
 	.bt{
 		font-size: 1.3rem;

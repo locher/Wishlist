@@ -139,6 +139,8 @@ button.bt{
 }
 
 .white-background{
+	padding: $padding;
+	
 	&::after{
 		mix-blend-mode: darken;
 		opacity: .3;
@@ -319,7 +321,7 @@ button.bt{
 	align-items: center;
 	flex-wrap: wrap;
 	padding: 0 $padding;
-	margin-top: $padding;
+	padding-top: 85px;
 	
 	img{
 		flex-shrink: 0;
@@ -331,8 +333,8 @@ button.bt{
 	}
 	
 	.bt{
-		margin-left: 70px;
-		margin-top: 20px;
+		margin-left: 90px;
+		margin-top: 10px;
 	}
 }
 
@@ -343,6 +345,7 @@ button.bt{
 	font-weight: $regular;
 	line-height: 1.2em;
 	flex-grow: 1;
+	color: $primary;
 
 	h1{
 		font-size: 2em;

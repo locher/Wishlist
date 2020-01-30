@@ -12,7 +12,6 @@
 	}
 
 	//Chargement
-
 	require('template-parts/header.php');
 
 	getUsers();
@@ -21,8 +20,7 @@
 	$active_user = $users_list[array_search($userID, array_column($users_list, 'ID'))];
 
 	//Récupérer les 2 derniers cadeaux de l'utilisateur connecté
-
-	getGifts($_SESSION['userID'], 3);
+	getGifts($_SESSION['userID'], 2);
 
 ?>
 
@@ -38,7 +36,7 @@
 
 	<?php if($active_user): ?>
 
-	<section class="user-infos">
+	<section class="user-infos background white-background">
 		<img src="src/img/avatar/avatar<?php echo $active_user['picture'];?>.png" alt="">
 		<div class="inner-user-infos">
 			<h1>
@@ -103,8 +101,7 @@
 	
 	<?php if(isset($gifts)):?>
 
-	<section>
-		<h2>Mes envies</h2>
+	<section class="list-gifts background white-background">
 
 		<ul class="grid overlay-parent">
 			
@@ -151,7 +148,7 @@
 	<?php if($users_list): ?>
 
 
-	<section>
+	<section class="primary-background background">
 		<h2>Voir les listes</h2>
 		
 		<ul class="grid">
