@@ -11,6 +11,7 @@ $config = array(
 	"db_tables" => array(
 		"db_users" => "KDO_peoples",
 		"db_gifts" => "KDO_gifts",
+		"db_parents" => "KDO_parents"
 		
 	),
     "urls" => array(
