@@ -31,7 +31,7 @@ getUsers();
 			foreach($users_list as $user){
 
 				if($user['isChildAccount'] != true){
-					echo printSingleUser($user, 'Me connecter');
+					echo printSingleUser($user, 'Me connecter', 'user.php?user='.$user['ID']);
 				}
 			}
 

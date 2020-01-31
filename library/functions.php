@@ -73,17 +73,14 @@ function bt($link, $class, $text){
 }
 
 //Single user
-function printSingleUser($user, $txt_bt){
+function printSingleUser($user, $txt_bt, $lien_bt = '#'){
 	return('
 	
 	<li class="list_elt single-people">
 	<img src="src/img/avatar/avatar' . $user['picture'] .'.png" alt="">
 	<div class="inner-singlePeople">
 		<h3>'. $user['name'] . '</h3>
-
-		<form action="user.php" method="post">
-			<input type="hidden" name="userID" value="'. $user['ID'].'">'.bt('button', 'color-bt', $txt_bt).'
-		</form>
+		'.bt($lien_bt, 'color-bt', $txt_bt).'
 
 	</div>
 </li>

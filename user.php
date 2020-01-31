@@ -2,11 +2,10 @@
 
 	// LA PAGE DE L'UTILISATEUR CONNECTÉ
 
-	
 	//Récuperer l'userID si on vient de la page de connexion
 
-	if(isset($_POST['userID']) && $_POST['userID'] !=''){
-		$userID = $_POST['userID'];
+	if(isset($_GET['user']) && $_GET['user'] !=''){
+		$userID = $_GET['user'];
 		session_start();
 		$_SESSION['userID'] = $userID;
 	}
