@@ -150,7 +150,7 @@
 			
 			foreach($users_list as $user){
 				if($user['ID'] != $userID){
-					echo printSingleUser($user, 'Voir la liste');
+					echo printSingleUser($user, 'Voir la liste', 'list.php?list='.$user['ID']);
 				}
 			}
 			

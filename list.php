@@ -10,8 +10,8 @@
 	
 	//Récupérer l'ID de la liste à afficher
 
-	if(isset($_GET['listID'])){
-		$listID = $_GET['listID'];
+	if(isset($_GET['list'])){
+		$listID = $_GET['list'];
 	}
 
 	//Query
@@ -58,13 +58,7 @@
 
 <body class="connected-user-profil">
 
-	<header class="header-connected">
-		<button class="arrow left-arrow">
-			<span class="arrow-text">Retour</span>
-			<span class="arrow-shape"></span>
-		</button>
-		<a href="" class="bt border-white-bt">Mes listes</a>
-	</header>
+	<?php include('template-parts/header-top.php');?>
 
 	<?php if($active_user): ?>
 
