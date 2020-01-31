@@ -52,19 +52,25 @@ button.bt{
 	box-shadow: 0 0 8px 0px rgba($primary, .3);
 }
 
-.border-pink-bt{
+.border-pink-bt,
+button.border-pink-bt{
 	border: 2px solid $secondary;
 	color: $white;
+	background:none;
 }
 
-.border-primary-bt{
+.border-primary-bt,
+button.border-primary-bt{
 	border: 2px solid $primary;
 	color: $primary;
+	background:none;
 }
 
-.border-white-bt{
+.border-white-bt,
+button.border-white-bt{
 	border: 2px solid $white;
 	color: $white;
+	background:none;
 }
 
 
