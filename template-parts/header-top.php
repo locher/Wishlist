@@ -4,7 +4,7 @@ session_start();
 
 ////on vérifie s'il y a des listes enfants
 
-if(isset($_SESSION['userID'])){
+if(isset($_SESSION['userID']) && $_SESSION['userID'] != "guest"){
 	
 	$parents = $bdd->query('SELECT * FROM '.$config['db_tables']['db_parents'].' WHERE ID_parent = '.$_SESSION['userID'].' OR ID_child = '.$_SESSION['userID'].'');
 	
@@ -21,8 +21,6 @@ if(isset($_SESSION['userID'])){
 }
 
 //Gestion retour
-
-echo $_SERVER['REQUEST_URI'];w
 
 ?>
 
@@ -88,7 +86,7 @@ echo $_SERVER['REQUEST_URI'];w
 
 	</ul>
 	
-	<?php else: ?>
+	<?php elseif($_SESSION['userID'] != 'guest'): ?>
 	
 	<?php print bt('list.php?list='.$_SESSION['userID'], 'border-white-bt', 'Ma liste');?>
 	

@@ -17,7 +17,7 @@ getUsers();
 		
 		
 		<div class="choice-client--top">
-			<?php echo bt('#','color-bt','Me connecter en tant qu\'invité'); ?>
+			<?php echo bt('guest.php','color-bt','Me connecter en tant qu\'invité'); ?>
 			<p class="home-txt">Vous pourrez réserver un cadeau, mais n’avez pas votre liste.</p>
 			<span class="choice-client--separator">ou</span>
 		</div>
