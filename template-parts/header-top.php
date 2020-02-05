@@ -86,7 +86,7 @@ if(isset($_SESSION['userID']) && $_SESSION['userID'] != "guest"){
 
 	</ul>
 	
-	<?php elseif($_SESSION['userID'] != 'guest'): ?>
+	<?php elseif($_SESSION['userID'] != 'guest' && $_SESSION['userID'] != '' && isset($_SESSION['userID'])): ?>
 	
 	<?php print bt('list.php?list='.$_SESSION['userID'], 'border-white-bt', 'Ma liste');?>
 	
