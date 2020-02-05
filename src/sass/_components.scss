@@ -200,8 +200,9 @@ button.border-white-bt{
 	align-items: center;
 	
 	h3{
+		font-size: 1.7rem;
 		margin-bottom: 5px;
-		line-height: 1.3em;
+		line-height: 1.2em;
 		flex-grow: 1;
 	}
 	
@@ -210,10 +211,6 @@ button.border-white-bt{
 		margin-left: 15px;
 		flex-shrink: 0;
 	}
-}
-
-.gift-description{
-	margin-top: 8px;
 }
 
 //List element scroll

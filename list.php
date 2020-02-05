@@ -6,6 +6,8 @@
 	//Chargement
 	include_once('template-parts/header.php');
 
+	getUsers();
+
 	//GET
 	
 	//Récupérer l'ID de la liste à afficher
@@ -59,10 +61,34 @@
 <body class="connected-user-profil">
 
 	<?php include('template-parts/header-top.php');?>
+	
+	<?php
+	
+	/* 
+	
+	On vérifie si l'user actif peut modifier cette liste
+	
+	*/
+
+	// Tableau des userID pouvant être modifiés par l'user actif	
+	global $canUpdateLists;
+	
+	$canEdit = false;
+	
+	if(isset($canUpdateLists)){
+			if(in_array($listID, $canUpdateLists)){
+		$canEdit = true;
+	}
+	}
+
+
+	
+	?>
 
 	<?php if($active_user): ?>
 
-	<section class="user-infos">
+	<section class="user-infos background white-background">
+		
 		<img src="src/img/avatar/avatar<?php echo $active_user['picture'];?>.png" alt="">
 		<div class="inner-user-infos">
 			<h1>
@@ -125,8 +151,7 @@
 	
 	<?php if(isset($export_gifts)):?>
 
-	<section>
-		<h2>Mes envies</h2>
+	<section class="list-gifts background white-background">
 
 		<ul class="grid">
 			
@@ -154,10 +179,14 @@
 					<?php endif;?>
 				</div>
 				
+				<?php if($canEdit == true):?>
+				
 				<div class="wrapper-bt-elt">
 					<button class="bt white-bt">Réserver</button>
 					<button class="bt red-bt">Annuler</button>
 				</div>
+				
+				<?php endif;?>
 			</li>
 			
 			<?php endforeach;?>
@@ -170,41 +199,26 @@
 	
 	<?php endif;?>
 
-	<?php 
-			if($users_list):
-		?>
+	<?php if($users_list): ?>
 
 
-	<section>
+	<section class="primary-background background">
 		<h2>Voir les listes</h2>
-
-
+		
 		<ul class="grid">
-
+		
 			<?php
-				foreach($users_list as $user):
+			
+			foreach($users_list as $user){
+				if($user['ID'] != $_SESSION['userID']){
+					echo printSingleUser($user, 'Voir la liste', 'list.php?list='.$user['ID']);
+				}
+			}
+			
 			?>
-
-				<li class="list_elt single-people">
-					<img src="src/img/avatar/avatar<?php echo $user['picture'];?>.png" alt="">
-					<div class="inner-singlePeople">
-						<h3>
-							<?php echo $user['name'];?>
-						</h3>
-
-						<form action="#" method="post">
-							<input type="hidden" name="userID" value="<?php print $user['ID'];?>">
-							<button class="bt white-bt">Voir la liste</button>
-						</form>
-
-					</div>
-				</li>
-
-				<?php endforeach;?>
+			
 		</ul>
-
-
-
+		
 	</section>
 
 	<?php endif;?>

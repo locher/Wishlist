@@ -64,7 +64,7 @@ section h2{
 .arrow,
 .header-bt-listes,
 .header-bt-close{
-	transition: all ease .4s;
+	transition: all cubic-bezier(.64,-0.54,.35,1.44) .8s;
 }
 
 .display-menu{
@@ -75,7 +75,7 @@ section h2{
 	padding:0;
 	
 	label{
-		transition: all ease .4s;
+		transition: all cubic-bezier(.64,-0.54,.35,1.44) .8s;
 		display: block;
 		padding: .75em 1.8em .7em;
 		cursor:pointer;

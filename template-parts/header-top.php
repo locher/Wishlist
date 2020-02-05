@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ////on vérifie s'il y a des listes enfants
 
 if(isset($_SESSION['userID'])){
@@ -7,21 +9,27 @@ if(isset($_SESSION['userID'])){
 	$parents = $bdd->query('SELECT * FROM '.$config['db_tables']['db_parents'].' WHERE ID_parent = '.$_SESSION['userID'].' OR ID_child = '.$_SESSION['userID'].'');
 	
 	while($export = $parents->fetch()){
-		$child_list[] = [
-			"child" => $export['ID_child'],
-		];
+		$child_list[] = $export['ID_child'];
+	}
+	
+	if(isset($child_list)){
+		$canUpdateLists = $child_list;
+	$canUpdateLists[] = $_SESSION['userID'];
+	
+	global $canUpdateLists;
 	}
 }
+
+//Gestion retour
+
+echo $_SERVER['REQUEST_URI'];w
 
 ?>
 
 <header class="header-connected">
 	
 	<?php
-	
-	if($child_list): 
-	getUsers();
-	
+	if(isset($child_list)): 	
 	?>
 	
 	<input type="checkbox" id="displayMenu" class="display-menu">
@@ -34,7 +42,7 @@ if(isset($_SESSION['userID'])){
 		<span class="arrow-shape"></span>
 	</button>
 	
-	<?php if($child_list): ?>
+	<?php if(isset($child_list)): ?>
 
 	<button class="bt header-toggle border-white-bt" for="displayMenu">
 		<label for="displayMenu">
@@ -65,12 +73,12 @@ if(isset($_SESSION['userID'])){
 		foreach($child_list as $child):
 		
 		//Key de chaque enfant pour récupérer nom et photo
-		$child_key = array_search($child['child'], array_column($users_list, 'ID'));
+		$child_key = array_search($child, array_column($users_list, 'ID'));
 		
 		?>		
 		
 		<li>
-		<a href="" class="single-people">
+		<a href="list.php?list=<?php echo $users_list[$child_key]['ID'];?>" class="single-people">
 			<span><?php echo $users_list[$child_key]['name'];?></span>
 			<img src="src/img/avatar/avatar<?php echo $users_list[$child_key]['picture'];?>.png" alt="">
 		</a>
@@ -82,7 +90,7 @@ if(isset($_SESSION['userID'])){
 	
 	<?php else: ?>
 	
-	<?php print bt('#', 'border-white-bt', 'Ma liste');?>
+	<?php print bt('list.php?list='.$_SESSION['userID'], 'border-white-bt', 'Ma liste');?>
 	
 	<?php endif;?>
 	

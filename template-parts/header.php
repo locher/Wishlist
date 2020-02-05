@@ -3,29 +3,6 @@
 include_once('inc/config.php');
 include_once('library/functions.php');
 
-//On vérifie si on est connecté, si oui on ammène directement à la page user, sinon à la page de connexion
-
-
-
-
-//Si la session est ouverte, go page user
-if(isset($_SESSION['userID'])&&($_SESSION['userID']!='')){
-    //header('Location: user.php');
-	//echo 1;
-}
-
-else{
-	//Si la sessions est pas ouverte et qu'on est sur la page de login, il se passe rien
-	if(strstr($_SERVER['REQUEST_URI'], 'index.php')){
-		//echo 2;
-	//Si la session est pas ouverte et qu'on est pas sur la page de login, go page de login
-	}else{
-		//echo 3;
-		//header('Location: index.php');
-	}
-	
-}
-
 ?>
 
 <!DOCTYPE html>

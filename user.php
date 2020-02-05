@@ -127,7 +127,7 @@
 			<?php endforeach;?>
 			
 			<div class="overlay-wish">
-				<a href="" class="bt color-bt">Modifier ma liste</a>
+				<a href="list.php?list=<?php echo $userID;?>" class="bt color-bt">Modifier ma liste</a>
 			</div>
 
 		</ul>
@@ -149,7 +149,7 @@
 			<?php
 			
 			foreach($users_list as $user){
-				if($user['ID'] != $userID){
+				if($user['ID'] != $_SESSION['userID']){
 					echo printSingleUser($user, 'Voir la liste', 'list.php?list='.$user['ID']);
 				}
 			}
