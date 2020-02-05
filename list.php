@@ -210,7 +210,7 @@
 			<?php
 			
 			foreach($users_list as $user){
-				if($user['ID'] != $_SESSION['userID']){
+				if($user['ID'] != $_SESSION['userID'] && $user['ID'] != $listID){
 					echo printSingleUser($user, 'Voir la liste', 'list.php?list='.$user['ID']);
 				}
 			}
