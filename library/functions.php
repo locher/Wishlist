@@ -67,6 +67,8 @@ function bt($link, $class, $text){
 	
 	if($link == 'button'){
 		return('<button class="bt '.$class.'">'.$text.'</button>');
+	}elseif($link == 'submit'){
+		return('<button type="submit" class="bt '.$class.'">'.$text.'</button>');
 	}else{
 		return('<a href="'.$link.'" class="bt '.$class.'">'.$text.'</a>');
 	}

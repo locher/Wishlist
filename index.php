@@ -41,7 +41,7 @@ getUsers();
 			<?php endif;?>
 
 			<div class="add-account-home">
-				<?php echo bt('#','border-white-bt','Ajouter un compte'); ?>
+				<?php echo bt('form-account.php?mode=create','border-white-bt','Ajouter un compte'); ?>
 			</div>
 	</section>
 	

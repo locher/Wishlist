@@ -7,7 +7,8 @@ html{
 	background-color: $white;
 }
 
-body{
+body,
+form *{
 	font-size: 1.4rem;
 	line-height: 1.25em;
 	font-family: 'Quicksand', sans-serif;
@@ -20,6 +21,10 @@ body{
 }
 
 // Typo
+
+h1{
+	@extend %h1;
+}
 
 h2{
 	font-size: 1.9rem;
@@ -56,6 +61,10 @@ section h2{
 		font-size: 1.3rem;
 		align-self: flex-end;
 	}
+}
+
+.header-connected + section{
+	padding-top: 85px;
 }
 
 //Pas sous menu

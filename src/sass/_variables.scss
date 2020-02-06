@@ -16,3 +16,10 @@ $semibold: 600;
 $bold : 700;
 $extrabold: 800;
 $black : 900;
+
+%h1{
+	font-size: 2em;
+	font-weight: $bold;
+	color: $primary;
+	margin-top: 10px;
+}
