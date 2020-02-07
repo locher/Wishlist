@@ -109,13 +109,13 @@
 				</div>
 			</div>
 
-			<div class="wrap-form wrap-form-borderless">
+			<div class="wrap-form wrap-form-borderless" id="switch-child">
 				<div class="label-wrap">
 					<span class="fake-label">Compte enfant ?</span>
 				</div>
 
 				<div class="switch">
-					<input type="checkbox" id="child-account">
+					<input type="checkbox" id="child-account" v-on:change="reverseSwitch">
 					<label for="child-account" class="">
 						<span class="switch-option1">Oui</span>
 						<span class="switch-option2">Non</span>
@@ -123,7 +123,7 @@
 				</div>
 			</div>
 
-			<div class="wrap-form choiceParent">
+			<div class="wrap-form choiceParent" id="choiceParent" v-show="isDisplay">
 				<div class="label-wrap">
 					<span class="fake-label">Qui peut modifier cette liste ?</span>
 				</div>
@@ -159,9 +159,8 @@
 				<?php echo bt('submit', 'color-bt', $boutonText);?>
 			</div>
 			
-			
-
 		</form>
 	</section>
-
 </body>
+
+<?php include('template-parts/footer.php');?>

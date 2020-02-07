@@ -1,11 +1,15 @@
-(function ($, root, undefined) {
-	
-	$(function () {
-		
-		'use strict';
-		
-		// DOM ready, take it away
-		
-	});
-	
-})(jQuery, this);
+var formDisplay = new Vue({
+	el: '#choiceParent',
+	data: {
+		isDisplay: false
+	}
+});
+
+var switchChild = new Vue({
+	el: '#switch-child',
+	methods:{
+		reverseSwitch: function(){
+			formDisplay.isDisplay = !formDisplay.isDisplay;
+		}
+	}
+});

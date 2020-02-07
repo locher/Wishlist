@@ -151,7 +151,7 @@ form > .wrap-form + .wrap-form{
 	:checked{
 		
 		+ label::before{
-			transition: all cubic-bezier(.68,-0.55,.27,1.55) .7s;
+			transition: all cubic-bezier(.68,-0.55,.27,1.55) .5s;
 			right: 50%;
 			left: 0;
 		}
@@ -177,7 +177,7 @@ form > .wrap-form + .wrap-form{
 	:not(:checked){
 		
 		+ label::before{
-			transition: all cubic-bezier(.68,-0.55,.27,1.55) .7s;
+			transition: all cubic-bezier(.68,-0.55,.27,1.55) .5s;
 			right: 0;
 			left: 50%;
 		}
