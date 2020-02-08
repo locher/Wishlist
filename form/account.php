@@ -60,15 +60,15 @@ if(isset($firstname) && $testMode == false){
 	$saveBDD->bindParam(6, $sizeBottom, PDO::PARAM_STR);
 	$saveBDD->bindParam(7, $sizeFeet, PDO::PARAM_STR);
 
-	$saveBDD->execute();
-	
-	$currentUser = $bdd->lastInsertId();
-	
 	if($saveBDD->execute()){
 		$isBDDsuccess = true;
 	}else{
 		$isBDDsuccess = false;
 	}
+	
+	$currentUser = $bdd->lastInsertId();
+	
+	
 	
 }else{
 	echo 'Faut rentrer un prénom, gros';
@@ -86,8 +86,6 @@ if($isChild == true){
 
 			$saveBDDchild->bindParam(1, $parent, PDO::PARAM_STR);
 			$saveBDDchild->bindParam(2, $currentUser, PDO::PARAM_STR);
-
-			$saveBDDchild->execute();
 			
 			if($saveBDDchild->execute()){
 				$isBDDsuccessChild = true;
