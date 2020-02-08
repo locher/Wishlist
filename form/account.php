@@ -113,6 +113,7 @@ if($isChild == true){
 		
 	}else{
 		//Echec avec enfant
+		header("location:../form-account.php?mode=create&src=CreateAccountFail");
 	}
 	
 }else{
@@ -122,6 +123,7 @@ if($isChild == true){
 		
 	}else{
 		//Echec sans enfant
+		header("location:../form-account.php?mode=create&src=CreateAccountFail");
 		
 	}
 }
