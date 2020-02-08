@@ -4,6 +4,7 @@
 
 	//Chargement
 	include_once('template-parts/header.php');
+	getUsers();
 
 	//Mode edit ou mode create
 		
@@ -37,13 +38,13 @@
 	</section>
 
 	<section class="background white-background">
-		<form action="">
+		<form action="form/account.php" method="post">
 
 			<div class="wrap-form">
 				<div class="label-wrap">
 					<label for="firstname">Prénom</label>
 				</div>
-				<input type="text" id="firstname">
+				<input type="text" id="firstname" name="firstname" required>
 			</div>
 
 			<div class="wrap-form">
@@ -52,7 +53,7 @@
 					<span class="helper">JJ/MM/AAAA</span>
 				</div>
 
-				<input type="date" id="birthdate" min="1930-01-01" max="<?php echo date('o-m-d');?>">
+				<input type="date" id="birthdate" min="1930-01-01" max="<?php echo date('o-m-d');?>" name="birthday">
 			</div>
 
 			<div class="wrap-form">
@@ -69,21 +70,21 @@
 						<div class="label-wrap">
 							<label for="size-top">Haut</label>
 						</div>
-						<input type="text" id="size-top">
+						<input type="text" id="size-top" name="size-top">
 					</div>
 
 					<div class="wrap-form mini-form">
 						<div class="label-wrap">
 							<label for="size-bottom">Bas</label>
 						</div>
-						<input type="text" id="size-bottom">
+						<input type="text" id="size-bottom" name="size-bottom">
 					</div>
 
 					<div class="wrap-form mini-form">
 						<div class="label-wrap">
 							<label for="size-feet">Pied</label>
 						</div>
-						<input type="text" id="size-feet">
+						<input type="text" id="size-feet" name="size-feet">
 					</div>
 				</div>
 			</div>
@@ -98,7 +99,7 @@
 
 					<?php for($i=1; $i<=15; $i++): ?>
 					<div class="single-choice">
-						<input type="radio" id="photo<?php echo $i;?>" value="photo<?php echo $i;?>" name="photoChoice">
+						<input type="radio" id="photo<?php echo $i;?>" value="<?php echo $i;?>" name="photoChoice">
 						<label for="photo<?php echo $i;?>">
 							<img src="src/img/avatar/avatar<?php echo $i;?>.png" alt="" class="avatar">
 						</label>
@@ -115,7 +116,7 @@
 				</div>
 
 				<div class="switch">
-					<input type="checkbox" id="child-account" v-on:change="reverseSwitch">
+					<input type="checkbox" id="child-account" v-on:change="reverseSwitch" name="isChild" value="true">
 					<label for="child-account" class="">
 						<span class="switch-option1">Oui</span>
 						<span class="switch-option2">Non</span>
@@ -139,7 +140,7 @@
 					
 
 					<li>
-						<input type="checkbox" name="choiceParent" value="parent<?php echo $user['ID'];?>" id="parent<?php echo $user['ID'];?>">
+						<input type="checkbox" name="choiceParent[]" value="<?php echo $user['ID'];?>" id="parent<?php echo $user['ID'];?>">
 						<label for="parent<?php echo $user['ID'];?>">
 							<img src="src/img/avatar/avatar<?php echo $user['picture'];?>.png" alt="" class="avatar">
 							<?php echo $user['name'];?>
