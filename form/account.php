@@ -109,7 +109,7 @@ if($isChild == true){
 	if($isBDDsuccess == true && $isBDDsuccessChild == true){
 		
 		//Réussite avec enfant
-		header("location:../index.php?src=CreateAccountOk");
+		header("location:../index.php?src=CreateAccountOk&user=".$firstname);
 		
 	}else{
 		//Echec avec enfant
@@ -119,7 +119,7 @@ if($isChild == true){
 }else{
 	if($isBDDsuccess == true){
 		//Réussite sans enfant		
-		header("location:../index.php?src=CreateAccountOk");
+		header("location:../index.php?src=CreateAccountOk&user=".$firstname);
 		
 	}else{
 		//Echec sans enfant

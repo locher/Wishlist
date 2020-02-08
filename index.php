@@ -10,6 +10,15 @@ getUsers();
 
 <body class="template-home">
 	
+	<?php if(isset($_GET['src']) && $_GET['src'] == 'CreateAccountOk' && isset($_GET['user']) && $_GET['user'] != ''): ?>
+
+	<section class="primary-background background message">
+		<p><strong><?php echo $_GET['user'];?></strong> a bien été ajouté(e) !</p>
+		<p>Bienvenue dans la famille :)</p>
+	</section>
+	
+	<?php endif;?>
+	
 	<section class="home-header white-background background">
 	
 		<h1 class="top-header--home--intro">Bonjour</h1>

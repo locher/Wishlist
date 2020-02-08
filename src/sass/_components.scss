@@ -411,4 +411,25 @@ button.border-white-bt{
 	}
 }
 
+// Message
 
+.message{
+	transition: all ease .5s;
+	text-align: center;
+	color: $white;
+	font-weight: $medium;
+	padding-top: 2*$padding;
+	padding-bottom: 2*$padding;
+	
+	p{
+		line-height: 1.4em;
+	}
+	
+	p:first-child{
+		font-size: 1.3em;
+	}
+	
+	strong{
+		font-weight: bolder;
+	}
+}
