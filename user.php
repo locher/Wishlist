@@ -168,4 +168,6 @@
 	
 	<?php endif;?>
 
+	<?php include('template-parts/add-gift-bt.php');?>
+
 </body>

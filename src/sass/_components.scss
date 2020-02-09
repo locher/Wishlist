@@ -478,6 +478,48 @@ button.border-white-bt{
 .fade-enter-active, .fade-leave-active {
   transition: all cubic-bezier(.68,-0.55,.27,1.55) .8s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.fade-enter, .fade-leave-to{
   margin-bottom: -100%;
 }
+
+// Bouton ajouter cadeau
+
+@keyframes waterEffect{
+	0%{
+		border-radius: 45px 55px 45px 60px;
+	}
+	100%{
+		border-radius: 50px 45px 50px 40px;
+	}
+}
+
+.add-gift-bt{
+	display: flex;
+	height: 70px;
+	width: 70px;
+	background-color: $secondary;
+	font-size: 5rem;
+	color: $white;
+	text-decoration: none;
+	position: fixed;
+	bottom: $padding/1.2;
+	right: $padding/1.2;
+
+	animation-name: waterEffect;
+	animation-duration: 6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+
+	box-shadow: 0 0 8px 0px rgba($secondary, .5);
+
+
+	span{
+		display: block;
+		margin: auto;
+	}
+}
+
+
+
