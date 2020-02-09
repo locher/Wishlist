@@ -164,7 +164,7 @@
 
 	<?php if(isset($_GET['src']) && $_GET['src'] == 'EditAccountOk'): ?>
 
-	<div class="message">
+	<div class="message animation">
 		<p>Modification effectuée !</p>
 	</div>
 	

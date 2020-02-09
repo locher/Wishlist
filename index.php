@@ -10,11 +10,23 @@ getUsers();
 
 <body class="template-home">
 	
-	<?php if(isset($_GET['src']) && $_GET['src'] == 'CreateAccountOk' && isset($_GET['user']) && $_GET['user'] != ''): ?>
+	<?php
 
-	<div class="primary-background background message">
-		<p><strong><?php echo $_GET['user'];?></strong> a bien été ajouté(e) !</p>
-		<p>Bienvenue dans la famille :)</p>
+	if(isset($_GET['src']) && isset($_GET['user']) && $_GET['user'] != ''):
+
+		if($_GET['src'] == 'CreateAccountOk'){
+
+			$textMessage = "<p><strong>".$_GET['user']."</strong> a bien été ajouté(e) !</p><p>Bienvenue dans la famille :)</p>";
+
+		}else if($_GET['src'] == 'DeleteAccountOk'){
+			$textMessage = "<p><strong>".$_GET['user']."</strong> a bien été supprimé(e) !</p>";
+		}
+
+
+	?>
+
+	<div class="primary-background background message animation">
+		<?php echo $textMessage;?>
 	</div>
 	
 	<?php endif;?>

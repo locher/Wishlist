@@ -66,7 +66,7 @@ function age($date){
 function bt($link, $class, $text){
 	
 	if($link == 'button'){
-		return('<button class="bt '.$class.'">'.$text.'</button>');
+		return('<button type= "button" class="bt '.$class.'">'.$text.'</button>');
 	}elseif($link == 'submit'){
 		return('<button type="submit" class="bt '.$class.'">'.$text.'</button>');
 	}else{
