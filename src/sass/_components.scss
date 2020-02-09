@@ -418,8 +418,32 @@ button.border-white-bt{
 	text-align: center;
 	color: $white;
 	font-weight: $medium;
-	padding-top: 2*$padding;
-	padding-bottom: 2*$padding;
+	padding-top: 1.5*$padding;
+	padding-bottom: 1.5*$padding;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 10;
+	background: $primary;
+	animation-name: sortieEcran;
+	animation-duration: 1s;
+	animation-delay: 5s;
+	animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
+	animation-fill-mode: forwards;
+
+	&::after{
+		position: absolute;
+	}
+
+	@keyframes sortieEcran{
+		from{
+			bottom: 0;
+		}
+		to{
+			bottom: -100%;
+		}
+	}
+
 	
 	p{
 		line-height: 1.4em;

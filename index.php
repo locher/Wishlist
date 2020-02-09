@@ -12,10 +12,10 @@ getUsers();
 	
 	<?php if(isset($_GET['src']) && $_GET['src'] == 'CreateAccountOk' && isset($_GET['user']) && $_GET['user'] != ''): ?>
 
-	<section class="primary-background background message">
+	<div class="primary-background background message">
 		<p><strong><?php echo $_GET['user'];?></strong> a bien été ajouté(e) !</p>
 		<p>Bienvenue dans la famille :)</p>
-	</section>
+	</div>
 	
 	<?php endif;?>
 	

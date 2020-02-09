@@ -86,7 +86,7 @@
 			<?php endif;?>
 		</div>
 		
-		<a href="#_" class="bt border-primary-bt">Modifier les infos</a>
+		<a href="form-account.php?mode=edit&user=<?php echo $userID;?>" class="bt border-primary-bt">Modifier les infos</a>
 		
 	</section>
 
@@ -160,6 +160,14 @@
 		
 	</section>
 
+	<?php endif;?>
+
+	<?php if(isset($_GET['src']) && $_GET['src'] == 'EditAccountOk'): ?>
+
+	<div class="message">
+		<p>Modification effectuée !</p>
+	</div>
+	
 	<?php endif;?>
 
 </body>
