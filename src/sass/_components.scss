@@ -445,6 +445,15 @@ button.border-white-bt{
 
 	.bt-group{
 		margin-top: $padding;
+
+		*{
+			margin-bottom: 5px;
+		}
+
+		.bt + .bt{
+			margin-left: 5px;
+			margin-right: 5px;
+		}
 	}
 }
 
@@ -464,4 +473,11 @@ button.border-white-bt{
 	to{
 		bottom: -100%;
 	}
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all cubic-bezier(.68,-0.55,.27,1.55) .8s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  margin-bottom: -100%;
 }

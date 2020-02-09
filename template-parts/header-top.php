@@ -76,7 +76,7 @@ if(isset($_SESSION['userID']) && $_SESSION['userID'] != "guest"){
 		?>		
 		
 		<li>
-		<a href="list.php?list=<?php echo $users_list[$child_key]['ID'];?>" class="single-people">
+		<a href="user.php?user=<?php echo $users_list[$child_key]['ID'];?>" class="single-people">
 			<span><?php echo $users_list[$child_key]['name'];?></span>
 			<img src="src/img/avatar/avatar<?php echo $users_list[$child_key]['picture'];?>.png" alt="">
 		</a>
@@ -88,7 +88,7 @@ if(isset($_SESSION['userID']) && $_SESSION['userID'] != "guest"){
 	
 	<?php elseif($_SESSION['userID'] != 'guest' && $_SESSION['userID'] != '' && isset($_SESSION['userID'])): ?>
 	
-	<?php print bt('list.php?list='.$_SESSION['userID'], 'border-white-bt', 'Ma liste');?>
+	<?php print bt('user.php?user='.$_SESSION['userID'], 'border-white-bt', 'Ma liste');?>
 	
 	<?php endif;?>
 	

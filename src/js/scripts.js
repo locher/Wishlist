@@ -5,6 +5,18 @@ var formDisplay = new Vue({
 	}
 });
 
+var messageAlert = new Vue({
+	el: '#delete-confirmation',
+	data: {
+		isDisplay: false
+	},
+	methods:{
+		reverseDisplay: function(){
+			messageAlert.isDisplay = !messageAlert.isDisplay
+		}
+	}
+});
+
 var switchChild = new Vue({
 	el: '#switch-child',
 	methods:{
@@ -13,3 +25,4 @@ var switchChild = new Vue({
 		}
 	}
 });
+

@@ -228,21 +228,31 @@
 
 		<?php if($formMode == 'edit'):?>
 		
-		<form action="form/delete-account.php" method="POST">
+		<form action="form/delete-account.php" method="POST" id="delete-confirmation">
 			<input type="hidden" name="userID" value="<?php echo $_GET['user'];?>">
 			<input type="hidden" name="userName" value="<?php echo $editUserID['name']; ?>">
-			<div class="bt-group">
-				<?php echo bt('button', 'red-bt', 'Supprimer ce compte');?>
-			</div>
 
-			<div id="delete-confirmation" class="background primary-background message">
+							<div class="bt-group">
+				<button class="bt red-bt" type="button" v-on:click="reverseDisplay">
+					Supprimer ce compte
+				</button>
+			</div>
+			
+			<transition name="fade">
+
+			<div class="background primary-background message" v-show="isDisplay">
+
 				<p>Supprimer <strong><?php echo $editUserID['name'];?></strong> ?</p>
 				<p>Toutes ses informations et ses cadeaux associés seront définitivement supprimés. </p>
 				<div class="bt-group">
-					<?php echo bt('button', 'border-white-bt', 'Non, annuler');?>
+					<button class="bt border-white-bt" type="button" v-on:click="reverseDisplay">
+					Non, annuler
+				</button>
 					<?php echo bt('submit', 'red-bt', 'Oui, supprimer');?>
 				</div>
 			</div>
+			
+			</transition>
 		</form>
 
 		<?php endif;?>

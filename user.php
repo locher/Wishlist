@@ -132,8 +132,6 @@
 
 		</ul>
 
-		
-
 	</section>
 	
 	<?php endif;?>
@@ -164,7 +162,7 @@
 
 	<?php if(isset($_GET['src']) && $_GET['src'] == 'EditAccountOk'): ?>
 
-	<div class="message animation">
+	<div class="message animation primary-background background">
 		<p>Modification effectuée !</p>
 	</div>
 	
