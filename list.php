@@ -226,4 +226,24 @@
 
 	?>
 
+	<?php
+
+	// Notification création de cadeau
+
+	if(isset($_GET['src']) && isset($_GET['user']) && $_GET['user'] != ''):
+
+		if($_GET['src'] == 'createGiftOk'){
+
+			$textMessage = "<p>Cadeau ajouté !</p>";
+		}
+
+
+	?>
+
+	<div class="primary-background background message animation">
+		<?php echo $textMessage;?>
+	</div>
+	
+	<?php endif;?>
+
 </body>

@@ -88,4 +88,24 @@ if($formMode == 'create'){
 
 </section>
 
+<?php
+
+// Notification création de cadeau
+
+if(isset($_GET['src']) && isset($_GET['user']) && $_GET['user'] != ''):
+
+	if($_GET['src'] == 'createGiftFail'){
+
+		$textMessage = "<p>Aïe !</p><p>Le cadeau n'a pas été enregistré :(</p>";
+	}
+
+
+?>
+
+<div class="primary-background background message animation">
+	<?php echo $textMessage;?>
+</div>
+
+<?php endif;?>
+
 </body>

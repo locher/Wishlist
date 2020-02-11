@@ -55,12 +55,8 @@ if(isset($designation) && $testMode == false){
 
 		if($saveBDD->execute()){
 			$isBDDsuccess = true;
-			echo "good";
-			exit;
 		}else{
 			$isBDDsuccess = false;
-			echo "false";
-			exit;
 		}
 		
 		$currentGift = $bdd->lastInsertId();
@@ -68,6 +64,21 @@ if(isset($designation) && $testMode == false){
 
 }else{
 	echo "La désignation est obligatoire.";
+}
+
+// Vérifier si tout c'est bien enregistré et messages
+
+// En mode Création
+
+if($formMode == 'create'){
+
+	if($isBDDsuccess == true){
+		header("location:../list.php?user=".$userID."&src=createGiftOk");
+		
+	}else{
+		header("location:../form-gift.php?mode=create&user=".$userID."&src=createGiftFail");
+	}	
+	
 }
 
 ?>
