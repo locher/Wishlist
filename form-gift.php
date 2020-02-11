@@ -2,6 +2,12 @@
 
 // AJOUTER OU MODIFIER UN CADEAU
 
+//Si on sait pas quel est l'user (genre lien faux), on redirige sur la home
+
+if(!isset($_GET['user'])){
+	header("location:index.php");
+}
+
 //Chargement
 include_once('template-parts/header.php');
 
