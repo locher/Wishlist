@@ -23,12 +23,16 @@
 		border-radius: 5px;
 	}
 	
-	input{
+	input, textarea{
 		padding: 1em $padding .7em;
 		border:0;
 		width: 100%;
 		background: none;
 		color: $primary;
+	}
+
+	textarea{
+		resize: vertical;
 	}
 	
 	.helper{

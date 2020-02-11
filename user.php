@@ -19,7 +19,7 @@
 	$active_user = $users_list[array_search($userID, array_column($users_list, 'ID'))];
 
 	//Récupérer les 2 derniers cadeaux de l'utilisateur connecté
-	getGifts($_SESSION['userID'], 2);
+	getGifts($userID, 2);
 
 ?>
 
@@ -108,7 +108,7 @@
 						
 						<?php if($gift['link'] != ''):?>
 						
-						<a href="<?php echo $gift['link'];?>" target="_blank" class="bt border-pink-bt">Voir le site</a>
+						<a href="<?php echo $gift['link'];?>" target="_blank" class="bt border-pink-bt">Voir</a>
 						
 						<?php endif;?>
 					</div>
@@ -127,7 +127,7 @@
 			<?php endforeach;?>
 			
 			<div class="overlay-wish">
-				<a href="list.php?list=<?php echo $userID;?>" class="bt color-bt">Modifier ma liste</a>
+				<a href="list.php?user=<?php echo $userID;?>" class="bt color-bt">Modifier ma liste</a>
 			</div>
 
 		</ul>
@@ -148,7 +148,7 @@
 			
 			foreach($users_list as $user){
 				if($user['ID'] != $_SESSION['userID']){
-					echo printSingleUser($user, 'Voir la liste', 'list.php?list='.$user['ID']);
+					echo printSingleUser($user, 'Voir la liste', 'list.php?user='.$user['ID']);
 				}
 			}
 			

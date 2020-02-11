@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 ////on vérifie s'il y a des listes enfants
 
@@ -14,9 +16,9 @@ if(isset($_SESSION['userID']) && $_SESSION['userID'] != "guest"){
 	
 	if(isset($child_list)){
 		$canUpdateLists = $child_list;
-	$canUpdateLists[] = $_SESSION['userID'];
-	
-	global $canUpdateLists;
+		$canUpdateLists[] = $_SESSION['userID'];
+	}else{
+		$canUpdateLists[] = $_SESSION['userID'];
 	}
 }
 

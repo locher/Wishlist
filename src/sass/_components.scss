@@ -73,18 +73,34 @@ button.border-white-bt{
 	background:none;
 }
 
-
-
 // Global list
 
 .list_elt{
-	padding: $padding/2;
-	background-color: $primary;
-	color: $white;
-	border-radius: 10px;
+	
+	//display: flex;
+	//justify-content: space-between;
 	
 	h3{
 		font-size: 1.9rem;
+	}
+
+	.gift-content{
+		padding: $padding/2 $padding/2 $padding/2.2 $padding/2;
+		background-color: $primary;
+		color: $white;
+		border-radius: 10px;
+		flex-shrink: 0;
+	}
+
+	.gift-edit{
+		margin-top: 10px;
+		color: $white;
+		display: inline-flex;
+		align-items: center;
+
+		.bt{
+			font-size: 1.2rem;
+		}
 	}
 }
 
@@ -92,8 +108,11 @@ button.border-white-bt{
 // Single Person
 
 .single-people{
+	padding: $padding/2 $padding/2 $padding/2.2 $padding/2;
+	border-radius: 10px;
 	display: flex;
 	align-items: center;
+	justify-content: flex-start;
 	
 	img{
 		flex-shrink: 0;
@@ -184,10 +203,10 @@ button.border-white-bt{
 
 // Single Gift
 
-.single-gift{
-}
-
-.gift-content{
+.gift-description{
+	font-size: 1.3rem;
+	line-height: 1.2em;
+	margin-top: 5px;
 }
 
 .gift-admin{
@@ -201,7 +220,6 @@ button.border-white-bt{
 	
 	h3{
 		font-size: 1.7rem;
-		margin-bottom: 5px;
 		line-height: 1.2em;
 		flex-grow: 1;
 	}
@@ -210,27 +228,7 @@ button.border-white-bt{
 		font-size: 1.1rem;
 		margin-left: 15px;
 		flex-shrink: 0;
-	}
-}
-
-//List element scroll
-
-.list_elt_scroll{
-	display: flex;
-	align-items: center;
-	overflow-x: scroll;
-	
-	.gift-content{
-		flex-shrink: 0;
-		width: 90%;
-	}
-	
-	.wrapper-bt-elt{
-		margin-left: 20px;
-		padding-right: $padding;
-		display: flex;
-		align-items: center;
-		position: relative;
+		align-self: flex-start;
 	}
 }
 
@@ -520,6 +518,4 @@ button.border-white-bt{
 		margin: auto;
 	}
 }
-
-
 

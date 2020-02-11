@@ -12,8 +12,8 @@
 	
 	//Récupérer l'ID de la liste à afficher
 
-	if(isset($_GET['list'])){
-		$listID = $_GET['list'];
+	if(isset($_GET['user'])){
+		$listID = $_GET['user'];
 	}
 
 	//Query
@@ -65,24 +65,19 @@
 	<?php
 	
 	/* 
-	
 	On vérifie si l'user actif peut modifier cette liste
-	
 	*/
 
-	// Tableau des userID pouvant être modifiés par l'user actif	
-	global $canUpdateLists;
+	// Tableau des userID pouvant être modifiés par l'user actif
 	
 	$canEdit = false;
 	
 	if(isset($canUpdateLists)){
-			if(in_array($listID, $canUpdateLists)){
-		$canEdit = true;
-	}
+		if(in_array($listID, $canUpdateLists)){
+			$canEdit = true;
+		}
 	}
 
-
-	
 	?>
 
 	<?php if($active_user): ?>
@@ -157,7 +152,7 @@
 			
 			<?php foreach($lastgifts as $gift): ?>
 		
-			<li class="list_elt single-gift list_elt_scroll">
+			<li class="list_elt single-gift">
 
 				<div class="gift-content">
 					<div class="gift-header">
@@ -165,7 +160,7 @@
 						
 						<?php if($gift['link'] != ''):?>
 						
-						<a href="<?php echo $gift['link'];?>" target="_blank" class="bt border-pink-bt">Voir le site</a>
+						<a href="<?php echo $gift['link'];?>" target="_blank" class="bt border-pink-bt">Voir</a>
 						
 						<?php endif;?>
 					</div>
@@ -177,30 +172,30 @@
 					</div>
 					
 					<?php endif;?>
-				</div>
+
+									<?php if($canEdit == true):?>
 				
-				<?php if($canEdit == true):?>
-				
-				<div class="wrapper-bt-elt">
-					<button class="bt white-bt">Réserver</button>
-					<button class="bt red-bt">Annuler</button>
+				<div class="gift-edit">
+					<button class="bt white-bt">Éditer</button>
+					<button class="bt red-bt">Supprimer</button>
 				</div>
 				
 				<?php endif;?>
+
+				</div>
+				
+
 			</li>
 			
 			<?php endforeach;?>
 
 		</ul>
 
-		
-
 	</section>
 	
 	<?php endif;?>
 
 	<?php if($users_list): ?>
-
 
 	<section class="primary-background background">
 		<h2>Voir les listes</h2>
@@ -211,7 +206,7 @@
 			
 			foreach($users_list as $user){
 				if($user['ID'] != $_SESSION['userID'] && $user['ID'] != $listID){
-					echo printSingleUser($user, 'Voir la liste', 'list.php?list='.$user['ID']);
+					echo printSingleUser($user, 'Voir la liste', 'list.php?user='.$user['ID']);
 				}
 			}
 			
@@ -222,5 +217,13 @@
 	</section>
 
 	<?php endif;?>
+
+	<?php
+
+	if($canEdit == true){
+		include('template-parts/add-gift-bt.php');
+	}
+
+	?>
 
 </body>
