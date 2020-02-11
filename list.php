@@ -47,15 +47,6 @@
 		];
 	}
 
-	//Calcul et affichage date anniversaire
-
-	setlocale(LC_TIME, 'fr_FR'); 
-	
-	$date_anniversaire = strftime('%e %B %Y', strtotime($active_user['birthday_date']));
-
-	//age en année
-	$age = floor((time() - strtotime($active_user['birthday_date']))/60/60/24/365.25);
-
 ?>
 
 <body class="connected-user-profil">
@@ -96,8 +87,8 @@
 				<div class="svg-wrapper">
 					<object data="src/img/svg-prod/baby.svg" type="image/svg+xml"></object>
 				</div>
-				<span class="birthday"><?php echo $date_anniversaire;?></span>
-				<span class="age"><?php echo $age;?> ans</span>
+				<span class="birthday"><?php echo birthdayDate($active_user['birthday_date']);?></span>
+				<span class="age"><?php echo age($active_user['birthday_date']);?> ans</span>
 			</div>
 
 			<?php endif;?>
