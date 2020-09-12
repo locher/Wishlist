@@ -262,8 +262,6 @@
 	</section>
 </body>
 
-<?php include('template-parts/footer.php');?>
-
 <?php
 if($editUserID['isChildAccount'] && $editUserID['isChildAccount'] == true && $formMode == 'edit'):
 ?>

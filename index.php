@@ -1,8 +1,6 @@
 <?php 
 
-include_once('conf/twig_configuration.php');
-include_once('conf/config.php');
-include_once('library/functions.php');
+include_once('inc/header.php');
 
 $context['users'] = getUsers('parents');
 
