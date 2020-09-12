@@ -4,22 +4,22 @@ module.exports = function(grunt){
 		pkg: grunt.file.readJSON('package.json'),
 		watch: {
 			'default': {
-				files: ['Gruntfile.js', 'src/sass/*.scss', 'src/sass/*/*.scss'],
+				files: ['Gruntfile.js', 'assets/sass/*.scss', 'assets/sass/*/*.scss'],
 				tasks: ['sass:dev', 'autoprefixer']
 			},
 			'svg': {
-				files: ['Gruntfile.js', 'src/img/svg-dev/*.svg', 'src/img/svg-dev/sprite/*.svg'],
+				files: ['Gruntfile.js', 'assets/img/svg-dev/*.svg', 'assets/img/svg-dev/sprite/*.svg'],
 				tasks: ['svgmin', 'svgstore']
 			}
 		},
 		sass: {
 			options:{
 				sourceMap: true,
-				outFile: "src/style.css",
+				outFile: "assets/style.css",
 			},
 			dev: {
 				files: {
-					'src/style.css': 'src/sass/styles.scss',
+					'assets/style.css': 'assets/sass/styles.scss',
 				},
 				options:{
 					style: 'expanded',
@@ -31,13 +31,13 @@ module.exports = function(grunt){
 			options: {
 				browsers: ['last 3 versions'],
 				map: {
-					annotation: 'src/style.css.map',
+					annotation: 'style.css.map',
 				}
-				
+
 			},
 			prefix: {
-				src: 'src/style.css',
-				dest: 'src/style.css'
+				src: 'assets/style.css',
+				dest: 'assets/style.css'
 			},
 
 		},
@@ -51,9 +51,9 @@ module.exports = function(grunt){
 	        dist: {
 	            files: [{
                     expand: true,
-                    cwd: 'src/img/svg-dev',
+                    cwd: 'assets/img/svg-dev',
                     src: '*.svg',
-                    dest: 'src/img/svg-prod'
+                    dest: 'assets/img/svg-prod'
                 }]
 	        }
 	    },
@@ -67,7 +67,7 @@ module.exports = function(grunt){
 		    },
 		    your_target: {
 		      files:{
-		      	'img/svg-prod/sprite/svgs.svg' : ['src/img/svg-dev/*.svg'],
+		      	'assets/img/svg-prod/sprite/svgs.svg' : ['assets/img/svg-dev/*.svg'],
 		      },
 		    },
 		},
