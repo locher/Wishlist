@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>KDO Components</title>
-	<link rel="stylesheet" type="text/css" href="src/style.css">
+	<link rel="stylesheet" type="text/css" href="../src/style.css">
 </head>
 <body class="componentPage">
 
@@ -12,7 +12,7 @@
 <ul class="grid">
 
 	<li class="list_elt single-people">
-		<img src="img/persos/Fichier 27.png" alt="">
+		<img src="../src/img/avatar/avatar1.png" alt="">
 		<div class="inner-singlePeople">
 			<h3>Loïc</h3>
 			<a href="#_" class="bt white-bt">Me connecter</a>
@@ -20,7 +20,7 @@
 	</li>
 	
 	<li class="list_elt single-people">
-		<img src="img/persos/Fichier 17.png" alt="">
+		<img src="../src/img/avatar/avatar2.png" alt="">
 		<div class="inner-singlePeople">
 			<h3>Anne-Laure</h3>
 			<a href="#_" class="bt white-bt">Me connecter</a>
