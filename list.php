@@ -167,8 +167,8 @@
 									<?php if($canEdit == true):?>
 				
 				<div class="gift-edit">
-					<button class="bt white-bt">Éditer</button>
-					<button class="bt red-bt">Supprimer</button>
+					<button class="bt white-bt" v-on:click="deleteGift.reverseDisplay()">Éditer</button>
+					<button class="bt red-bt" onclick="deleteGift.giftName='<?php echo $gift["title"];?>'; deleteGift.reverseDisplay();">Supprimer</button>
 				</div>
 				
 				<?php endif;?>
@@ -211,6 +211,35 @@
 
 	<?php
 
+		// Modal suppression cadeau
+
+	?>
+
+	<transition name="fade">
+
+	<div class="background primary-background message" id="deleteGift"v-show="isDisplay">
+
+		<p>Supprimer <strong>{{giftName}}</strong> ?</p>
+		<p>Si quelqu'un l'a réservé, il ne sera pas averti.</p>
+
+		<form action="form/delete-gift.php">
+
+			<div class="bt-group">
+				<button class="bt border-white-bt" type="button" v-on:click="reverseDisplay">
+				Non, annuler
+			</button>
+				<?php echo bt('submit', 'red-bt', 'Oui, supprimer');?>
+			</div>
+
+		</form>
+	</div>
+
+	</transition>
+
+	<?php
+
+	// Bouton ajout cadeau
+
 	if($canEdit == true){
 		include('template-parts/add-gift-bt.php');
 	}
@@ -236,5 +265,7 @@
 	</div>
 	
 	<?php endif;?>
+
+	<script src="src/js/scripts.js"></script>
 
 </body>

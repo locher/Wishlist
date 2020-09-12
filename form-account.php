@@ -232,7 +232,7 @@
 			<input type="hidden" name="userID" value="<?php echo $_GET['user'];?>">
 			<input type="hidden" name="userName" value="<?php echo $editUserID['name']; ?>">
 
-							<div class="bt-group">
+			<div class="bt-group">
 				<button class="bt red-bt" type="button" v-on:click="reverseDisplay">
 					Supprimer ce compte
 				</button>
@@ -250,9 +250,11 @@
 				</button>
 					<?php echo bt('submit', 'red-bt', 'Oui, supprimer');?>
 				</div>
+
 			</div>
-			
+
 			</transition>
+
 		</form>
 
 		<?php endif;?>

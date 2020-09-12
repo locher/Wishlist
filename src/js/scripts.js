@@ -26,3 +26,28 @@ var switchChild = new Vue({
 	}
 });
 
+
+//Suppresion cadeau
+
+	// La mododal
+
+	var deleteGift = new Vue({
+		el: '#deleteGift',
+		data:{
+			isDisplay: false,
+			giftName: ''
+		},
+		methods:{
+			reverseDisplay: function(){
+				this.isDisplay = !this.isDisplay;
+			}
+		}
+	});
+
+
+	// Le bouton
+
+
+
+
+
