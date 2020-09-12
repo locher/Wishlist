@@ -3,20 +3,40 @@
 
 //Récupérer tous les users
 
-function getUsers($type = 'all'){
+function getUsers($type="all", $excludeID=false){
 	
 	global $bdd, $config, $users_list;
 
-	if($type == 'all'){
-		$where = '';
-	}elseif($type == 'parents'){
-		$where = ' WHERE isChildAccount = 0';
+	$condition = array();
+
+	if($type == 'parents'){
+		$condition[] = 'isChildAccount = 0';
 	}elseif($type == 'children'){
-		$where = ' WHERE isChildAccount = 1';
+		$condition[] = ' isChildAccount = 1';
+	}
+
+	if($excludeID != false){
+		$condition[] = 'userID != '.$excludeID;
+	}
+
+	$where = '';
+
+	if(!is_null($condition)){
+
+		foreach($condition as $key => $cond){
+			$where .= $cond;
+
+			end($condition);
+			if($key != key($condition)){
+				$where .= ' AND ';
+			}
+		}
+
+		$users = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE '.$where.' ORDER BY name ASC');
+	}else{
+		$users = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' ORDER BY name ASC');		
 	}
 	
-	$users = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].$where.' ORDER BY name ASC');
-
 	while($export_user = $users->fetch()){
 		$users_list[] = [
 			"ID" => $export_user['userID'],
@@ -33,6 +53,28 @@ function getUsers($type = 'all'){
 	return $users_list;
 }
 
+function getUserInfo($userID){
+
+	global $bdd, $config, $users_list;
+
+	$user = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE userID = '.$userID);
+
+	while($export_user = $user->fetch()){
+		$user_info = [
+			"ID" => $export_user['userID'],
+			"name" => $export_user['name'],
+			"isChildAccount" => $export_user['isChildAccount'],
+			"picture" => $export_user['picture'],
+			"birthday_date" => $export_user['birthday_date'],
+			"size_top" => $export_user['size_top'],
+			"size_bottom" => $export_user['size_bottom'],
+			"size_feet" => $export_user['size_feet'],
+		];
+	}
+
+	return $user_info;
+}
+
 function getGifts($userID, $nbGifts = 0){
 	
 	global $bdd, $config, $gifts;
@@ -42,8 +84,6 @@ function getGifts($userID, $nbGifts = 0){
 	}else{
 		$bddGifts = $bdd->query('SELECT * FROM '.$config['db_tables']['db_gifts'].' WHERE userID = '.$userID.' ORDER BY userID DESC');
 	}
-	
-	
 		
 	while($export_gifts = $bddGifts->fetch()){
 		$gifts[] = [
@@ -52,6 +92,8 @@ function getGifts($userID, $nbGifts = 0){
 			"link" => $export_gifts['link'],
 		];
 	}
+
+	return $gifts;
 	
 }
 
@@ -66,6 +108,9 @@ function birthdayDate($date){
 function age($date){
 	return floor((time() - strtotime($date))/60/60/24/365.25);
 }
+
+
+
 
 /*
 //// Templating ////
@@ -86,23 +131,3 @@ function bt($link, $class, $text){
 		return('<a href="'.$link.'" class="bt '.$class.'">'.$text.'</a>');
 	}
 }
-
-/* @TODO : SUPPRIMER */
-
-//Single user
-function printSingleUser($user, $txt_bt, $lien_bt = '#'){
-	return('
-	
-	<li class="list_elt single-people">
-	<img src="src/img/avatar/avatar' . $user['picture'] .'.png" alt="">
-	<div class="inner-singlePeople">
-		<h3>'. $user['name'] . '</h3>
-		'.bt($lien_bt, 'color-bt', $txt_bt).'
-
-	</div>
-</li>
-	
-	');
-}
-
-?>

@@ -24,7 +24,8 @@
 
 		{% if users is not empty %}
 
-			{% include('template-parts/user-list.twig') %}
+			{% set vars = {'btLink':'user.php?user=','btTxt':'Me connecter'} %}
+			{% include 'template-parts/user-list.twig' with vars %}
 
 			{% endif %}
 

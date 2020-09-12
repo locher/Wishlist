@@ -6,7 +6,7 @@
 		<img src="assets/img/avatar/avatar{{ user.picture }}.png" alt="">
 		<div class="inner-singlePeople">
 			<h3>{{ user.name }}</h3>
-			<a href="user.php?user={{ user.ID }}" class="bt color-bt">Me connecter</a>
+			<a href="{{ btLink }}{{ user.ID }}" class="bt color-bt">{{ btTxt }}</a>
 		</div>
 	</li>
 
