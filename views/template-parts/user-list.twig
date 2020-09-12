@@ -1,0 +1,15 @@
+<ul class="grid">
+
+	{% for user in users %}
+
+	<li class="list_elt single-people">
+		<img src="assets/img/avatar/avatar{{ user.picture }}.png" alt="">
+		<div class="inner-singlePeople">
+			<h3>{{ user.name }}</h3>
+			<a href="user.php?user={{ user.ID }}" class="bt color-bt">Me connecter</a>
+		</div>
+	</li>
+
+	{% endfor %}
+
+</ul>
