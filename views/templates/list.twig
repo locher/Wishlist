@@ -19,17 +19,13 @@
 
 	<section class="list-gifts background white-background">
 
-		<ul class="grid overlay-parent">
+		<ul class="grid">
 			
 			{% for gift in currentUser.gifts %}
 		
 				{% include 'template-parts/single-gift.twig' %}
 			
 			{% endfor %}
-			
-			<div class="overlay-wish">
-				<a href="list.php?user=<?php echo $userID;?>" class="bt color-bt">Modifier ma liste</a>
-			</div>
 
 		</ul>
 
@@ -52,4 +48,4 @@
 
 	{% endif %}
 
-{% endblock content %}
+{% endblock %}

@@ -1,0 +1,26 @@
+<li class="list_elt single-gift">
+
+	<div class="gift-content">
+
+		<div class="gift-header">
+
+			<h3>{{ gift.title }}</h3>
+			
+			{% if gift.link is not empty %}
+			
+			<a href="{{ gift.link }}" target="_blank" class="bt border-pink-bt">Voir</a>
+			
+			{% endif %}
+
+		</div>
+		
+		{% if gift.link is not empty %}
+
+		<div class="gift-description">
+			<p>{{ gift.description }}</p>
+		</div>
+		
+		{% endif %}
+
+	</div>
+</li>
