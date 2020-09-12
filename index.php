@@ -24,4 +24,6 @@ if(isset($_GET['src']) && isset($_GET['user']) && $_GET['user'] != ''){
 	}
 }
 
+// Render
+
 echo $twig->render('templates/frontpage.twig', $context);
