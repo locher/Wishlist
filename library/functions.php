@@ -3,11 +3,19 @@
 
 //Récupérer tous les users
 
-function getUsers(){
+function getUsers($type = 'all'){
 	
 	global $bdd, $config, $users_list;
+
+	if($type == 'all'){
+		$where = '';
+	}elseif($type == 'parents'){
+		$where = ' WHERE isChildAccount = 0';
+	}elseif($type == 'children'){
+		$where = ' WHERE isChildAccount = 1';
+	}
 	
-	$users = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' ORDER BY name ASC');
+	$users = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].$where.' ORDER BY name ASC');
 
 	while($export_user = $users->fetch()){
 		$users_list[] = [
@@ -21,6 +29,8 @@ function getUsers(){
 			"size_feet" => $export_user['size_feet'],
 		];
 	}
+
+	return $users_list;
 }
 
 function getGifts($userID, $nbGifts = 0){
@@ -62,6 +72,9 @@ function age($date){
 */
 
 
+
+/* @TODO : SUPPRIMER */
+
 //Bouton
 function bt($link, $class, $text){
 	
@@ -73,6 +86,8 @@ function bt($link, $class, $text){
 		return('<a href="'.$link.'" class="bt '.$class.'">'.$text.'</a>');
 	}
 }
+
+/* @TODO : SUPPRIMER */
 
 //Single user
 function printSingleUser($user, $txt_bt, $lien_bt = '#'){
