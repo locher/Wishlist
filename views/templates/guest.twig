@@ -16,7 +16,8 @@
 <section class="primary-background background">
 	<h2>Voir les listes</h2>
 
-	{% include 'template-parts/user-list.twig' %}
+	{% set vars = {'btLink':'list.php?user=','btTxt':'Voir la liste'} %}
+		{% include 'template-parts/user-list.twig' with vars %}
 	
 </section>
 

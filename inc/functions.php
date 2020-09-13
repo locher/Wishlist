@@ -7,8 +7,6 @@ function getUsers($type="all", $excludeID=false){
 	
 	global $bdd, $config, $users_list;
 
-	$condition = array();
-
 	if($type == 'parents'){
 		$condition[] = 'isChildAccount = 0';
 	}elseif($type == 'children'){
@@ -21,8 +19,7 @@ function getUsers($type="all", $excludeID=false){
 
 	$where = '';
 
-	if(!is_null($condition)){
-
+	if(isset($condition) AND !is_null($condition)){
 		foreach($condition as $key => $cond){
 			$where .= $cond;
 
