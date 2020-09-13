@@ -1,7 +1,7 @@
 <section class="user-infos background white-background">
 		<img src="assets/img/avatar/avatar{{ currentUser.infos.picture }}.png" alt="">
 		<div class="inner-user-infos">
-			<h1>{{ currentUser.infos.name }}</h1>
+			<h1>{{ currentUser.infos.name|e }}</h1>
 
 			{% if currentUser.infos.birthday_date is not empty %}
 
@@ -24,7 +24,7 @@
 					<div class="svg-wrapper">
 						<object data="assets/img/svg-prod/tshirt.svg" type="image/svg+xml"></object>
 					</div>
-					<span class="top">{{ currentUser.infos.size_top }}</span>
+					<span class="top">{{ currentUser.infos.size_top|e }}</span>
 				</div>
 				{% endif %}
 
@@ -33,7 +33,7 @@
 					<div class="svg-wrapper">
 						<object data="assets/img/svg-prod/pant.svg" type="image/svg+xml"></object>
 					</div>
-					<span class="bottom">{{ currentUser.infos.size_bottom }}</span>
+					<span class="bottom">{{ currentUser.infos.size_bottom|e }}</span>
 				</div>
 				{% endif %}
 
@@ -42,7 +42,7 @@
 					<div class="svg-wrapper">
 						<object data="assets/img/svg-prod/shoe.svg" type="image/svg+xml"></object>
 					</div>
-					<span class="feet">{{ currentUser.infos.size_feet }}</span>
+					<span class="feet">{{ currentUser.infos.size_feet|e }}</span>
 				</div>
 				{% endif %}
 

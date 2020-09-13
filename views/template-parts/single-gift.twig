@@ -4,20 +4,20 @@
 
 		<div class="gift-header">
 
-			<h3>{{ gift.title }}</h3>
+			<h3>{{ gift.title|e }}</h3>
 			
 			{% if gift.link is not empty %}
 			
-			<a href="{{ gift.link }}" target="_blank" class="bt border-pink-bt">Voir</a>
+			<a href="{{ gift.link|e }}" target="_blank" class="bt border-pink-bt">Voir</a>
 			
 			{% endif %}
 
 		</div>
 		
-		{% if gift.link is not empty %}
+		{% if gift.description is not empty %}
 
 		<div class="gift-description">
-			<p>{{ gift.description }}</p>
+			<p>{{ gift.description|e }}</p>
 		</div>
 		
 		{% endif %}
