@@ -103,7 +103,18 @@ function birthdayDate($date){
 }
 
 function age($date){
-	return floor((time() - strtotime($date))/60/60/24/365.25);
+	$age =  (time() - strtotime($date))/60/60/24/365.25;
+
+	//If age < 2 years; count in month
+
+	if($age <= 2){
+		$age = $age*12;
+		$age = floor($age).' mois';
+	}else{
+		$age = floor($age). ' ans';
+	}
+
+	return $age;
 }
 
 
