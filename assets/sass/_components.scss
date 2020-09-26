@@ -1,27 +1,26 @@
-//Juste pour faire une page à peu près correct
+//Component
 
-.componentPage{
-	> h2{
-		margin: 10px;
+.multi-button{
+
+	display: inline-flex;
+	flex-direction: column;
+
+	.bt + .bt{
+		margin-left: 0;
+		margin-top: 1rem;
 	}
 }
 
-//Component
-
 .bt{
-	transition: all ease .4s;
 	border-radius: 2em;
-	padding: .75em 1.8em .7em;
+	padding: 1em 2.5em .9em;
 	text-decoration: none;
 	display: inline-block;
 	font-weight: $medium;
 	font-size: 1.5rem;
 	text-align: center;
 	line-height: 1.2em;
-	
-	&:hover{
-		padding: .75em 2em .7em;
-	}
+	border: 2px solid transparent;
 }
 
 button.bt{
@@ -31,44 +30,47 @@ button.bt{
 }
 
 .bt + .bt{
-	margin-left: 10px;
+	margin-left: 1rem;
 }
 
 .red-bt{
 	background-color: $red;
+	border-color: $red;
 	color: $white;
 	box-shadow: 0 0 8px 0px rgba($red, .3);
 }
 
 .white-bt{
 	background-color: $white;
+	border-color: $white;
 	color: $primary;
 	box-shadow: 0 0 8px 0px rgba($white, .3);
 }
 
 .color-bt{
 	background-color: $primary;
+	border-color: $primary;
 	color: $white;
 	box-shadow: 0 0 8px 0px rgba($primary, .3);
 }
 
 .border-pink-bt,
 button.border-pink-bt{
-	border: 2px solid $secondary;
+	border-color: $secondary;
 	color: $white;
 	background:none;
 }
 
 .border-primary-bt,
 button.border-primary-bt{
-	border: 2px solid $primary;
+	border-color: $primary;
 	color: $primary;
 	background:none;
 }
 
 .border-white-bt,
 button.border-white-bt{
-	border: 2px solid $white;
+	border-color: $white;
 	color: $white;
 	background:none;
 }
@@ -77,11 +79,8 @@ button.border-white-bt{
 
 .list_elt{
 	
-	//display: flex;
-	//justify-content: space-between;
-	
 	h3{
-		font-size: 1.9rem;
+		font-size: 2.1rem;
 	}
 
 	.gift-content{
@@ -108,19 +107,40 @@ button.border-white-bt{
 // Single Person
 
 .single-people{
-	padding: $padding/2 $padding/2 $padding/2.2 $padding/2;
+	padding: $padding/1.5;
 	border-radius: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	
-	img{
+	background-color: #fff;
+	box-shadow: 0 0 20px rgba($primary, .1);
+
+	.avatar-wrapper{
 		flex-shrink: 0;
-		border-radius: 100%;
-		padding: 4px;
-		border: 2px solid rgba($white, .4);
-		height: 75px;
 		width: 75px;
+		display : flex;
+		align-items:center;
+		position: relative;
+
+		img{
+			max-height: 70px;
+			max-width: 80px;
+			margin: auto;
+			z-index: 2;
+		}
+
+		.svg-wrapper{
+			position: absolute;
+			width: 85px;
+			height: 85px;
+			top: -15px;
+			left:-5px;
+			z-index:1;
+		}
+
+		svg{
+			fill: rgba($primary, .06);
+		}
 	}
 	
 	.inner-singlePeople{
@@ -133,71 +153,6 @@ button.border-white-bt{
 	
 	h3{
 		margin-left: 15px;
-	}
-}
-
-.background{
-	position: relative;
-	overflow: hidden;
-	
-	&::after{
-		content:'';
-		position: fixed;
-		top:0;
-		left:0;
-		bottom:0;
-		right: 0;
-		background-image: url('img/background.svg');
-		background-size:cover;
-		z-index: -1;
-	}
-	
-	&::before{
-		content:'';
-		position: absolute;
-		top:0;
-		left:0;
-		bottom:0;
-		right: 0;
-		z-index: -2;
-	}
-}
-
-.white-background{
-	padding: $padding;
-	
-	&::after{
-		mix-blend-mode: darken;
-		opacity: .3;
-	}
-	
-	&::before{
-		background-color: #F7F5FF;
-	}
-}
-
-.primary-background{
-	padding: $padding;
-	
-	&::after{
-		mix-blend-mode: color-burn;
-	}
-	
-	&::before{
-		background-color: $primary;
-	}
-	
-	.list_elt{
-		color: $primary;
-		background-color: $white;
-		position: relative;
-		box-shadow: 0 0 10px $primary;
-	}
-	
-	.single-people{
-		img{
-			border-color: $primary;
-		}
 	}
 }
 

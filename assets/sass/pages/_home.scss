@@ -1,52 +1,40 @@
-.top-header {
-	
-	&--home--intro {
-		text-align: center;
-		display: block;
-		font-size: 5rem;
-		line-height: 1em;
-		font-weight: $semibold;
-		color: $primary;
-		text-transform: uppercase;
-	}
-	
-	&--sousTitre{
-		color: $primary;
-		text-transform: uppercase;
-		font-weight: $medium;
-		text-align: center;
-		opacity: .5;
+.template-home{
+	display: flex;
+	min-height: 100vh;
+	padding-top: $padding;
+	padding-bottom: $padding;
+
+	@include blob(50vw,120vh,$primary);
+
+	&::after{
+		bottom: -10vh;
+		right: -10vw;
+		position: fixed;
 	}
 }
 
-.choice-client--top {
-	margin-top: 40px;
-	text-align: center;
-	color: $grey;
-	color: $primary;
-	
-	span {
-		display: block;
-		font-size: 1.5rem;
-		text-transform: uppercase;
-	}
-	
-	.home-txt{
-		//margin-top: $padding;
-		font-size: 1.3rem;
-		padding: 20px $padding $padding;
-		opacity: .5;
-	}
-}
-
-.add-account-home{
-	text-align: center;
-	margin-top: $padding;
-	position: relative;
-	z-index: 4;
+.wrapper-home{
+	margin-top: auto;
+	margin-bottom: auto;
+	display: flex;
+	align-items: center;
 }
 
 .home-header{
-	padding: 2*$padding $padding $padding;
-	
+
+	margin-right: 70px;
+
+	h1{
+		font-size: 14rem;
+	}
+
+	.h1-subtitle{
+		font-size: 2.7rem;
+		font-weight: bold;
+	}
+
+	.multi-button{
+		margin-top: 3rem;
+	}
 }
+

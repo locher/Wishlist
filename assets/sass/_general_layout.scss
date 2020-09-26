@@ -9,14 +9,31 @@ html{
 
 body,
 form *{
-	line-height: 1.25em;
-	font-family: 'Quicksand', sans-serif;
+	line-height: 1.25;
+	font-family: 'Lato', sans-serif;
 	font-weight: $regular;
+}
+
+body::before{
+	content:'';
+	background-image: url('img/background.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: fixed;
+	top:0;
+	left: 0;
+	width:100vw;
+	height: 100vh;
+	z-index: -1;
+	opacity: .3;
 }
 
 .wrapper{
 	padding-left: $padding;
 	padding-right: $padding;
+	max-width: 1400px;
+	margin-right:auto;
+	margin-left: auto;
 }
 
 // Typo

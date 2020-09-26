@@ -16,13 +16,12 @@
 }
 
 @include width-between(1100px, 1600px){
+
 	.grid{			
 		grid-template-columns: 1fr 1fr 1fr;
 	}
-}
 
-@include width-above(1600px){
-	.grid{			
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+	.col2{
+		grid-template-columns: 1fr 1fr;
 	}
 }
