@@ -15,7 +15,7 @@
 				<div class="label-wrap">
 					<label for="firstname">Prénom</label>
 				</div>
-				<input type="text" id="firstname" name="firstname" required>
+				<input type="text" id="firstname" name="firstname" required value="{{ user.name|e }}">
 			</div>
 
 			<div class="wrap-form">
@@ -24,7 +24,7 @@
 					<span class="helper">JJ/MM/AAAA</span>
 				</div>
 
-				<input type="date" id="birthdate" min="1930-01-01" max="{{ "now"|date("Y-m-d") }}" name="birthday">
+				<input type="date" id="birthdate" min="1930-01-01" max="{{ "now"|date("Y-m-d") }}" name="birthday" value="{{ user.birthday_date|e }}">
 			</div>
 
 			<div class="wrap-form">
@@ -39,21 +39,21 @@
 						<div class="label-wrap">
 							<label for="size-top">Haut</label>
 						</div>
-						<input type="text" id="size-top" name="size-top">
+						<input type="text" id="size-top" name="size-top" value="{{ user.size_top|e }}">
 					</div>
 
 					<div class="wrap-form mini-form">
 						<div class="label-wrap">
 							<label for="size-bottom">Bas</label>
 						</div>
-						<input type="text" id="size-bottom" name="size-bottom">
+						<input type="text" id="size-bottom" name="size-bottom" value="{{ user.size_bottom|e }}">
 					</div>
 
 					<div class="wrap-form mini-form">
 						<div class="label-wrap">
 							<label for="size-feet">Pied</label>
 						</div>
-						<input type="text" id="size-feet" name="size-feet">
+						<input type="text" id="size-feet" name="size-feet" value="{{ user.size_feet|e }}">
 					</div>
 				</div>
 			</div>
@@ -67,9 +67,15 @@
 				<div class="content-img-choice">
 
 					{% for i in 1..15 %}
+
+					{% if i == user.picture %}
+					{% set checked = 'checked' %}
+					{% else %}
+					{% set checked = '' %}
+					{% endif %}
 					
 					<div class="single-choice">
-						<input type="radio" id="photo{{ i }}" value="{{ i }}" name="photoChoice">
+						<input type="radio" id="photo{{ i }}" value="{{ i }}" name="photoChoice" {{ checked }}>
 						<label for="photo{{ i }}">
 							<img src="assets/img/avatar/avatar{{ i }}.png" alt="" class="avatar">
 						</label>
@@ -85,8 +91,12 @@
 					<span class="fake-label">Compte enfant ?</span>
 				</div>
 
+				{% if user.isChildAccount == true %}
+				{% set checked = 'checked' %}
+				{% endif %}
+
 				<div class="switch">
-					<input type="checkbox" id="child-account" v-on:change="reverseSwitch" name="isChild" value="true">
+					<input type="checkbox" id="child-account" v-on:change="reverseSwitch" name="isChild" value="true" {{ checked }}>
 					<label for="child-account" class="">
 						<span class="switch-option1">Oui</span>
 						<span class="switch-option2">Non</span>
@@ -94,7 +104,7 @@
 				</div>
 			</div>	
 
-			{% if parents is not empty %}		
+			{% if user.isChildAccount == true %}		
 
 			<div class="wrap-form choiceParent" id="choiceParent" v-show="isDisplay">
 				<div class="label-wrap">
@@ -104,13 +114,22 @@
 				<ul class="grid">
 			
 					{% for parent in parents %}
-					
+
+						{% for current_parent in current_parents %}
+							{{current_parent}}
+							{% if current_parent == parent.ID %}
+								{% set checked = 'checked' %}
+							{% else %}
+								{% set checked = '' %}
+							{% endif %}
+						{% endfor %}
+						
 					<li>
 						
-						<input type="checkbox" name="choiceParent[]" value="{{ parent.ID }}" id="parent{{ parent.ID }}"/>
+						<input type="checkbox" name="choiceParent[]" value="{{ parent.ID }}" id="parent{{ parent.ID }}" {{ checked }} />
 						<label for="parent{{ parent.ID }}">
 							<img src="assets/img/avatar/avatar{{ parent.picture }}.png" alt="" class="avatar">
-							{{ parent.name }}
+							{{ parent.name }} {{checked}}
 						</label>
 
 					</li>

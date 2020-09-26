@@ -94,6 +94,27 @@ function getGifts($userID, $nbGifts = 0){
 	
 }
 
+function get_parents($userID){
+
+	global $bdd, $config, $gifts;
+
+	$parents = $bdd->query('SELECT ID_parent FROM '.$config['db_tables']['db_parents'].' WHERE ID_child = '.$userID.'');
+
+	if($parents->fetch()){
+
+		while($export = $parents->fetch()){
+			$parent_list[] = $export['ID_parent'];
+		}
+
+		return $parent_list;
+
+	}
+	
+
+}	
+
+	
+
 //Autres
 
 setlocale(LC_TIME, 'fr_FR'); 
@@ -103,10 +124,10 @@ function birthdayDate($date){
 }
 
 function age($date){
+	//age in years
 	$age =  (time() - strtotime($date))/60/60/24/365.25;
 
 	//If age < 2 years; count in month
-
 	if($age <= 2){
 		$age = $age*12;
 		$age = floor($age).' mois';
