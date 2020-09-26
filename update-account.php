@@ -11,13 +11,18 @@ if(isset($_GET['user']) && $_GET['user'] != ''){
 }
 
 //If child, get parents
-$context['current_parents'] = get_parents($_GET['user']);
-d($context['current_parents']);
+$context['account_parents'] = get_parents($_GET['user']);
 
 //Get parents list
-$context['parents'] = getUsers('parents');
+$context['all_parents'] = getUsers('parents');
 
-d($context['user']);
+//Content
+
+$context['content'] = array(
+	'title' => 'Modifier ce compte',
+	'submit' => 'Modifier ce compte',
+	'form_url' => 'form/update-account.php?userID='.$_GET['user']
+);
 
 // Render
-echo $twig->render('templates/add-account.twig', $context);
+echo $twig->render('templates/form-account.twig', $context);

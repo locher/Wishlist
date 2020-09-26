@@ -96,24 +96,19 @@ function getGifts($userID, $nbGifts = 0){
 
 function get_parents($userID){
 
-	global $bdd, $config, $gifts;
+	global $bdd, $config, $users_list;
 
 	$parents = $bdd->query('SELECT ID_parent FROM '.$config['db_tables']['db_parents'].' WHERE ID_child = '.$userID.'');
 
-	if($parents->fetch()){
+		$parent_list = [];
 
 		while($export = $parents->fetch()){
 			$parent_list[] = $export['ID_parent'];
 		}
 
 		return $parent_list;
-
-	}
-	
-
 }	
 
-	
 
 //Autres
 
@@ -136,27 +131,4 @@ function age($date){
 	}
 
 	return $age;
-}
-
-
-
-
-/*
-//// Templating ////
-*/
-
-
-
-/* @TODO : SUPPRIMER */
-
-//Bouton
-function bt($link, $class, $text){
-	
-	if($link == 'button'){
-		return('<button type= "button" class="bt '.$class.'">'.$text.'</button>');
-	}elseif($link == 'submit'){
-		return('<button type="submit" class="bt '.$class.'">'.$text.'</button>');
-	}else{
-		return('<a href="'.$link.'" class="bt '.$class.'">'.$text.'</a>');
-	}
 }

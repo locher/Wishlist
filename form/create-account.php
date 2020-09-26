@@ -36,7 +36,7 @@ if(isset($_POST['photoChoice']) && $_POST['photoChoice'] != ''){
 	$photoChoice = rand(1, 15);
 }
 
-if(isset($_POST['isChild']) && $_POST['isChild'] != ''){
+if(isset($_POST['choiceParent']) && $_POST['choiceParent'] != ''){
 	$isChild = 1;
 }else{
 	$isChild = 0;
@@ -102,26 +102,25 @@ if($isChild == true){
 
 // Vérifier si tout c'est bien enregistré et messages
 
-
 if($isChild == true){
 
 	if($isBDDsuccess == true && $isBDDsuccessChild == true){
-		//Réussite avec enfant
-		header("location:../index.php?src=CreateAccountOk&user=".$firstname);
+		echo 'Réussite avec enfant';
+		//header("location:../user.php?user=".$_POST['userID']."&src=EditAccountOk");
 		
 	}else{
-		//Echec avec enfant
-		header("location:../add_account.php?src=CreateAccountFail");
+		echo 'Echec avec enfant';
+		//header("location:../form-account.php?mode=create&src=CreateAccountFail");
 	}
 	
 }else{
 	if($isBDDsuccess == true){
-		//Réussite sans enfant		
-		header("location:../index.php?src=CreateAccountOk&user=".$firstname);
+		echo 'Réussite sans enfant';	
+		//header("location:../user.php?user=".$_POST['userID']."&src=EditAccountOk");
 		
 	}else{
-		//Echec sans enfant
-		header("location:../add_account.php?src=CreateAccountFail");
+		echo 'Echec sans enfant';
+		//header("location:../form-account.php?mode=create&src=CreateAccountFail");
 		
 	}
 }
