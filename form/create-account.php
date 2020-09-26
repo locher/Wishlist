@@ -1,7 +1,5 @@
 <?php
 
-$testMode = false;
-
 // Form management
 
 if(isset($_POST['firstname']) && $_POST['firstname'] != ''){
@@ -46,7 +44,7 @@ if(isset($_POST['isChild']) && $_POST['isChild'] != ''){
 
 // If the firstname is set, we can save into BDD
 
-if(isset($firstname) && $testMode == false){
+if(isset($firstname)){
 	
 	global $bdd;
 
@@ -78,7 +76,7 @@ if(isset($firstname) && $testMode == false){
 
 if($isChild == true){
 	
-	if(isset($_POST['choiceParent']) && $_POST['choiceParent'] != '' && $testMode == false){
+	if(isset($_POST['choiceParent']) && $_POST['choiceParent'] != ''){
 
 			//Si on est en mode edit, on supprime les connexions avant de les remettre, pour pas se prendre la tête à vérifier si les connexions existent déjà
 
