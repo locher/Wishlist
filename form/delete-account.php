@@ -3,7 +3,7 @@
 if(isset($_POST['userID']) && $_POST['userID'] != ''){
 
 	global $bdd;
-	include_once('../inc/config.php');
+	include_once('../inc/conf/config.php');
 
 	$userID = $_POST['userID'];
 

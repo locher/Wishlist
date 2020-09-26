@@ -10,6 +10,9 @@ if(isset($_GET['user']) && $_GET['user'] != ''){
 	$context['user'] = getUserInfo($_GET['user']);
 }
 
+//Mode
+$context['mode'] = 'edit';
+
 //If child, get parents
 $context['account_parents'] = get_parents($_GET['user']);
 

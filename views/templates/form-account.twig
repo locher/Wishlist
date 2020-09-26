@@ -142,9 +142,41 @@
 			<div class="bt-wrapper">
 				<button type="submit" class="bt color-bt">{{ content.submit }}</button>
 			</div>
-			
+
 		</form>
-		
+
+
+		{% if mode == 'edit' %}
+
+			<form action="form/delete-account.php" method="POST" id="delete-confirmation">
+
+				<input type="hidden" name="userID" value="{{ user.ID }}">
+				<input type="hidden" name="userName" value="{{ user.name|e }}">
+
+				<div class="bt-group">
+					<button class="bt red-bt" type="button">
+						Supprimer ce compte
+					</button>
+				</div>
+
+				<div class="background primary-background message" v-show="isDisplay">
+
+					<p>Supprimer <strong>{{ user.name|e }}</strong> ?</p>
+					<p>Toutes ses informations et ses cadeaux associés seront définitivement supprimés !</p>
+					<div class="bt-group">
+						<button class="bt border-white-bt" type="button">
+						Non, annuler
+					</button>
+						<button type="submit" class="bt red-bt">Oui, supprimer</button>
+					</div>
+
+				</div>
+
+			</form>
+
+
+			{% endif %}
+			
 	</section>
 
 {% endblock content %}
