@@ -111,6 +111,34 @@ button.border-red-bt{
 	}
 }
 
+.avatar-wrapper{
+	flex-shrink: 0;
+	width: 75px;
+	display : flex;
+	align-items:center;
+	position: relative;
+
+	img{
+		max-height: 70px;
+		max-width: 80px;
+		margin: auto;
+		z-index: 2;
+	}
+
+	.svg-wrapper{
+		position: absolute;
+		width: 85px;
+		height: 85px;
+		top: -15px;
+		left:-5px;
+		z-index:1;
+	}
+
+	svg{
+		fill: rgba($primary, .06);
+	}
+}
+
 
 // Single Person
 
@@ -122,34 +150,6 @@ button.border-red-bt{
 	justify-content: flex-start;
 	background-color: #fff;
 	box-shadow: 0 0 20px rgba($primary, .1);
-
-	.avatar-wrapper{
-		flex-shrink: 0;
-		width: 75px;
-		display : flex;
-		align-items:center;
-		position: relative;
-
-		img{
-			max-height: 70px;
-			max-width: 80px;
-			margin: auto;
-			z-index: 2;
-		}
-
-		.svg-wrapper{
-			position: absolute;
-			width: 85px;
-			height: 85px;
-			top: -15px;
-			left:-5px;
-			z-index:1;
-		}
-
-		svg{
-			fill: rgba($primary, .06);
-		}
-	}
 	
 	.inner-singlePeople{
 		margin-left: 15px;
@@ -281,52 +281,32 @@ button.border-red-bt{
 // User information
 
 .user-infos{
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	flex-wrap: wrap;
 	padding: 0 $padding;
-	
-	img{
-		flex-shrink: 0;
-		border-radius: 100%;
-		padding: 4px;
-		border: 2px solid $primary;
-		height: 75px;
-		width: 75px;
-	}
-	
-	.bt{
-		margin-left: 90px;
-		margin-top: 10px;
-	}
-}
-
-//Avatar
-.avatar{
-	flex-shrink: 0;
-	border-radius: 100%;
-	padding: 4px;
-	border: 2px solid $primary;
-	height: 75px;
-	width: 75px;
 }
 
 .inner-user-infos{
-	margin-left: 20px;
+	margin-left: 40px;
 	margin-right: 20px;
 	font-size: 1.4rem;
 	font-weight: $regular;
-	line-height: 1.2em;
 	flex-grow: 1;
 	color: $primary;
 
 	h1{
 		@extend %h1;
 	}
-	
-	.bt{
-		margin-top: 15px;
-	}
+}
+
+.user-infos-details{
+	margin-right: 40px;
+}
+
+.user-infos-details-wrapper{
+	display: inline-flex;
+	align-items: center;
 }
 
 .birthday-infos{
@@ -342,7 +322,7 @@ button.border-red-bt{
 }
 
 .size-infos{
-	margin-top: 2px;
+	margin-top: 5px;
 	color: $primary;
 	display: flex;
 }

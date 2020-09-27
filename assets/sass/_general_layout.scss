@@ -9,8 +9,7 @@ html{
 
 body,
 form *{
-	line-height: 1.25;
-	font-family: 'Lato', sans-serif;
+	font-family: $body-font;
 	font-weight: $regular;
 }
 
@@ -31,7 +30,7 @@ body::before{
 .wrapper{
 	padding-left: $padding;
 	padding-right: $padding;
-	max-width: 1400px;
+	max-width: 1300px;
 	margin-right:auto;
 	margin-left: auto;
 }
@@ -43,13 +42,7 @@ h1{
 }
 
 h2{
-	font-size: 1.9rem;
-	font-weight: $medium;
-}
-
-section h2{
-	padding: 0 $padding;
-	margin-bottom: $padding;
+	@extend %h2;
 }
 
 .primary-background{

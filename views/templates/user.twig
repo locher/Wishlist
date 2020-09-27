@@ -4,50 +4,81 @@
 
 {% block content %}
 
-	{# Users infos #}
+	<div class="wrapper">
 
-	{% if currentUser is not empty %}
+		{# Users infos #}
 
-		{% set vars = {'canEdit' : true} %}
-		{% include 'template-parts/user-infos.twig' with vars %}
+		{% if currentUser is not empty %}
 
-	{% endif %}
+			{% set vars = {'canEdit' : true} %}
+			{% include 'template-parts/user-infos.twig' with vars %}
+
+		{% endif %}
+
+		{# Other editable lists #}
+
+		<section class="other-lists">
+
+			<h2>Mes autres listes modifiables</h2>
+			{% set vars = {'btLink':'list.php?user=','btTxt':'Accéder à la liste'} %}
+			{% include 'template-parts/user-list.twig' with vars %}
+
+		</section>
 
 
-	{# Users latest gifts #}
+		{# Users latest gifts #}
 
-	{% if currentUser.gifts is not empty %}
+		{% if currentUser.gifts is not empty %}
 
-	<section class="list-gifts background white-background">
+		<section class="list-gifts">
 
-		<ul class="grid">
+			<h2>Mes cadeaux</h2>
+
+			<ul class="grid">
+				
+				{% for gift in currentUser.gifts %}
 			
-			{% for gift in currentUser.gifts %}
+					{% set vars = {'canEdit' : true} %}
+					{% include 'template-parts/single-gift.twig' with vars %}
+				
+				{% endfor %}
+
+			</ul>
+
+		</section>
 		
-				{% set vars = {'canEdit' : true} %}
-				{% include 'template-parts/single-gift.twig' with vars %}
-			
-			{% endfor %}
+		{% endif %}
 
-		</ul>
+	</div>{# .wrapper #}
 
-	</section>
+
+	<div class="blob-wrapper">
+
+		<div class="wrapper">
+
+			{# Other users list #}
+
+			{% if users is not empty %}
+
+			<section class="list-users">
+				<h2>Listes</h2>
+				<p class="h3">Voir les listes</p>
+
+				{% set vars = {'btLink':'list.php?user=','btTxt':'Voir la liste'} %}
+				{% include 'template-parts/user-list.twig' with vars %}
+
+				<div class="all-lists">
+					<a href="#" class="bt border-white-bt">Voir toutes les listes en même temps</a>
+				</div>
+				
+				
+			</section>
+
+			{% endif %}
+
+		</div>
+
+	</div>
 	
-	{% endif %}
-
-
-	{# Other users list #}
-
-	{% if users is not empty %}
-
-	<section class="primary-background background">
-		<h2>Voir les listes</h2>
-
-		{% set vars = {'btLink':'list.php?user=','btTxt':'Voir la liste'} %}
-		{% include 'template-parts/user-list.twig' with vars %}
-		
-	</section>
-
-	{% endif %}
 
 {% endblock content %}

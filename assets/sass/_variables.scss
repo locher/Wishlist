@@ -18,11 +18,22 @@ $bold : 700;
 $extrabold: 800;
 $black : 900;
 
+$title-font: 'Roboto Mono', monospace;
+$body-font: 'Lato', sans-serif;;
+
 %h1{
-	font-family: 'Roboto Mono', monospace;
-	font-size: 2em;
+	font-family: $title-font;
+	font-size: 6.5rem;
 	font-weight: $medium;
 	color: $primary;
 	margin-top: 10px;
 	letter-spacing: -.08em;
 }
+
+%h2{
+	font-family: $title-font;
+	font-size: 2.5rem;
+	font-weight: $medium;
+	margin-left: 140px;
+}
+
