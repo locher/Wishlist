@@ -108,6 +108,10 @@ button.border-red-bt{
 		color: $white;
 		display: inline-flex;
 		align-items: center;
+
+		form + form{
+			margin-left: 5px;
+		}
 	}
 }
 
@@ -425,16 +429,8 @@ button.border-red-bt{
 
 // Bouton ajouter cadeau
 
-@keyframes waterEffect{
-	0%{
-		border-radius: 45px 55px 45px 60px;
-	}
-	100%{
-		border-radius: 50px 45px 50px 40px;
-	}
-}
-
 .add-gift-bt{
+	transition: all ease .4s;
 	display: flex;
 	height: 70px;
 	width: 70px;
@@ -443,16 +439,21 @@ button.border-red-bt{
 	color: $white;
 	text-decoration: none;
 	position: fixed;
-	bottom: $padding/1.2;
-	right: $padding/1.2;
+	bottom: $padding;
+	right: $padding;
 
-	animation-name: waterEffect;
+	animation-name: morph;
 	animation-duration: 6s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
 
 	box-shadow: 0 0 8px 0px rgba($secondary, .5);
+
+	&:hover{
+		height: 80px;
+		width: 80px;
+	}
 
 
 	span{
