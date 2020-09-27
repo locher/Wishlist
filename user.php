@@ -13,6 +13,7 @@ $context['users'] = getUsers('all',$userID);
 
 // Get current user infos
 $context['currentUser']['infos'] = getUserInfo($userID);
+$context['currentUser']['ID'] = $userID;
 
 //Birthday date of current user
 $context['currentUser']['infos']['nice_birthday'] = birthdayDate($context['currentUser']['infos']['birthday_date']);

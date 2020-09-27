@@ -43,7 +43,7 @@
 				
 				{% for gift in currentUser.gifts %}
 			
-					{% set vars = {'canEdit' : true} %}
+					{% set vars = {'canEdit' : true , 'userID' : currentUser.id } %}
 					{% include 'template-parts/single-gift.twig' with vars %}
 				
 				{% endfor %}

@@ -25,8 +25,9 @@
 		{# Gift edit #}
 
 		<div class="gift-edit">
-			<form action="">
+			<form action="form/delete-gift.php" method="post">
 				<input type="hidden" name="giftID" value="{{ gift.ID }}">
+				<input type="hidden" name="userID" value="{{ currentUser.ID }}">
 				<button class="bt border-red-bt tiny-bt">Supprimer</button>
 			</form>
 			<form action="form/edit-gift.php">
