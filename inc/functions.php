@@ -117,6 +117,46 @@ function get_parents($userID){
 		return $parent_list;
 }	
 
+function get_children($parentID){
+	global $bdd, $config, $users_list;
+
+	// Get children
+
+	$children = $bdd->query('SELECT ID_child FROM '.$config['db_tables']['db_parents'].' WHERE ID_parent = '.$parentID.'');
+
+	$children_list = [];
+
+	while($export = $children->fetch()){
+		$children_list[] = $export['ID_child'];
+	}
+
+	// Get children infos
+
+	$children_infos_query = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE userID IN ('.implode(',',$children_list).')');
+
+	$children_infos = array();
+
+	if($children_infos_query){
+
+		while($export_children_infos = $children_infos_query->fetch()){
+			$children_infos[] = [
+				"ID" => $export_children_infos['userID'],
+				"name" => $export_children_infos['name'],
+				"isChildAccount" => $export_children_infos['isChildAccount'],
+				"picture" => $export_children_infos['picture'],
+				"birthday_date" => $export_children_infos['birthday_date'],
+				"size_top" => $export_children_infos['size_top'],
+				"size_bottom" => $export_children_infos['size_bottom'],
+				"size_feet" => $export_children_infos['size_feet'],
+			];
+		}
+
+	}
+
+	return $children_infos;
+
+}
+
 
 //Autres
 

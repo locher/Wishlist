@@ -14,7 +14,6 @@ $context['users'] = getUsers('all',$userID);
 // Get current user infos
 $context['currentUser']['infos'] = getUserInfo($userID);
 
-
 //Birthday date of current user
 $context['currentUser']['infos']['nice_birthday'] = birthdayDate($context['currentUser']['infos']['birthday_date']);
 
@@ -24,5 +23,8 @@ $context['currentUser']['infos']['age'] = age($context['currentUser']['infos']['
 //Get 2 latest user gifts
 $context['currentUser']['gifts'] = getGifts($userID);
 
+//Liste of potential childs
+$context['children'] = get_children($userID);
+ 
 // Render
 echo $twig->render('templates/user.twig', $context);

@@ -22,7 +22,7 @@
 
 			{% if users is not empty %}
 
-				{% set vars = {'btLink':'user.php?user=','btTxt':'Me connecter', 'col':2} %}
+				{% set vars = {'btLink':'user.php?user=','btTxt':'Me connecter', 'list' : users ,'col':2} %}
 				{% include 'template-parts/user-list.twig' with vars %}
 
 				{% endif %}

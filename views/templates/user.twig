@@ -17,13 +17,18 @@
 
 		{# Other editable lists #}
 
+		{% if children is not empty %}
+
 		<section class="other-lists">
 
 			<h2>Mes autres listes modifiables</h2>
-			{% set vars = {'btLink':'list.php?user=','btTxt':'Accéder à la liste'} %}
+
+			{% set vars = {'btLink':'list.php?user=','btTxt':'Accéder à la liste', 'list' : children} %}
 			{% include 'template-parts/user-list.twig' with vars %}
 
 		</section>
+
+		{% endif %}
 
 
 		{# Users latest gifts #}
@@ -64,7 +69,7 @@
 				<h2>Listes</h2>
 				<p class="h3">Voir les listes</p>
 
-				{% set vars = {'btLink':'list.php?user=','btTxt':'Voir la liste'} %}
+				{% set vars = {'btLink':'list.php?user=','btTxt':'Voir la liste', 'list': users} %}
 				{% include 'template-parts/user-list.twig' with vars %}
 
 				<div class="all-lists">
