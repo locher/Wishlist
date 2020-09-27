@@ -106,7 +106,7 @@ if($isChild == true){
 
 	if($isBDDsuccess == true && $isBDDsuccessChild == true){
 		echo 'Réussite avec enfant';
-		//header("location:../user.php?user=".$_POST['userID']."&src=EditAccountOk");
+		header("location:../user.php?user=".$currentUser);
 		
 	}else{
 		echo 'Echec avec enfant';
@@ -116,7 +116,7 @@ if($isChild == true){
 }else{
 	if($isBDDsuccess == true){
 		echo 'Réussite sans enfant';	
-		//header("location:../user.php?user=".$_POST['userID']."&src=EditAccountOk");
+		header("location:../user.php?user=".$currentUser);
 		
 	}else{
 		echo 'Echec sans enfant';
