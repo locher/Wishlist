@@ -1,0 +1,60 @@
+
+
+<form action="form/add-gift.php" method="post" class="gift-form closed">
+
+	<div class="overlay"></div>
+
+	<button class="close-modale" id="close-modale" type="button">
+		<span>x</span>
+	</button>
+
+	<div class="form-wrapper">
+
+		<h2>Cadeau</h2>
+		<p class="h3">Ajouter un cadeau</p>
+
+		<div class="wrap-form">
+			<div class="label-wrap">
+				<label for="">Désignation</label>
+			</div>
+			<input type="text required" name="designation">
+		</div>
+
+		<div class="wrap-form">
+			<div class="label-wrap">
+				<label for="">Lien</label>
+				<span class="helper">Facultatif</span>
+			</div>
+			<input type="text" name="link">
+		</div>
+
+		<div class="wrap-form">
+			<div class="label-wrap">
+				<label for="">Description</label>
+				<span class="helper">Facultatif</span>
+			</div>
+			<textarea height=3 name="description"></textarea>
+		</div>
+
+		<div class="wrap-form wrap-form-borderless" id="switch-child">
+			<div class="label-wrap">
+				<span class="fake-label">Est-ce une liste ?</span>
+			</div>
+
+			<div class="switch">
+				<input type="checkbox" id="isList" name="isList" value="true">
+				<label for="isList" class="">
+					<span class="switch-option1">Oui</span>
+					<span class="switch-option2">Non</span>
+				</label>
+			</div>
+		</div>
+
+		<div class="bt-wrapper">
+			<input type="hidden" name="userID" value="">
+			<button type="submit" class="bt border-pink-bt">Ajouter ce cadeau</button>
+		</div>
+
+	</div>
+
+</form>

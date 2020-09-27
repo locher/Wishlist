@@ -441,6 +441,8 @@ button.border-red-bt{
 	position: fixed;
 	bottom: $padding;
 	right: $padding;
+	border:0;
+	cursor: pointer;
 
 	animation-name: morph;
 	animation-duration: 6s;
@@ -462,3 +464,40 @@ button.border-red-bt{
 	}
 }
 
+//Close modale
+
+.close-modale{
+	transition: all ease .4s;
+	display: flex;
+	height: 70px;
+	width: 70px;
+	background-color: $secondary;
+	font-size: 3rem;
+	color: $white;
+	text-decoration: none;
+	position: absolute;
+	top: $padding;
+	right: $padding;
+	z-index: 200;
+	border:0;
+	cursor: pointer;
+
+	animation-name: morph;
+	animation-duration: 20s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+
+	box-shadow: 0 0 8px 0px rgba($secondary, .5);
+
+	&:hover{
+		height: 80px;
+		width: 80px;
+	}
+
+
+	span{
+		display: block;
+		margin: auto;
+	}
+}

@@ -1,5 +1,5 @@
 .wrap-form{
-	border: 2px solid $primary;
+	border: 2px solid $white;
 	border-radius: 25px;
 	position: relative;
 	
@@ -16,10 +16,10 @@
 		position: absolute;
 		top: -15px;
 		left: $padding;
-		background-color: $primary;
+		background-color: $white;
 		background-clip: padding-box;
 		padding: .3em 1em .2em 1em;
-		color: $white;
+		color: $primary;
 		border-radius: 5px;
 	}
 	
@@ -28,7 +28,7 @@
 		border:0;
 		width: 100%;
 		background: none;
-		color: $primary;
+		color: $white;
 	}
 
 	textarea{
@@ -69,8 +69,8 @@
 	margin: $padding;
 }
 
-form > .wrap-form + .wrap-form{
-	margin-top: $padding;
+.wrap-form + .wrap-form{
+	margin-top: $padding*1.5;
 }
 
 .single-choice{
@@ -90,7 +90,7 @@ form > .wrap-form + .wrap-form{
 		+ label{
 			
 			img{
-				background-color: $primary;
+				background-color: $white;
 			}
 		}
 	}
@@ -125,9 +125,9 @@ form > .wrap-form + .wrap-form{
 	
 	label{
 		display: flex;
-		background-color: $primary;
+		background-color: $white;
 		position: relative;
-		border:10px solid $primary;
+		border:10px solid $white;
 		border-radius: 30px;
 		cursor: pointer;
 		
@@ -135,7 +135,7 @@ form > .wrap-form + .wrap-form{
 			content:'';
 			position: absolute;
 			right: 0;
-			background-color: $white;
+			background-color: $primary;
 			//width: 50%;
 			height: 100%;
 			z-index: 2;
@@ -167,11 +167,11 @@ form > .wrap-form + .wrap-form{
 			}
 			
 			.switch-option1{
-				color:$primary;
+				color:$white;
 			}
 			
 			.switch-option2{
-				color:rgba($white, .4);
+				color:rgba($primary, .25);
 			}
 		}
 		
@@ -193,11 +193,11 @@ form > .wrap-form + .wrap-form{
 			}
 			
 			.switch-option1{
-				color:rgba($white, .4);
+				color:rgba($primary, .25);
 			}
 			
 			.switch-option2{
-				color:$primary;
+				color:$white;
 			}
 		}
 	} 
@@ -262,9 +262,4 @@ form .bt-wrapper{
 
 form input{
 	font-size: 1.4rem;
-}
-
-[id="delete-confirmation"]{
-	margin-top: 20px;
-	text-align: center;
 }
