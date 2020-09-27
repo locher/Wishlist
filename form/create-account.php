@@ -3,35 +3,35 @@
 // Form management
 
 if(isset($_POST['firstname']) && $_POST['firstname'] != ''){
-	$firstname = $_POST['firstname'];
+	$firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
 }
 
 if(isset($_POST['birthday']) && $_POST['birthday'] != ''){
-	$birthday = $_POST['birthday'];
+	$birthday = filter_var($_POST['birthday'], FILTER_SANITIZE_STRING);
 }else{
 	$birthday = NULL;
 }
 
 if(isset($_POST['size-top']) && $_POST['size-top'] != ''){
-	$sizeTop = $_POST['size-top'];
+	$sizeTop = filter_var($_POST['size-top'], FILTER_SANITIZE_STRING);
 }else{
 	$sizeTop = NULL;
 }
 
 if(isset($_POST['size-bottom']) && $_POST['size-bottom'] != ''){
-	$sizeBottom = $_POST['size-bottom'];
+	$sizeBottom = filter_var($_POST['size-bottom'], FILTER_SANITIZE_STRING);
 }else{
 	$sizeBottom = NULL;
 }
 
 if(isset($_POST['size-feet']) && $_POST['size-feet'] != ''){
-	$sizeFeet = $_POST['size-feet'];
+	$sizeFeet = filter_var($_POST['size-feet'], FILTER_SANITIZE_STRING);
 }else{
 	$sizeFeet = NULL;
 }
 
 if(isset($_POST['photoChoice']) && $_POST['photoChoice'] != ''){
-	$photoChoice = $_POST['photoChoice'];
+	$photoChoice = filter_var($_POST['photoChoice'], FILTER_SANITIZE_NUMBER_INT);
 }else{
 	$photoChoice = rand(1, 15);
 }
