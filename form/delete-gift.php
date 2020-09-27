@@ -5,7 +5,7 @@ if(isset($_POST['giftID']) && $_POST['giftID'] != ''){
 	global $bdd;
 	include_once('../inc/conf/config.php');
 
-	$giftID = $_POST['giftID'];
+	$giftID = filter_var($_POST['giftID'], FILTER_SANITIZE_NUMBER_INT);
 
 	//Supprimer le compte
 
