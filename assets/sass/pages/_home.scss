@@ -4,11 +4,11 @@
 	padding-top: $padding;
 	padding-bottom: $padding;
 
-	@include blob(50vw,120vh,$primary);
+	@include blob(60vw,130vh,$primary);
 
 	&::after{
 		bottom: -10vh;
-		right: -10vw;
+		right: -15vw;
 		position: fixed;
 	}
 }
