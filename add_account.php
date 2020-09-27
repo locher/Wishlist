@@ -2,8 +2,6 @@
 
 include_once('inc/header.php');
 
-$context = array();
-
 $context['parents'] = getUsers('parents');
 
 //Content

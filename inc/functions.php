@@ -14,7 +14,14 @@ function getUsers($type="all", $excludeID=false){
 	}
 
 	if($excludeID != false){
-		$condition[] = 'userID != '.$excludeID;
+
+		if(is_array($excludeID)){
+			$condition[] = 'userID NOT IN ('.implode(',',$excludeID).')';
+		}else{
+			$condition[] = 'userID != '.$excludeID;
+		}
+
+		
 	}
 
 	$where = '';
@@ -87,6 +94,7 @@ function getGifts($userID, $nbGifts = 0){
 			"title" => $export_gifts['title'],
 			"description" => $export_gifts['description'],
 			"link" => $export_gifts['link'],
+			"ID" => $export_gifts['ID']
 		];
 	}
 

@@ -8,7 +8,8 @@
 
 	{% if currentUser is not empty %}
 
-		{% include 'template-parts/user-infos.twig' %}
+		{% set vars = {'canEdit' : true} %}
+		{% include 'template-parts/user-infos.twig' with vars %}
 
 	{% endif %}
 
@@ -19,17 +20,14 @@
 
 	<section class="list-gifts background white-background">
 
-		<ul class="grid overlay-parent">
+		<ul class="grid">
 			
 			{% for gift in currentUser.gifts %}
 		
-				{% include 'template-parts/single-gift.twig' %}
+				{% set vars = {'canEdit' : true} %}
+				{% include 'template-parts/single-gift.twig' with vars %}
 			
 			{% endfor %}
-			
-			<div class="overlay-wish">
-				<a href="list.php?user=<?php echo $userID;?>" class="bt color-bt">Modifier ma liste</a>
-			</div>
 
 		</ul>
 

@@ -2,8 +2,6 @@
 
 include_once('inc/header.php');
 
-$context = array();
-
 //Get user infos
 
 if(isset($_GET['user']) && $_GET['user'] != ''){

@@ -51,7 +51,11 @@
 			{% endif %}
 
 		</div>
+
+		{% if canEdit == true %}
 		
 		<a href="update-account.php?user={{ currentUser.infos.ID }}" class="bt border-primary-bt">Modifier les infos</a>
+
+		{% endif %}
 		
 	</section>

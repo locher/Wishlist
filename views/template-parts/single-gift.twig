@@ -8,7 +8,7 @@
 			
 			{% if gift.link is not empty %}
 			
-			<a href="{{ gift.link|e }}" target="_blank" class="bt border-pink-bt">Voir</a>
+			<a href="{{ gift.link|e }}" target="_blank" class="bt border-pink-bt tiny-bt">Voir</a>
 			
 			{% endif %}
 
@@ -21,6 +21,19 @@
 		</div>
 		
 		{% endif %}
+
+		{# Gift edit #}
+
+		<div class="gift-edit">
+			<form action="">
+				<input type="hidden" name="giftID" value="{{ gift.ID }}">
+				<button class="bt border-red-bt tiny-bt">Supprimer</button>
+			</form>
+			<form action="form/edit-gift.php">
+				<input type="hidden" name="giftID" value="{{ gift.ID }}">
+				<button type="submit" class="bt border-white-bt tiny-bt">Modifer</button>
+			</form>
+		</div>
 
 	</div>
 </li>

@@ -23,9 +23,13 @@
 	border: 2px solid transparent;
 }
 
+.tiny-bt{
+	font-size: 1rem;
+	padding: .85em 2.2em .8em;
+}
+
 button.bt{
 	cursor:pointer;
-	border:0;
 	font-family: 'Quicksand', sans-serif;
 }
 
@@ -75,6 +79,13 @@ button.border-white-bt{
 	background:none;
 }
 
+.border-red-bt,
+button.border-red-bt{
+	border-color: $red;
+	color: $red;
+	background:none;
+}
+
 // Global list
 
 .list_elt{
@@ -97,10 +108,6 @@ button.border-white-bt{
 		color: $white;
 		display: inline-flex;
 		align-items: center;
-
-		.bt{
-			font-size: 1.2rem;
-		}
 	}
 }
 
@@ -181,7 +188,6 @@ button.border-white-bt{
 	}
 	
 	.bt{
-		font-size: 1.1rem;
 		margin-left: 15px;
 		flex-shrink: 0;
 		align-self: flex-start;

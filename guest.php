@@ -2,8 +2,6 @@
 
 include_once('inc/header.php');
 
-$context = array();
-
 session_start();
 $_SESSION['userID'] = 'guest';
 
