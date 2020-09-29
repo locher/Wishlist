@@ -1,72 +1,29 @@
 <?php 
 
-/* Page template : Login Page */
+include_once('inc/header.php');
 
-include_once('template-parts/header.php');
+$context['users'] = getUsers('parents');
 
-getUsers();
+// Popup after account creation
 
-?>
+if(isset($_GET['src']) && isset($_GET['user']) && $_GET['user'] != ''){
 
-<body class="template-home">
-	
-	<section class="home-header white-background background">
-	
-		<h1 class="top-header--home--intro">Bonjour</h1>
-		<p class="top-header--sousTitre">C'est gentil de faire un cadeau</p>
-		
-		
-		<div class="choice-client--top">
-			<?php echo bt('guest.php','color-bt','Me connecter en tant qu\'invité'); ?>
-			<p class="home-txt">Vous pourrez réserver un cadeau, mais n’avez pas votre liste.</p>
-			<span class="choice-client--separator">ou</span>
-		</div>
-	</section>
-	
-	<section class="list-connection primary-background background">
-		<?php if($users_list): ?>
-			<ul class="grid">
-			<?php
+	if($_GET['src'] == 'CreateAccountOk'){
 
-			foreach($users_list as $user){
+		$context['pagetype'] = array(
+			'type' => 'creation',
+			'user' => $_GET['user']
+		);
 
-				if($user['isChildAccount'] != true){
-					echo printSingleUser($user, 'Me connecter', 'user.php?user='.$user['ID']);
-				}
-			}
+	}else if($_GET['src'] == 'DeleteAccountOk'){
 
-			?>
-			</ul>
+		$context['pagetype'] = array(
+			'type' => 'delete',
+			'user' => $_GET['user']
+		);
+	}
+}
 
-			<?php endif;?>
+// Render
 
-			<div class="add-account-home">
-				<?php echo bt('form-account.php?mode=create','border-white-bt','Ajouter un compte'); ?>
-			</div>
-	</section>
-
-	<?php
-
-	//Notification
-
-	if(isset($_GET['src']) && isset($_GET['user']) && $_GET['user'] != ''):
-
-		if($_GET['src'] == 'CreateAccountOk'){
-
-			$textMessage = "<p><strong>".$_GET['user']."</strong> a bien été ajouté(e) !</p><p>Bienvenue dans la famille :)</p>";
-
-		}else if($_GET['src'] == 'DeleteAccountOk'){
-			$textMessage = "<p><strong>".$_GET['user']."</strong> a bien été supprimé(e) !</p>";
-		}
-
-	?>
-
-	<div class="primary-background background message animation">
-		<?php echo $textMessage;?>
-	</div>
-	
-	<?php endif;?>
-	
-</body>
-
-<?php require('template-parts/footer.php');?>
+echo $twig->render('templates/frontpage.twig', $context);

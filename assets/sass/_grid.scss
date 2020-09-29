@@ -1,0 +1,31 @@
+.grid{
+	display: grid;
+	grid-gap: 15px;
+
+	li{
+		display: flex;
+	}
+}
+
+@include width-below(650px){
+	.grid{
+		grid-template-columns: 100%;
+	}	
+}
+
+@include width-between(650px, 1100px){
+	.grid{			
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@include width-above(1100px){
+
+	.grid{			
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.col2{
+		grid-template-columns: 1fr 1fr;
+	}
+}

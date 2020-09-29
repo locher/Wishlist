@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+
+{% block body_class %}template-home{% endblock %}
+
+{% block content %}
+
+	<div class="wrapper-home wrapper">
+
+		<section class="home-header">
+		
+			<h1>Hello</h1>
+			<p class="h1-subtitle">Pas de compte ?</p>
+			
+			<div class="multi-button">
+				<a href="guest.php" class="bt color-bt">Me connecter en invité</a>
+				<a href="add_account.php" class="bt border-primary-bt">Ajouter un compte</a>
+			</div>	
+
+		</section>
+
+		<section class="list-connection">
+
+			{% if users is not empty %}
+
+				{% set vars = {'btLink':'user.php?user=','btTxt':'Me connecter', 'list' : users ,'col':2} %}
+				{% include 'template-parts/user-list.twig' with vars %}
+
+				{% endif %}
+
+		</section>
+
+	</div>
+
+
+	{% if pagetype is not empty %}
+
+		<div class="primary-background">
+
+			{% if pagetype.type == 'creation' %}
+				<p><strong>{{ page.type.user }}</strong> a bien été ajouté(e) !</p>
+				<p>Bienvenue dans la famille ! :)</p>
+			{% endif %}
+
+			{% if pagetype.type == 'delete' %}
+				<p><strong>{{ page.type.user }}</strong> a bien été supprimé(e).</p>
+			{% endif %}
+
+		</div>
+
+	{% endif %}
+
+{% endblock content %}

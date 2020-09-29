@@ -1,0 +1,562 @@
+//Component
+
+.multi-button{
+
+	display: inline-flex;
+	flex-direction: column;
+
+	.bt + .bt{
+		margin-left: 0;
+		margin-top: 1rem;
+	}
+}
+
+.bt{
+	border-radius: 2em;
+	padding: 1em 2.5em .9em;
+	text-decoration: none;
+	display: inline-block;
+	font-weight: $medium;
+	font-size: 1.5rem;
+	text-align: center;
+	line-height: 1.2em;
+	border: 2px solid transparent;
+}
+
+.tiny-bt{
+	font-size: 1rem;
+	padding: .85em 2.2em .8em;
+}
+
+button.bt{
+	cursor:pointer;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.bt + .bt{
+	margin-left: 1rem;
+}
+
+.red-bt{
+	background-color: $red;
+	border-color: $red;
+	color: $white;
+	box-shadow: 0 0 8px 0px rgba($red, .3);
+}
+
+.white-bt{
+	background-color: $white;
+	border-color: $white;
+	color: $primary;
+	box-shadow: 0 0 8px 0px rgba($white, .3);
+}
+
+.color-bt{
+	background-color: $primary;
+	border-color: $primary;
+	color: $white;
+	box-shadow: 0 0 8px 0px rgba($primary, .3);
+}
+
+.border-pink-bt,
+button.border-pink-bt{
+	border-color: $secondary;
+	color: $white;
+	background:none;
+}
+
+.border-primary-bt,
+button.border-primary-bt{
+	border-color: $primary;
+	color: $primary;
+	background:none;
+}
+
+.border-white-bt,
+button.border-white-bt{
+	border-color: $white;
+	color: $white;
+	background:none;
+}
+
+.border-red-bt,
+button.border-red-bt{
+	border-color: $red;
+	color: $red;
+	background:none;
+}
+
+// Global list
+
+.list_elt{
+	
+	h3{
+		font-size: 2.1rem;
+		font-weight: semi-bold;
+	}
+
+	.gift-content{
+		padding: $padding/2 $padding/2 $padding/2.2 $padding/2;
+		background-color: $primary;
+		color: $white;
+		border-radius: 10px;
+		flex-shrink: 0;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.gift-edit{
+		margin-top: 10px;
+		color: $white;
+		display: inline-flex;
+		align-items: center;
+
+		form{
+			margin-right: 8px;
+		}
+	}
+}
+
+// Modale suppression
+
+.single-gift{
+	position: relative;
+}
+
+.overlay-delete-gift{
+	transition: opacity .6s ease .3s;
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	overflow: hidden;
+
+	&.open{
+		transition: opacity .6s ease;
+		pointer-events: auto;
+		opacity: 1;
+
+		&::before{
+			opacity: 1;
+		}
+
+		.title-delete{		
+			margin-bottom: 10px;
+			margin-top: 0;
+		}
+	}
+
+	&::before{
+		transition: opacity .4s ease-in-out ;
+		content:'';
+		display: block;
+		position: absolute;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba($primary, .9);
+		border-radius: 10px;
+		opacity: 0;
+	}
+
+	.wrapper-overlay{
+		position: relative;
+		z-index: 2;
+		margin: auto;
+		text-align:center;
+	}
+
+	.title-delete{
+		transition: all .4s ease-in-out .05s;
+		font-size: 1.5rem;
+		line-height: 1.1;
+		margin-bottom: 107px;
+		margin-top: 100px;
+
+		strong{
+			color: $red;
+		}
+	}
+
+
+}
+
+.avatar-wrapper{
+	flex-shrink: 0;
+	width: 75px;
+	display : flex;
+	align-items:center;
+	position: relative;
+
+	img{
+		max-height: 70px;
+		max-width: 80px;
+		margin: auto;
+		z-index: 2;
+	}
+
+	.svg-wrapper{
+		position: absolute;
+		width: 85px;
+		height: 85px;
+		top: -15px;
+		left:-5px;
+		z-index:1;
+	}
+
+	svg{
+		fill: rgba($primary, .06);
+	}
+}
+
+
+// Single Person
+
+.single-people{
+	padding: $padding/1.5;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: #fff;
+	box-shadow: 0 0 20px rgba($primary, .1);
+	
+	.inner-singlePeople{
+		margin-left: 15px;
+	}
+	
+	.bt{
+		margin-top: 10px;
+	}
+	
+	h3{
+		margin-left: 15px;
+	}
+}
+
+// Single Gift
+
+.gift-description{
+	font-size: 1.3rem;
+	line-height: 1.2em;
+	margin-top: 5px;
+}
+
+.gift-admin{
+	margin-top: 15px;
+	display: flex;
+}
+
+.gift-header{
+	display: flex;
+	align-items: center;
+	
+	h3{
+		font-size: 1.7rem;
+		line-height: 1.2em;
+		flex-grow: 1;
+	}
+	
+	.bt{
+		margin-left: 15px;
+		flex-shrink: 0;
+		align-self: flex-start;
+	}
+}
+
+// Arrow
+
+.arrow{
+	background:none;
+	border:0;
+	cursor: pointer;
+	padding: 12px;
+	
+	.arrow-text{
+		display: none;
+	}
+	.arrow-shape{
+		transition: all ease .3s;
+		display: block;
+		height: 2px;
+		width: 35px;
+		background-color: $white;
+		position: relative;
+		border-radius: 2px;
+		
+		&::before,
+		&::after{
+			transition: all ease .3s;
+			content:'';
+			display: block;
+			height: 2px;
+			width: 15px;
+			border-radius: 2px;
+			background-color: $white;
+			position: absolute;
+		}
+		
+		&::before{
+			transform: rotate(40deg);
+			transform-origin: left bottom;
+		}
+		
+		&::after{
+			transform-origin: left top;
+			transform: rotate(-40deg);
+		}
+	}
+}
+
+.arrow:hover{
+	
+	.arrow-shape{
+		width: 40px;
+		
+		&::before,
+		&::after{
+			width: 18px;
+		}
+		
+		&::before{
+			transform: rotate(35deg);
+		}
+		
+		&::after{
+			transform: rotate(-35deg);
+		}
+	}
+}
+
+.arrow:active{
+	
+	.arrow-shape{
+		
+		
+		&::before,
+		&::after{
+			transition: all ease .1s;
+		}
+		
+		&::before{
+			transform: rotate(28deg);
+		}
+		
+		&::after{
+			transform: rotate(-28deg);
+		}
+	}
+}
+
+// User information
+
+.user-infos{
+	display: inline-flex;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 0 $padding;
+}
+
+.inner-user-infos{
+	margin-left: 40px;
+	margin-right: 20px;
+	font-size: 1.4rem;
+	font-weight: $regular;
+	flex-grow: 1;
+	color: $primary;
+
+	h1{
+		@extend %h1;
+	}
+}
+
+.user-infos-details{
+	margin-right: 40px;
+}
+
+.user-infos-details-wrapper{
+	display: inline-flex;
+	align-items: center;
+}
+
+.birthday-infos{
+	color: $primary;
+	margin-top: 10px;
+	display: inline-flex;
+	align-items: center;
+	
+	.age{
+		font-size: 1.1rem;
+		margin-left: 8px;
+	}
+}
+
+.size-infos{
+	margin-top: 5px;
+	color: $primary;
+	display: flex;
+}
+
+.wrapper-size{
+	display: flex;
+	align-items: center;
+	
+	& + .wrapper-size{
+		margin-left: 15px;
+	}
+}
+
+//icons svg
+
+.svg-wrapper{
+	//background-color: red;
+	display: inline-flex;
+	height: 25px;
+	margin-right: 5px;
+	
+	object{
+		margin: auto;
+		width: 22px;
+		height: 18px;
+	}
+}
+
+// Message
+
+.response{
+	transition: all ease .5s;
+	text-align: center;
+	color: $primary;
+	font-weight: $medium;
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	z-index: 10;
+	font-size: 2rem;
+	background-color: $white;
+	border-radius: 10px;
+	border: 5px solid $primary;
+	bottom:-100%;
+
+	&::after{
+		position: absolute;
+	}
+
+	p{
+		line-height: 1.4em;
+	}
+	
+	strong{
+		font-weight: bolder;
+		color: $secondary;
+	}
+}
+
+.response{
+animation: appear 1s cubic-bezier(.68,-0.25,.27,1.25) .3s forwards, disapear 1s cubic-bezier(.68,-0.25,.27,1.25) 7s forwards;
+
+
+}
+
+
+@keyframes appear{
+	0%{
+		bottom: -100%;
+	}
+	100%{
+		bottom: $padding;
+	}
+}
+
+@keyframes disapear{
+	0%{
+		bottom: $padding;
+		
+	}
+	100%{
+		bottom: -100%;
+	}
+}
+
+// Bouton ajouter cadeau
+
+.add-gift-bt{
+	transition: all ease .4s;
+	display: flex;
+	height: 70px;
+	width: 70px;
+	background-color: $secondary;
+	font-size: 5rem;
+	color: $white;
+	text-decoration: none;
+	position: fixed;
+	bottom: $padding;
+	right: $padding;
+	border:0;
+	cursor: pointer;
+
+	animation-name: morph;
+	animation-duration: 6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+
+	box-shadow: 0 0 8px 0px rgba($secondary, .5);
+
+	&:hover{
+		height: 80px;
+		width: 80px;
+	}
+
+
+	span{
+		display: block;
+		margin: auto;
+	}
+}
+
+//Close modale
+
+.close-modale{
+	transition: all ease .4s;
+	display: flex;
+	height: 70px;
+	width: 70px;
+	background-color: $secondary;
+	font-size: 3rem;
+	color: $white;
+	text-decoration: none;
+	position: absolute;
+	top: $padding;
+	right: $padding;
+	z-index: 200;
+	border:0;
+	cursor: pointer;
+
+	animation-name: morph;
+	animation-duration: 20s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+
+	box-shadow: 0 0 8px 0px rgba($secondary, .5);
+
+	&:hover{
+		height: 80px;
+		width: 80px;
+	}
+
+
+	span{
+		display: block;
+		margin: auto;
+	}
+}

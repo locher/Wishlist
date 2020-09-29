@@ -1,0 +1,40 @@
+.template-home{
+	display: flex;
+	min-height: 100vh;
+	padding-top: $padding;
+	padding-bottom: $padding;
+
+	@include blob(60vw,130vh,$primary);
+
+	&::after{
+		bottom: -10vh;
+		right: -15vw;
+		position: fixed;
+	}
+}
+
+.wrapper-home{
+	margin-top: auto;
+	margin-bottom: auto;
+	display: flex;
+	align-items: center;
+}
+
+.home-header{
+
+	margin-right: 70px;
+
+	h1{
+		font-size: 14rem;
+	}
+
+	.h1-subtitle{
+		font-size: 2.7rem;
+		font-weight: bold;
+	}
+
+	.multi-button{
+		margin-top: 3rem;
+	}
+}
+

@@ -1,0 +1,144 @@
+.connected-user-profil{
+
+	.wrapper{
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+
+	section:not(:last-child){
+		margin-bottom: 70px;
+	}
+
+	.blob-wrapper{
+
+		position: relative;
+		padding-top: 50px;
+		overflow: hidden;
+		@include blob(250vw, 200%, $primary);
+		
+		&::after{
+			position:absolute;
+			left:50%;
+			transform: translateX(-50%);
+			top: 0;
+		}
+	}
+
+	.grid{
+		margin-top: 40px;
+	}
+
+
+	.avatar-wrapper{
+		width: 100px;
+
+		img{
+			max-height: 100px;
+			max-width: 90px;
+		}
+
+		.svg-wrapper{
+			position: absolute;
+			width: 120px;
+			height: 120px;
+		}
+	}
+
+	.list-users{
+		h2{
+			@extend %h1;
+			color: $white;
+		}
+
+		.h3{
+			@extend %h2;
+			color: $white;
+			margin-top: 5px;
+		}
+
+		.grid{
+			margin-top: 50px;
+		}
+
+		.all-lists{
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 40px;
+			text-align: center;
+		}
+	}
+
+}
+
+// Gift form
+
+.gift-form{
+
+	transition: right ease-in-out .8s, opacity ease .2s .5s ;
+	position: fixed;
+	top: 0;
+	right: 0;
+	display: flex;
+	z-index: 100;
+	min-height: 100vh;
+	width: 60vw;
+
+	.overlay{
+		transition: all ease .25s .5s;
+		position: fixed;
+		width:100vw;
+		height: 100vh;
+		top: 0;
+		left:0;
+		background-color: rgba($white, .85);
+		z-index: 10;
+	}
+
+	&.closed{
+		opacity: 0;
+		right: -100vw;
+		
+
+		.overlay{
+			z-index: -10;
+			height: 0;
+			width: 0;
+		}
+	}
+
+	@include blob(100vw, 150vh, $primary);
+		
+	&::after{
+		position:absolute;
+		right: -20vw;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 10;
+	}
+
+	.form-wrapper{
+		margin-top: auto;
+		margin-bottom: auto;
+		padding-left: $padding;
+		padding-right: $padding;
+		max-width: 1300px;
+		margin-right:auto;
+		margin-left: auto;
+		position: relative;
+		z-index: 110;
+		width: 80%;
+	}
+
+	h2{
+		@extend %h1;
+		margin-left: 0;
+		color: $white;
+	}
+
+	.h3{
+		@extend %h2;
+		margin-left: 0;
+		margin-bottom: 50px;
+		color: $white;
+	}
+}

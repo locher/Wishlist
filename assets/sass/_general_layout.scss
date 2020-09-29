@@ -1,0 +1,168 @@
+*{
+	box-sizing: border-box;
+}
+
+html{
+	font-size: 62.5%;
+	background-color: $white;
+}
+
+body,
+form *{
+	font-family: $body-font;
+	font-weight: $regular;
+}
+
+body::before{
+	content:'';
+	background-image: url('img/background.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: fixed;
+	top:0;
+	left: 0;
+	width:100vw;
+	height: 100vh;
+	z-index: -1;
+	opacity: .3;
+}
+
+.wrapper{
+	padding-left: $padding;
+	padding-right: $padding;
+	max-width: 1300px;
+	margin-right:auto;
+	margin-left: auto;
+}
+
+// Typo
+
+h1{
+	@extend %h1;
+}
+
+h2{
+	@extend %h2;
+}
+
+.primary-background{
+	h2{
+		text-align: center;
+		color: $white;
+	}
+}
+
+// Header connecté
+
+.header-connected{
+	background-color: $primary;
+	width: 100%;
+	padding: 12px $padding;
+	border-radius: 0 0 0 100px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	
+	.bt{
+		font-size: 1.3rem;
+		align-self: flex-end;
+	}
+}
+
+.header-connected + section{
+	padding-top: 85px;
+}
+
+//Pas sous menu
+
+.multi-user,
+.arrow,
+.header-bt-listes,
+.header-bt-close{
+	transition: all cubic-bezier(.64,-0.54,.35,1.44) .8s;
+}
+
+.display-menu{
+	display:none;
+}
+
+.header-toggle{
+	padding:0;
+	
+	label{
+		transition: all cubic-bezier(.64,-0.54,.35,1.44) .8s;
+		display: block;
+		padding: .75em 1.8em .7em;
+		cursor:pointer;
+	}
+	
+	&:hover{
+		padding:0;
+		
+		label{
+			padding: .75em 2em .7em;
+		}
+	}
+	
+	
+}
+
+.display-menu:not(:checked){
+	~ .multi-user{
+		margin-top: -500px
+	}
+	
+	~ .bt{
+		.displayMenuOuvert{
+			display: none;
+		}
+	}
+} 
+
+.display-menu:checked{	
+	~ .multi-user{
+	}
+	
+	~ .arrow{
+		margin-left: -100px;
+	}
+	
+	~ .bt{
+		.displayMenuFerme{
+			display: none;
+		}
+	}
+} 
+
+.multi-user{
+	margin-top: 20px;
+	text-align: right;
+	width: 100%;
+	opacity: 1;
+	position: relative;
+	z-index: -1;
+	
+	
+	li{
+		color: $white;
+		font-weight: $semibold;
+	}
+	
+	a{
+		display: inline-flex;
+		justify-content: flex-end;
+		color: inherit;
+		text-decoration: none;
+	}
+	
+	li + li{
+		margin-top: 10px;
+	}
+	
+	img{
+		margin-left: 15px;
+	}
+}

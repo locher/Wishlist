@@ -1,0 +1,39 @@
+//$primary: #413780;
+$primary: #202859;
+$secondary: #D56EF6;
+$white: #F9F9FC;
+$black: #292929;
+$grey: #9B9AA3;
+$red: #E36A6A;
+
+$padding: 30px;
+
+$book : 100;
+$thin: 200;
+$light: 300;
+$regular : 400;
+$medium : 500;
+$semibold: 600;
+$bold : 700;
+$extrabold: 800;
+$black : 900;
+
+$title-font: 'Roboto Mono', monospace;
+$body-font: 'Lato', sans-serif;;
+
+%h1{
+	font-family: $title-font;
+	font-size: 6.5rem;
+	font-weight: $medium;
+	color: $primary;
+	margin-top: 10px;
+	letter-spacing: -.08em;
+}
+
+%h2{
+	font-family: $title-font;
+	font-size: 2.5rem;
+	font-weight: $medium;
+	margin-left: 140px;
+}
+

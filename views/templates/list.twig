@@ -1,0 +1,51 @@
+{% extends "base.twig" %}
+
+{% block body_class %}connected-user-profil{% endblock %}
+
+{% block content %}
+
+	{# Users infos #}
+
+	{% if currentUser is not empty %}
+
+		{% include 'template-parts/user-infos.twig' %}
+
+	{% endif %}
+
+
+	{# Users latest gifts #}
+
+	{% if currentUser.gifts is not empty %}
+
+	<section class="list-gifts background white-background">
+
+		<ul class="grid">
+			
+			{% for gift in currentUser.gifts %}
+		
+				{% include 'template-parts/single-gift.twig' %}
+			
+			{% endfor %}
+
+		</ul>
+
+	</section>
+	
+	{% endif %}
+
+
+	{# Other users list #}
+
+	{% if users is not empty %}
+
+	<section class="primary-background background">
+		<h2>Voir les listes</h2>
+
+		{% set vars = {'btLink':'list.php?user=','btTxt':'Voir la liste'} %}
+		{% include 'template-parts/user-list.twig' with vars %}
+		
+	</section>
+
+	{% endif %}
+
+{% endblock %}

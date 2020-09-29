@@ -3,9 +3,9 @@
 if(isset($_POST['userID']) && $_POST['userID'] != ''){
 
 	global $bdd;
-	include_once('../inc/config.php');
+	include_once('../inc/conf/config.php');
 
-	$userID = $_POST['userID'];
+	$userID = filter_var($_POST['userID'], FILTER_SANITIZE_NUMBER_INT);
 
 	//Supprimer le compte
 
