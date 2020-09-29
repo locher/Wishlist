@@ -102,6 +102,25 @@ function getGifts($userID, $nbGifts = 0){
 	
 }
 
+function getGift($giftID){
+	
+	global $bdd, $config, $gifts;
+	
+		$bddGifts = $bdd->query('SELECT * FROM '.$config['db_tables']['db_gifts'].' WHERE ID = '.$giftID);
+		
+	while($export_gifts = $bddGifts->fetch()){
+		$gift = [
+			"title" => $export_gifts['title'],
+			"description" => $export_gifts['description'],
+			"link" => $export_gifts['link'],
+			"ID" => $export_gifts['ID']
+		];
+	}
+
+	return $gift;
+	
+}
+
 function get_parents($userID){
 
 	global $bdd, $config, $users_list;

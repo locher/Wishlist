@@ -90,6 +90,12 @@
 	</button>
 
 	{% include 'template-parts/form-gift.twig' %}
+
+
+	{% if message is not empty %}
+		{% include 'template-parts/form-message.twig' with {'message':message} only %}
+	{% endif %}
+	
 	
 
 {% endblock content %}

@@ -45,17 +45,15 @@ if(isset($designation) && $designation != ''){
 	$saveBDD->bindParam(':description', $description, PDO::PARAM_STR);
 	$saveBDD->bindParam(':isList', $isList, PDO::PARAM_STR);
 
+
+
 	if($saveBDD->execute()){
-		$isBDDsuccess = true;
-		header("location:../user.php?user=".$userID);
+		$currentGift = $bdd->lastInsertId();
+		header("location:../user.php?user=".$userID."&statut=giftAdded&gift=".$currentGift);
 	}else{
-		$isBDDsuccess = false;
 		echo "Il y a eu un soucis, déso :(";
 	}
 	
-	$currentGift = $bdd->lastInsertId();
-
-
 }else{
 	echo "La désignation est obligatoire.";
 }

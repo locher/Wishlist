@@ -26,6 +26,14 @@ $context['currentUser']['gifts'] = getGifts($userID);
 
 //Liste of potential childs
 $context['children'] = get_children($userID);
- 
+
+//Gift just added message
+
+if(isset($_GET['statut']) && isset($_GET['gift']) && $_GET['statut'] == 'giftAdded' && $_GET['gift'] != ''){
+	$context['message']['object'] = getGift(filter_var($_GET['gift'], FILTER_SANITIZE_NUMBER_INT))['title'];
+	$context['message']['prefixe'] = 'Le cadeau';
+	$context['message']['suffixe'] = 'a bien été ajouté !';
+}
+
 // Render
 echo $twig->render('templates/user.twig', $context);
