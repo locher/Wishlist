@@ -25,16 +25,26 @@
 		{# Gift edit #}
 
 		<div class="gift-edit">
-			<form action="form/delete-gift.php" method="post">
-				<input type="hidden" name="giftID" value="{{ gift.ID }}">
-				<input type="hidden" name="userID" value="{{ currentUser.ID }}">
-				<button class="bt border-red-bt tiny-bt">Supprimer</button>
-			</form>
-			<form action="form/edit-gift.php">
-				<input type="hidden" name="giftID" value="{{ gift.ID }}">
-				<button type="submit" class="bt border-white-bt tiny-bt">Modifer</button>
-			</form>
+				<button type="button" class="bt border-red-bt tiny-bt bt-delete-gift">Supprimer</button>
+				<button type="button" class="bt border-white-bt tiny-bt edit-gift" data-giftid="{{ gift.ID }}">Modifer</button>
 		</div>
 
+		<form action="form/delete-gift.php" method="post" class="overlay-delete-gift">
+
+			<div class="wrapper-overlay">
+							<p class="title-delete"><strong>Voulez-vous vraiment supprimer</strong> <br>{{ gift.title|e }} ?
+			</p>
+
+			<input type="hidden" name="giftID" value="{{ gift.ID }}">
+			<input type="hidden" name="userID" value="{{ currentUser.ID }}">
+			<button type="button" class="bt border-white-bt tiny-bt close-delete-bt-overlay">Non, annuler</button>
+			<button type="submit"class="bt border-red-bt tiny-bt">Oui, supprimer</button>
+			</div>
+
+
+		</form>
+
 	</div>
+
+
 </li>

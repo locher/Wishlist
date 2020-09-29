@@ -101,6 +101,10 @@ button.border-red-bt{
 		color: $white;
 		border-radius: 10px;
 		flex-shrink: 0;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
 	.gift-edit{
@@ -109,10 +113,79 @@ button.border-red-bt{
 		display: inline-flex;
 		align-items: center;
 
-		form + form{
-			margin-left: 5px;
+		form{
+			margin-right: 8px;
 		}
 	}
+}
+
+// Modale suppression
+
+.single-gift{
+	position: relative;
+}
+
+.overlay-delete-gift{
+	transition: opacity .6s ease .3s;
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	overflow: hidden;
+
+	&.open{
+		transition: opacity .6s ease;
+		pointer-events: auto;
+		opacity: 1;
+
+		&::before{
+			opacity: 1;
+		}
+
+		.title-delete{		
+			margin-bottom: 10px;
+			margin-top: 0;
+		}
+	}
+
+	&::before{
+		transition: opacity .4s ease-in-out ;
+		content:'';
+		display: block;
+		position: absolute;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba($primary, .9);
+		border-radius: 10px;
+		opacity: 0;
+	}
+
+	.wrapper-overlay{
+		position: relative;
+		z-index: 2;
+		margin: auto;
+		text-align:center;
+	}
+
+	.title-delete{
+		transition: all .4s ease-in-out .05s;
+		font-size: 1.5rem;
+		line-height: 1.1;
+		margin-bottom: 107px;
+		margin-top: 100px;
+
+		strong{
+			color: $red;
+		}
+	}
+
+
 }
 
 .avatar-wrapper{
