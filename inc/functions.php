@@ -1,57 +1,28 @@
 <?php
 
+include_once('classes.php');
 
 //Récupérer tous les users
 
-function getUsers($type="all", $excludeID=false){
+function getUsers(){
 	
 	global $bdd, $config, $users_list;
 
-	if($type == 'parents'){
-		$condition[] = 'isChildAccount = 0';
-	}elseif($type == 'children'){
-		$condition[] = ' isChildAccount = 1';
-	}
-
-	if($excludeID != false){
-
-		if(is_array($excludeID)){
-			$condition[] = 'userID NOT IN ('.implode(',',$excludeID).')';
-		}else{
-			$condition[] = 'userID != '.$excludeID;
-		}
-
-		
-	}
-
 	$where = '';
 
-	if(isset($condition) AND !is_null($condition)){
-		foreach($condition as $key => $cond){
-			$where .= $cond;
-
-			end($condition);
-			if($key != key($condition)){
-				$where .= ' AND ';
-			}
-		}
-
-		$users = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE '.$where.' ORDER BY name ASC');
-	}else{
-		$users = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' ORDER BY name ASC');		
-	}
+	$users = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' ORDER BY name ASC');
 	
 	while($export_user = $users->fetch()){
-		$users_list[] = [
-			"ID" => $export_user['userID'],
-			"name" => $export_user['name'],
-			"isChildAccount" => $export_user['isChildAccount'],
-			"picture" => $export_user['picture'],
-			"birthday_date" => $export_user['birthday_date'],
-			"size_top" => $export_user['size_top'],
-			"size_bottom" => $export_user['size_bottom'],
-			"size_feet" => $export_user['size_feet'],
-		];
+		$users_list[] = new user(
+			$export_user['userID'],
+			$export_user['name'],
+			$export_user['picture'],
+			$export_user['birthday_date'],
+			$export_user['size_top'],
+			$export_user['size_bottom'],
+			$export_user['size_feet'],
+			$export_user['isChildAccount']
+		);
 	}
 
 	return $users_list;
@@ -64,16 +35,16 @@ function getUserInfo($userID){
 	$user = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE userID = '.$userID);
 
 	while($export_user = $user->fetch()){
-		$user_info = [
-			"ID" => $export_user['userID'],
-			"name" => $export_user['name'],
-			"isChildAccount" => $export_user['isChildAccount'],
-			"picture" => $export_user['picture'],
-			"birthday_date" => $export_user['birthday_date'],
-			"size_top" => $export_user['size_top'],
-			"size_bottom" => $export_user['size_bottom'],
-			"size_feet" => $export_user['size_feet'],
-		];
+		$user_info = new user(
+			$export_user['userID'],
+			$export_user['name'],
+			$export_user['picture'],
+			$export_user['birthday_date'],
+			$export_user['size_top'],
+			$export_user['size_bottom'],
+			$export_user['size_feet'],
+			$export_user['isChildAccount']
+		);
 	}
 
 	return $user_info;
@@ -158,16 +129,16 @@ function get_children($parentID){
 	if($children_infos_query){
 
 		while($export_children_infos = $children_infos_query->fetch()){
-			$children_infos[] = [
-				"ID" => $export_children_infos['userID'],
-				"name" => $export_children_infos['name'],
-				"isChildAccount" => $export_children_infos['isChildAccount'],
-				"picture" => $export_children_infos['picture'],
-				"birthday_date" => $export_children_infos['birthday_date'],
-				"size_top" => $export_children_infos['size_top'],
-				"size_bottom" => $export_children_infos['size_bottom'],
-				"size_feet" => $export_children_infos['size_feet'],
-			];
+				$children_infos[] = new user(
+					$export_user['userID'],
+					$export_user['name'],
+					$export_user['picture'],
+					$export_user['birthday_date'],
+					$export_user['size_top'],
+					$export_user['size_bottom'],
+					$export_user['size_feet'],
+					$export_user['isChildAccount']
+				);
 		}
 
 	}
