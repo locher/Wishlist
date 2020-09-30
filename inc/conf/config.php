@@ -19,6 +19,8 @@ $config = array(
     )
 );
 
+define("CONFIG", $config);
+
 //Connexion BDD
 
 try{
@@ -30,7 +32,3 @@ catch (Exception $e){
 }
 
 $bdd->query('SET NAMES "utf8"');
-
-global $bdd;
-
-?>

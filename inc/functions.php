@@ -4,13 +4,34 @@ include_once('classes.php');
 
 //Récupérer tous les users
 
-function getUsers(){
+function getUsers($type = null){
 	
-	global $bdd, $config, $users_list;
+	global $bdd;
 
-	$where = '';
+	if($type == 'parents'){
+		$condition[] = 'isChildAccount = 0';
+	}elseif($type == 'children'){
+		$condition[] = ' isChildAccount = 1';
+	}
 
-	$users = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' ORDER BY name ASC');
+	if(isset($condition) AND !is_null($condition)){
+
+		$where = '';
+
+		foreach($condition as $key => $cond){
+			$where .= $cond;
+
+			end($condition);
+			if($key != key($condition)){
+				$where .= ' AND ';
+			}
+		}
+
+		$users = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_users'].' WHERE '.$where.' ORDER BY name ASC');
+	}else{
+		$users = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_users'].' ORDER BY name ASC');		
+	}
+
 	
 	while($export_user = $users->fetch()){
 		$users_list[] = new user(
@@ -30,9 +51,9 @@ function getUsers(){
 
 function getUserInfo($userID){
 
-	global $bdd, $config, $users_list;
+	global $bdd;
 
-	$user = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE userID = '.$userID);
+	$user = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_users'].' WHERE userID = '.$userID);
 
 	while($export_user = $user->fetch()){
 		$user_info = new user(
@@ -52,12 +73,12 @@ function getUserInfo($userID){
 
 function getGifts($userID, $nbGifts = 0){
 	
-	global $bdd, $config, $gifts;
+	global $bdd;
 	
 	if($nbGifts > 0){
-		$bddGifts = $bdd->query('SELECT * FROM '.$config['db_tables']['db_gifts'].' WHERE userID = '.$userID.' ORDER BY userID DESC LIMIT '.$nbGifts.'');
+		$bddGifts = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_gifts'].' WHERE userID = '.$userID.' ORDER BY userID DESC LIMIT '.$nbGifts.'');
 	}else{
-		$bddGifts = $bdd->query('SELECT * FROM '.$config['db_tables']['db_gifts'].' WHERE userID = '.$userID.' ORDER BY userID DESC');
+		$bddGifts = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_gifts'].' WHERE userID = '.$userID.' ORDER BY userID DESC');
 	}
 		
 	while($export_gifts = $bddGifts->fetch()){
@@ -75,9 +96,9 @@ function getGifts($userID, $nbGifts = 0){
 
 function getGift($giftID){
 	
-	global $bdd, $config, $gifts;
+	global $bdd;
 	
-		$bddGifts = $bdd->query('SELECT * FROM '.$config['db_tables']['db_gifts'].' WHERE ID = '.$giftID);
+		$bddGifts = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_gifts'].' WHERE ID = '.$giftID);
 		
 	while($export_gifts = $bddGifts->fetch()){
 		$gift = [
@@ -94,9 +115,9 @@ function getGift($giftID){
 
 function get_parents($userID){
 
-	global $bdd, $config, $users_list;
+	global $bdd;
 
-	$parents = $bdd->query('SELECT ID_parent FROM '.$config['db_tables']['db_parents'].' WHERE ID_child = '.$userID.'');
+	$parents = $bdd->query('SELECT ID_parent FROM '.CONFIG['db_tables']['db_parents'].' WHERE ID_child = '.$userID.'');
 
 		$parent_list = [];
 
@@ -108,11 +129,11 @@ function get_parents($userID){
 }	
 
 function get_children($parentID){
-	global $bdd, $config, $users_list;
+	global $bdd;
 
 	// Get children
 
-	$children = $bdd->query('SELECT ID_child FROM '.$config['db_tables']['db_parents'].' WHERE ID_parent = '.$parentID.'');
+	$children = $bdd->query('SELECT ID_child FROM '.CONFIG['db_tables']['db_parents'].' WHERE ID_parent = '.$parentID.'');
 
 	$children_list = [];
 
@@ -122,7 +143,7 @@ function get_children($parentID){
 
 	// Get children infos
 
-	$children_infos_query = $bdd->query('SELECT * FROM '.$config['db_tables']['db_users'].' WHERE userID IN ('.implode(',',$children_list).')');
+	$children_infos_query = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_users'].' WHERE userID IN ('.implode(',',$children_list).')');
 
 	$children_infos = array();
 
