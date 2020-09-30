@@ -20,12 +20,16 @@ $context['users'] = array_filter(
 );
 
 // Current user infos
-$context['currentUser'] = array_filter(
+$currentUserArray = array_filter(
     $allUsers,
     function ($e) use (&$userID) {
         return $e->ID == $userID;
     }
 );
+
+foreach($currentUserArray as $user){
+	$context['currentUser']['infos'] = $user;
+}
 
 //Get the user gifts
 $context['currentUser']['gifts'] = getGifts($userID);
