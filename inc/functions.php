@@ -49,27 +49,6 @@ function getUsers($type = null){
 	return $users_list;
 }
 
-function getUserInfo($userID){
-
-	global $bdd;
-
-	$user = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_users'].' WHERE userID = '.$userID);
-
-	while($export_user = $user->fetch()){
-		$user_info = new user(
-			$export_user['userID'],
-			$export_user['name'],
-			$export_user['picture'],
-			$export_user['birthday_date'],
-			$export_user['size_top'],
-			$export_user['size_bottom'],
-			$export_user['size_feet'],
-			$export_user['isChildAccount']
-		);
-	}
-
-	return $user_info;
-}
 
 function getGifts($userID, $nbGifts = 0){
 	
@@ -128,7 +107,10 @@ function get_parents($userID){
 		return $parent_list;
 }	
 
+
+
 function get_children($parentID){
+
 	global $bdd;
 
 	// Get children
@@ -138,33 +120,24 @@ function get_children($parentID){
 	$children_list = [];
 
 	while($export = $children->fetch()){
-		$children_list[] = $export['ID_child'];
+		$children_list[] = (int) $export['ID_child'];
 	}
 
-	// Get children infos
+	return $children_list;
 
-	$children_infos_query = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_users'].' WHERE userID IN ('.implode(',',$children_list).')');
+}
 
-	$children_infos = array();
 
-	if($children_infos_query){
 
-		while($export_children_infos = $children_infos_query->fetch()){
-				$children_infos[] = new user(
-					$export_user['userID'],
-					$export_user['name'],
-					$export_user['picture'],
-					$export_user['birthday_date'],
-					$export_user['size_top'],
-					$export_user['size_bottom'],
-					$export_user['size_feet'],
-					$export_user['isChildAccount']
-				);
-		}
+function nbChildren($parentID){
 
-	}
+	global $bdd;
 
-	return $children_infos;
+	// Get children
+
+	$children = $bdd->query('SELECT ID_child FROM '.CONFIG['db_tables']['db_parents'].' WHERE ID_parent = '.$parentID.'');
+
+	return $children->rowCount();
 
 }
 

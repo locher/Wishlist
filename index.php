@@ -4,6 +4,8 @@ include_once('inc/header.php');
 
 $context['users'] = getUsers('parents');
 
+//d($context['users']);
+
 // Popup after account creation
 
 if(isset($_GET['src']) && isset($_GET['user']) && $_GET['user'] != ''){

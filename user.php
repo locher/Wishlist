@@ -27,6 +27,23 @@ $currentUserArray = array_filter(
     }
 );
 
+//Liste of potential childs
+$childrenList = get_children($userID);
+
+if($childrenList != null){
+    //Get children infos
+
+    $childrenListInfos = array_filter(
+        $allUsers,
+        function ($e) use (&$singleChildren) {
+            global $childrenList;
+            return ($e->ID == in_array($e->ID, $childrenList));
+        }
+    );
+
+    $context['children'] = $childrenListInfos;
+}
+
 foreach($currentUserArray as $user){
 	$context['currentUser']['infos'] = $user;
 }
@@ -34,8 +51,7 @@ foreach($currentUserArray as $user){
 //Get the user gifts
 $context['currentUser']['gifts'] = getGifts($userID);
 
-//Liste of potential childs
-$context['children'] = get_children($userID);
+
 
 //Gift just added message
 if(isset($_GET['statut']) && isset($_GET['gift']) && $_GET['statut'] == 'giftAdded' && $_GET['gift'] != ''){
