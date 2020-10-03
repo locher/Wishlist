@@ -163,4 +163,30 @@ function age($date){
 	}
 
 	return $age;
+
+
 }
+
+
+function getUserInfo($userID){
+
+	global $bdd;
+
+	$user = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_users'].' WHERE userID = '.$userID);
+
+	while($export_user = $user->fetch()){
+		$user_info = new user(
+			$export_user['userID'],
+			$export_user['name'],
+			$export_user['picture'],
+			$export_user['birthday_date'],
+			$export_user['size_top'],
+			$export_user['size_bottom'],
+			$export_user['size_feet'],
+			$export_user['isChildAccount']
+		);
+	}
+
+	return $user_info;
+}
+

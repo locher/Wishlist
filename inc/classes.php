@@ -24,8 +24,12 @@ class user {
 	    $this->size_bottom = $userSizeBottom;
 	    $this->size_feet = $userSizeFeet;
 	    $this->isChildAccount = $userChildAccount;
-	    $this->age = age($this->birthday_date);
-	    $this->nice_birthday_date = birthdayDate($this->birthday_date);
+
+	    if($this->birthday_date != null){
+	    	$this->age = age($this->birthday_date);
+	   		$this->nice_birthday_date = birthdayDate($this->birthday_date);
+	    }
+
 	    $this->nbChild = nbChildren($this->ID);
 	}
 }

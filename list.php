@@ -10,13 +10,6 @@ if(isset($_GET['user'])){
 // Get current user infos
 $context['currentUser']['infos'] = getUserInfo($userID);
 
-//Birthday date of current user
-$context['currentUser']['infos']['nice_birthday'] = birthdayDate($context['currentUser']['infos']['birthday_date']);
-
-//age of current user
-$context['currentUser']['infos']['age'] = age($context['currentUser']['infos']['birthday_date']);
-
-
 //Get all users gifts
 $context['currentUser']['gifts'] = getGifts($userID);
 
