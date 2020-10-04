@@ -95,8 +95,9 @@
 
 					<span>Réservé !</span>
 			
-			<form action="form/cancelReservation.php">
-				<input type="hidden" value="{{ gift.ID }}">
+			<form action="form/cancel-reservation.php" method="POST">
+				<input type="hidden" name="giftID" value="{{ gift.ID }}">
+				<input type="hidden" name="userID" value="{{ currentUser.infos.ID }}">
 				<button type="submit"class="bt border-red-bt tiny-bt">Annuler la réservation</button>
 			</form>
 

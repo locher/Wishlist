@@ -36,13 +36,29 @@ foreach($userGifts as $key=>$gift){
 	}
 }
 
-d($userGifts);
-
 $context['currentUser']['gifts'] = $userGifts;
 
 // Get all user exept the current one AND the session one
 //$context['users'] = getUsers('all', '('.$userID.','. $_SESSION['userID'].')');
 $context['users'] = getUsers('all', array($userID, $_SESSION['userID']));
+
+
+//Message
+
+//Unreserved gift
+if(isset($_GET['statut']) && isset($_GET['gift']) && $_GET['statut'] == 'giftUnreserved' && $_GET['gift'] != ''){
+    $context['message']['object'] = getGift(filter_var($_GET['gift'], FILTER_SANITIZE_NUMBER_INT))['title'];
+    $context['message']['prefixe'] = 'La réservation du cadeau';
+    $context['message']['suffixe'] = 'a bien été supprimée !';
+}
+
+//Reserved gift
+if(isset($_GET['statut']) && isset($_GET['gift']) && $_GET['statut'] == 'giftReserved' && $_GET['gift'] != ''){
+    $context['message']['object'] = getGift(filter_var($_GET['gift'], FILTER_SANITIZE_NUMBER_INT))['title'];
+    $context['message']['prefixe'] = 'Le cadeau';
+    $context['message']['suffixe'] = 'a bien été réservé !';
+}
+
 
 // Render
 echo $twig->render('templates/list.twig', $context);
