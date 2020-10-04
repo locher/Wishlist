@@ -2,6 +2,8 @@
 
 include_once('inc/header.php');
 
+$context['sessionUser'] = $_SESSION['userID'];
+
 // Get current ID
 if(isset($_GET['user'])){
 	$userID = $_GET['user'];
@@ -15,6 +17,7 @@ if(is_parent($_SESSION['userID'], $userID)){
 	$context['currentUser']['permissions']['canEdit'] = false;
 	$context['currentUser']['permissions']['canReserve'] = true;
 }
+
 
 
 // Get current user infos

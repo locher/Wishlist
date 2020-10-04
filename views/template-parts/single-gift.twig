@@ -64,8 +64,11 @@
 		{# Reservation button, only available for non reserved gift and if you're not a parent of the current user #}
 
 		{% if currentUser.permissions.canReserve and gift.isReserved == 0  %}
-			<form class="gift-edit">
-					<button type="button" class="bt border-white-bt tiny-bt edit-gift" data-giftid="{{ gift.ID }}">Réserver</button>
+			<form class="gift-edit" method="POST" action="form/reserve-gift.php">
+				<input type="hidden" name="giftID" value="{{ gift.ID }}">
+				<input type="hidden" name="sessionUser" value="{{ sessionUser }}">
+				<input type="hidden" name="userID" value="{{ currentUser.infos.ID }}">
+					<button type="submit" class="bt border-white-bt tiny-bt edit-gift" data-giftid="{{ gift.ID }}">Réserver</button>
 			</form>
 		{% endif %}
 
