@@ -100,6 +100,7 @@ button.border-red-bt{
 		background-color: $primary;
 		color: $white;
 		border-radius: 10px;
+		border: 2px solid $primary;
 		flex-shrink: 0;
 		width: 100%;
 		display: flex;
@@ -191,23 +192,25 @@ button.border-red-bt{
 .avatar-wrapper{
 	flex-shrink: 0;
 	width: 75px;
+	height: 75px;
 	display : flex;
 	align-items:center;
 	position: relative;
 
 	img{
-		max-height: 70px;
-		max-width: 80px;
-		margin: auto;
+		max-height: 90%;
+		max-width: 110%;
+		margin-right: auto;
+		margin-left: auto;
 		z-index: 2;
 	}
 
 	.svg-wrapper{
 		position: absolute;
-		width: 85px;
-		height: 85px;
-		top: -15px;
-		left:-5px;
+		width: 120%;
+		height: 120%;
+		top: -8%;
+		left:-20%;
 		z-index:1;
 	}
 
@@ -243,6 +246,19 @@ button.border-red-bt{
 
 // Single Gift
 
+.reserved-gift .gift-content{
+	background-color: transparent;
+	color: $primary;
+
+	.border-pink-bt{
+		color: $primary;
+	}
+}
+
+.reserved-by-other{
+	opacity: .6;
+}
+
 .gift-description{
 	font-size: 1.3rem;
 	line-height: 1.2em;
@@ -268,6 +284,23 @@ button.border-red-bt{
 		margin-left: 15px;
 		flex-shrink: 0;
 		align-self: flex-start;
+	}
+}
+
+// Reservations informations
+
+.gift-content .gift-reserved-informations{
+	display: flex;
+	align-items:center;
+
+	.avatar-wrapper{
+		width: 30px;
+		height: 30px;
+		margin-right: 10px;
+	}
+
+	span{
+		margin-right: 10px;
 	}
 }
 

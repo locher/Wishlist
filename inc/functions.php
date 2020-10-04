@@ -65,7 +65,11 @@ function getGifts($userID, $nbGifts = 0){
 			"title" => $export_gifts['title'],
 			"description" => $export_gifts['description'],
 			"link" => $export_gifts['link'],
-			"ID" => $export_gifts['ID']
+			"ID" => $export_gifts['ID'],
+			"isReserved" => $export_gifts['isReserved'],
+			"reservationUserID" => $export_gifts['reservationUserID'],
+			"isReserved" => $export_gifts['isReserved'],
+			"reservationUserID" => $export_gifts['reservationUserID']
 		];
 	}
 
@@ -127,8 +131,6 @@ function get_children($parentID){
 
 }
 
-
-
 function nbChildren($parentID){
 
 	global $bdd;
@@ -141,6 +143,20 @@ function nbChildren($parentID){
 
 }
 
+function is_parent($parentID, $childID){
+
+	global $bdd;
+
+	// Get children
+
+	$matches = $bdd->query('SELECT ID_child FROM '.CONFIG['db_tables']['db_parents'].' WHERE ID_parent = '.$parentID.' AND ID_child = '.$childID);
+
+	if($matches->rowCount() > 0){
+		return true;
+	}else{
+		return false;
+	}
+}
 
 //Autres
 

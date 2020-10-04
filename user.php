@@ -51,6 +51,8 @@ foreach($currentUserArray as $user){
 //Get the user gifts
 $context['currentUser']['gifts'] = getGifts($userID);
 
+$context['currentUser']['permissions']['canEdit'] = true;
+
 
 
 //Gift just added message
@@ -59,6 +61,8 @@ if(isset($_GET['statut']) && isset($_GET['gift']) && $_GET['statut'] == 'giftAdd
 	$context['message']['prefixe'] = 'Le cadeau';
 	$context['message']['suffixe'] = 'a bien été ajouté !';
 }
+
+$context['page'] = 'user';
 
 // Render
 echo $twig->render('templates/user.twig', $context);

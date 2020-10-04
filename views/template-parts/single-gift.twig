@@ -1,4 +1,17 @@
-<li class="list_elt single-gift">
+{% if page != 'user' %}
+
+{% if gift.isReserved and not gift.reservation.currentUser %}
+	{% set isReservedClass = 'reserved-gift reserved-by-other' %}
+{% endif %}
+
+{% if gift.isReserved and gift.reservation.currentUser %}
+	{% set isReservedClass = 'reserved-gift reserved-by-me' %}
+{% endif %}
+
+{% endif %}
+
+
+<li class="list_elt single-gift {{ isReservedClass }}">
 
 	<div class="gift-content">
 
@@ -24,6 +37,8 @@
 
 		{# Gift edit #}
 
+		{% if currentUser.permissions.canEdit %}
+
 		<div class="gift-edit">
 				<button type="button" class="bt border-red-bt tiny-bt bt-delete-gift">Supprimer</button>
 				<button type="button" class="bt border-white-bt tiny-bt edit-gift" data-giftid="{{ gift.ID }}">Modifer</button>
@@ -32,17 +47,64 @@
 		<form action="form/delete-gift.php" method="post" class="overlay-delete-gift">
 
 			<div class="wrapper-overlay">
-							<p class="title-delete"><strong>Voulez-vous vraiment supprimer</strong> <br>{{ gift.title|e }} ?
-			</p>
+				<p class="title-delete"><strong>Voulez-vous vraiment supprimer</strong> <br>{{ gift.title|e }} ?
+				</p>
 
-			<input type="hidden" name="giftID" value="{{ gift.ID }}">
-			<input type="hidden" name="userID" value="{{ currentUser.infos.ID }}">
-			<button type="button" class="bt border-white-bt tiny-bt close-delete-bt-overlay">Non, annuler</button>
-			<button type="submit"class="bt border-red-bt tiny-bt">Oui, supprimer</button>
+				<input type="hidden" name="giftID" value="{{ gift.ID }}">
+				<input type="hidden" name="userID" value="{{ currentUser.infos.ID }}">
+				<button type="button" class="bt border-white-bt tiny-bt close-delete-bt-overlay">Non, annuler</button>
+				<button type="submit"class="bt border-red-bt tiny-bt">Oui, supprimer</button>
 			</div>
 
-
 		</form>
+
+		{% endif %}
+
+
+		{# Reservation button, only available for non reserved gift and if you're not a parent of the current user #}
+
+		{% if currentUser.permissions.canReserve and gift.isReserved == 0  %}
+			<form class="gift-edit">
+					<button type="button" class="bt border-white-bt tiny-bt edit-gift" data-giftid="{{ gift.ID }}">Réserver</button>
+			</form>
+		{% endif %}
+
+		{# Information of the reserver, if it's not me #}		
+		{% if currentUser.permissions.canReserve and gift.isReserved == 1 and  not gift.reservation.currentUser %}
+			<div class="gift-reserved-informations">
+					<div class="avatar-wrapper">
+						<img src="assets/img/avatar/avatar{{ gift.reservation.user.picture }}.png" alt="">
+						<div class="svg-wrapper">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114.73 131.54"><path class="a" d="M101.72,14.09c11.6,13,12.9,34.8,13,56.8s-1,44-12.6,53.8-33.6,7.4-51.6,3.2-31.7-9.9-40.1-19.7S-.88,84.59.22,72s6.5-24.1,14.9-37.1,19.8-27.5,36.5-32.7S90.12,1.09,101.72,14.09Z"/></svg>
+						</div>
+					</div>
+
+					<span>Réservé par {{ gift.reservation.user.name }}</span>
+			</div>
+		{% endif %}
+
+				{# Information of the reserver, if it's me #}		
+		{% if currentUser.permissions.canReserve and gift.isReserved == 1 and gift.reservation.currentUser  %}
+			<div class="gift-reserved-informations">
+					<div class="avatar-wrapper">
+						<img src="assets/img/avatar/avatar{{ gift.reservation.user.picture }}.png" alt="">
+						<div class="svg-wrapper">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114.73 131.54"><path class="a" d="M101.72,14.09c11.6,13,12.9,34.8,13,56.8s-1,44-12.6,53.8-33.6,7.4-51.6,3.2-31.7-9.9-40.1-19.7S-.88,84.59.22,72s6.5-24.1,14.9-37.1,19.8-27.5,36.5-32.7S90.12,1.09,101.72,14.09Z"/></svg>
+						</div>
+					</div>
+
+					<span>Réservé !</span>
+			
+			<form action="form/cancelReservation.php">
+				<input type="hidden" value="{{ gift.ID }}">
+				<button type="submit"class="bt border-red-bt tiny-bt">Annuler la réservation</button>
+			</form>
+
+			</div>
+		{% endif %}
+
+
+
 
 	</div>
 
