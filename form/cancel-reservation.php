@@ -25,7 +25,7 @@ if(isset($giftID)){
 
 if($isBDDsuccess == true){
 	echo 'Réussite';
-	header("location:../list.php?user=".$_POST['userID']."&statut=giftUnreserved&gift=".$giftID);
+	header("location:../user.php?user=".$_POST['userID']."&statut=giftUnreserved&gift=".$giftID);
 	
 }else{
 	echo 'Echec';

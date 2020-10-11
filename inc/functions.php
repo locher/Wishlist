@@ -124,7 +124,7 @@ function get_children($parentID){
 	$children_list = [];
 
 	while($export = $children->fetch()){
-		$children_list[] = (int) $export['ID_child'];
+		$children_list[] = $export['ID_child'];
 	}
 
 	return $children_list;

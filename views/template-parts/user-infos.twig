@@ -64,7 +64,7 @@
 
 			</div>
 
-			{% if canEdit == true %}
+			{% if permissions.owner == true or permissions.parent == true %}
 	
 			<a href="update-account.php?user={{ currentUser.infos.ID }}" class="bt border-primary-bt">Modifier les infos</a>
 

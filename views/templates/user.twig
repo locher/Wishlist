@@ -7,23 +7,18 @@
 	<div class="wrapper">
 
 		{# Users infos #}
-
 		{% if currentUser is not empty %}
-
-			{% set vars = {'canEdit' : true} %}
-			{% include 'template-parts/user-infos.twig' with vars %}
-
+			{% include 'template-parts/user-infos.twig' %}
 		{% endif %}
 
 		{# Other editable lists #}
-
-		{% if children is not empty %}
+		{% if children is not empty and permissions.owner == true %}
 
 		<section class="other-lists">
 
 			<h2>Mes autres listes modifiables</h2>
 
-			{% set vars = {'btLink':'list.php?user=','btTxt':'Accéder à la liste', 'list' : children} %}
+			{% set vars = {'btTxt':'Accéder à la liste', 'list' : children} %}
 			{% include 'template-parts/user-list.twig' with vars %}
 
 		</section>
@@ -43,7 +38,7 @@
 				
 				{% for gift in currentUser.gifts %}
 			
-					{% set vars = {'canEdit' : true , 'userID' : currentUser.id } %}
+					{% set vars = {'userID' : currentUser.infos.id } %}
 					{% include 'template-parts/single-gift.twig' with vars %}
 				
 				{% endfor %}
@@ -63,13 +58,13 @@
 
 			{# Other users list #}
 
-			{% if users is not empty %}
+			{% if otherUsers is not empty %}
 
 			<section class="list-users">
 				<h2>Listes</h2>
 				<p class="h3">Voir les listes</p>
 
-				{% set vars = {'btLink':'list.php?user=','btTxt':'Voir la liste', 'list': users} %}
+				{% set vars = {'btTxt':'Voir la liste', 'list': otherUsers} %}
 				{% include 'template-parts/user-list.twig' with vars %}
 
 				<div class="all-lists">
@@ -85,11 +80,15 @@
 
 	</div>
 
+	{% if permissions.owner == true or permissions.parent == true %}
+
 	<button class="add-gift-bt" id="add-gift-bt">
 		<span>+</span>
 	</button>
 
 	{% include 'template-parts/form-gift.twig' %}
+
+	{% endif %}
 
 
 	{% if message is not empty %}

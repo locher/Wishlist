@@ -1,5 +1,9 @@
 <?php 
 
+session_start();
+$_SESSION['userID'] = null;
+session_destroy();
+
 include_once('inc/header.php');
 
 $context['users'] = getUsers('parents');

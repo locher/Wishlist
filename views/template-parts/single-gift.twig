@@ -1,13 +1,9 @@
-{% if page != 'user' %}
-
-{% if gift.isReserved and not gift.reservation.currentUser %}
+{% if gift.isReserved and gift.reservationUserID != logedInUser and permissions.owner == false %}
 	{% set isReservedClass = 'reserved-gift reserved-by-other' %}
 {% endif %}
 
-{% if gift.isReserved and gift.reservation.currentUser %}
+{% if gift.isReserved and gift.reservationUserID == logedInUser and permissions.owner == false %}
 	{% set isReservedClass = 'reserved-gift reserved-by-me' %}
-{% endif %}
-
 {% endif %}
 
 
@@ -37,11 +33,14 @@
 
 		{# Gift edit #}
 
-		{% if currentUser.permissions.canEdit %}
+		{% if permissions.owner == true or permissions.parent == true %}
 
 		<div class="gift-edit">
 				<button type="button" class="bt border-red-bt tiny-bt bt-delete-gift">Supprimer</button>
+
+				{% if gift.isReserved == false or permissions.owner == true %}
 				<button type="button" class="bt border-white-bt tiny-bt edit-gift" data-giftid="{{ gift.ID }}">Modifer</button>
+				{% endif %}
 		</div>
 
 		<form action="form/delete-gift.php" method="post" class="overlay-delete-gift">
@@ -63,17 +62,17 @@
 
 		{# Reservation button, only available for non reserved gift and if you're not a parent of the current user #}
 
-		{% if currentUser.permissions.canReserve and gift.isReserved == 0  %}
+		{% if (permissions.owner == false and permissions.parent == false) and gift.isReserved == 0  %}
 			<form class="gift-edit" method="POST" action="form/reserve-gift.php">
 				<input type="hidden" name="giftID" value="{{ gift.ID }}">
-				<input type="hidden" name="sessionUser" value="{{ sessionUser }}">
+				<input type="hidden" name="sessionUser" value="{{ logedInUser }}">
 				<input type="hidden" name="userID" value="{{ currentUser.infos.ID }}">
 					<button type="submit" class="bt border-white-bt tiny-bt edit-gift" data-giftid="{{ gift.ID }}">Réserver</button>
 			</form>
 		{% endif %}
 
 		{# Information of the reserver, if it's not me #}		
-		{% if currentUser.permissions.canReserve and gift.isReserved == 1 and  not gift.reservation.currentUser %}
+		{% if permissions.owner == false and gift.isReserved == 1 and gift.reservationUserID != logedInUser %}
 			<div class="gift-reserved-informations">
 					<div class="avatar-wrapper">
 						<img src="assets/img/avatar/avatar{{ gift.reservation.user.picture }}.png" alt="">
@@ -86,8 +85,8 @@
 			</div>
 		{% endif %}
 
-				{# Information of the reserver, if it's me #}		
-		{% if currentUser.permissions.canReserve and gift.isReserved == 1 and gift.reservation.currentUser  %}
+		{# Information of the reserver, if it's me #}		
+		{% if permissions.owner == false and gift.isReserved == 1 and gift.reservationUserID == logedInUser %}
 			<div class="gift-reserved-informations">
 					<div class="avatar-wrapper">
 						<img src="assets/img/avatar/avatar{{ gift.reservation.user.picture }}.png" alt="">
