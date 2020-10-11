@@ -1,6 +1,7 @@
 {
     "require": {
         "twig/twig": "^3.0",
-        "kint-php/kint": "^3.3"
+        "kint-php/kint": "^3.3",
+        "squizlabs/php_codesniffer": "*"
     }
 }
