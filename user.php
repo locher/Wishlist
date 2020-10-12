@@ -110,8 +110,8 @@ foreach ($currentUserGifts as $key=>$gift){
 // All users except the current one
 $otherUsers = array_filter(
     $allUsers,
-    function ($e) use (&$userID) {
-        return $e->ID != $userID;
+    function ($e) use (&$currentUser,$allUsers) {
+        return $e->ID != $currentUser;
     }
 );
 

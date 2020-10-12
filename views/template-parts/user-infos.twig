@@ -11,7 +11,9 @@
 
 		<h1>{{ currentUser.infos.name|e }}</h1>
 
-		<div class="user-infos-details-wrapper">	
+		<div class="user-infos-details-wrapper">
+
+			{% if  (currentUser.infos.nice_birthday_date or currentUser.infos.size_top or currentUser.infos.size_bottom or currentUser.infos.size_feet) is not empty%}	
 
 			<div class="user-infos-details">
 
@@ -63,6 +65,8 @@
 				{% endif %}
 
 			</div>
+
+			{% endif %}
 
 			{% if permissions.owner == true or permissions.parent == true %}
 	
