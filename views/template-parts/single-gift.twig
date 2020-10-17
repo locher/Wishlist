@@ -72,7 +72,7 @@
 		{% endif %}
 
 		{# Information of the reserver, if it's not me #}		
-		{% if permissions.owner == false and gift.isReserved == 1 and gift.reservationUserID != logedInUser %}
+		{% if permissions.owner == false and gift.isReserved == 1 and gift.reservationUserID != logedInUser and gift.reservationUserID != 0 %}
 			<div class="gift-reserved-informations">
 					<div class="avatar-wrapper">
 						<img src="assets/img/avatar/avatar{{ gift.reservation.user.picture }}.png" alt="">
@@ -83,6 +83,31 @@
 
 					<span>Réservé par {{ gift.reservation.user.name }}</span>
 			</div>
+		{% endif %}
+
+		{# Reservation info GUEST #}		
+		{% if permissions.owner == false and gift.isReserved == 1 and gift.reservationUserID != logedInUser and gift.reservationUserID == 0 %}
+			<div class="gift-reserved-informations">
+					<div class="avatar-wrapper">
+						<img src="assets/img/avatar/avatar3.png" alt="">
+						<div class="svg-wrapper">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114.73 131.54"><path class="a" d="M101.72,14.09c11.6,13,12.9,34.8,13,56.8s-1,44-12.6,53.8-33.6,7.4-51.6,3.2-31.7-9.9-40.1-19.7S-.88,84.59.22,72s6.5-24.1,14.9-37.1,19.8-27.5,36.5-32.7S90.12,1.09,101.72,14.09Z"/></svg>
+						</div>
+					</div>
+
+					<span>Réservé par {{ gift.reservationGuestName }}</span>
+
+					{% if permissions.guest == true %}
+
+					<form action="form/cancel-reservation.php" method="POST">
+						<input type="hidden" name="giftID" value="{{ gift.ID }}">
+						<input type="hidden" name="userID" value="{{ currentUser.infos.ID }}">
+						<button type="submit"class="bt border-red-bt tiny-bt">Annuler la réservation</button>
+					</form>
+
+					{% endif %}
+			</div>
+
 		{% endif %}
 
 		{# Information of the reserver, if it's me #}		

@@ -6,8 +6,6 @@ require_once 'inc/header.php';
 // SESSION & PERMISSIONS 
 /////////////////////////////////////////
 
-d($_SESSION);
-
 if (isset($_GET['user']) && (!isset($_SESSION['userID']) && !isset($_SESSION['guestName']))) {
     $_SESSION['userID'] = filter_var($_GET['user'], FILTER_SANITIZE_NUMBER_INT);
 }
@@ -29,6 +27,7 @@ if (isset($_SESSION['userID'])) {
 $permissions = array(
     'owner' => false,
     'parent' => false,
+    'guest' => false
 );
 
 if (isset($_GET['user']) && $_GET['user']) {
@@ -62,6 +61,12 @@ if (isset($logedInUserChildrenList) && $logedInUserChildrenList != null) {
             $permissions['parent'] = true;
         }
     }
+}
+
+//Check if i'm guest
+
+if(isset($_SESSION['guestName'])){
+    $permissions['guest'] = true;
 }
 
 /////////////////////////////////////////
@@ -101,7 +106,8 @@ if ($currentUserChildrenList != null) {
 
 //If the gift is reserved, attached informations of the reserv-er
 foreach ($currentUserGifts as $key=>$gift){
-    if ($gift['isReserved'] == true && $gift['reservationUserID'] != '') {
+   
+    if ($gift['isReserved'] == true && $gift['reservationUserID'] != '' && $gift['reservationUserID'] != 0) {
 
         $currentUserGifts[$key]['reservation']['user'] = getUserInfo($gift['reservationUserID']);
 
@@ -109,6 +115,7 @@ foreach ($currentUserGifts as $key=>$gift){
         if (isset($logedInUser) && $logedInUser == $gift['reservationUserID']) {
             $currentUserGifts[$key]['reservation']['currentUser'] = true;
         }
+        
     }
 }
 

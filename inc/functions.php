@@ -69,7 +69,9 @@ function getGifts($userID, $nbGifts = 0){
 			"isReserved" => $export_gifts['isReserved'],
 			"reservationUserID" => $export_gifts['reservationUserID'],
 			"isReserved" => $export_gifts['isReserved'],
-			"reservationUserID" => $export_gifts['reservationUserID']
+			"reservationUserID" => $export_gifts['reservationUserID'],
+			"reservationGuestName" => $export_gifts['reservationGuestName']
+
 		];
 	}
 
