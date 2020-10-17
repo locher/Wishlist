@@ -6,15 +6,20 @@ require_once 'inc/header.php';
 // SESSION & PERMISSIONS 
 /////////////////////////////////////////
 
-if (isset($_GET['user']) && !isset($_SESSION['userID'])) {
-    $_SESSION['userID'] = $_GET['user'];
+d($_SESSION);
+
+if (isset($_GET['user']) && (!isset($_SESSION['userID']) && !isset($_SESSION['guestName']))) {
+    $_SESSION['userID'] = filter_var($_GET['user'], FILTER_SANITIZE_NUMBER_INT);
 }
 
 if (isset($_SESSION['userID'])) {
     $logedInUser = $_SESSION['userID'];
+}elseif(isset($_SESSION['guestName'])){
+    $isguest = true;
 }else{
     header('location:index.php');
 }
+
 
 /////////////////////////////////////////
 // INIT & basic functions
@@ -26,13 +31,16 @@ $permissions = array(
 );
 
 if (isset($_GET['user']) && $_GET['user']) {
-    $currentUser = $_GET['user'];
+    $currentUser = filter_var($_GET['user'], FILTER_SANITIZE_NUMBER_INT);
 }
 
 $allUsers = getUsers();
 $currentUserChildrenList = get_children($currentUser);
-$logedInUserChildrenList = get_children($logedInUser);
 $currentUserGifts = getGifts($currentUser);
+
+if(!$isguest){
+    $logedInUserChildrenList = get_children($logedInUser);
+}
 
 
 /////////////////////////////////////////
@@ -47,7 +55,7 @@ if (isset($_SESSION['userID']) && $logedInUser == $currentUser) {
 
 //Check if it's a child page
 
-if ($logedInUserChildrenList != null) {
+if (isset($logedInUserChildrenList) && $logedInUserChildrenList != null) {
     foreach ($logedInUserChildrenList as $childrenID) {
         if ($childrenID == $currentUser) {
             $permissions['parent'] = true;
@@ -97,7 +105,7 @@ foreach ($currentUserGifts as $key=>$gift){
         $currentUserGifts[$key]['reservation']['user'] = getUserInfo($gift['reservationUserID']);
 
         //If the loged user is the person who reserved the gift
-        if ($logedInUser == $gift['reservationUserID']) {
+        if (isset($logedInUser) && $logedInUser == $gift['reservationUserID']) {
             $currentUserGifts[$key]['reservation']['currentUser'] = true;
         }
     }
@@ -148,7 +156,12 @@ if (isset($_GET['statut']) && isset($_GET['gift']) && $_GET['statut'] == 'giftRe
 $context['permissions'] = $permissions;
 $context['otherUsers'] = $otherUsers;
 
-$context['logedInUser'] = $logedInUser;
+if(isset($logedInUser)){
+    $context['logedInUser'] = $logedInUser;
+}else{
+    $context['logedInUser'] = $_SESSION['guestName'];
+}
+
 
 $context['currentUser']['infos'] = $currentUserInfos;
 $context['currentUser']['gifts'] = $currentUserGifts;

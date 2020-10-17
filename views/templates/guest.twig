@@ -3,24 +3,16 @@
 {% block body_class %}guest{% endblock %}
 
 {% block content %}
+
+	<section class="home-header">
 	
-<section class="user-infos background white-background">
-	<div class="inner-user-infos">
-	<h1>Invité</h1>
-	<p>Vous pouvez voir toutes les listes et réserver des cadeaux.</p>
-	</div>
-</section>
+		<h1>Ton prénom ?</h1>
 
-{% if users is not empty %}
+		<form action="listusers.php" method="post">
+			<input type="text" name="guestname">
+			<button type="submit">Valider</button>
+		</form>
 
-<section class="primary-background background">
-	<h2>Voir les listes</h2>
-
-	{% set vars = {'btLink':'list.php?user=','btTxt':'Voir la liste'} %}
-		{% include 'template-parts/user-list.twig' with vars %}
-	
-</section>
-
-{% endif %}
+	</section>
 
 {% endblock content %}

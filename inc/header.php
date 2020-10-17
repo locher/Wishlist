@@ -7,7 +7,3 @@ include_once('inc/functions.php');
 $context = array();
 
 session_start();
-
-if(isset($_SESSION['userID'])){
-	echo $_SESSION['userID'];
-}

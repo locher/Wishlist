@@ -1,0 +1,35 @@
+{% extends "base.twig" %}
+
+{% block body_class %}connected-user-profil{% endblock %}
+
+{% block content %}
+
+	<div class="blob-wrapper">
+
+		<div class="wrapper">
+
+			{# Other users list #}
+
+			{% if users is not empty %}
+
+			<section class="list-users">
+				<h2>Listes</h2>
+				<p class="h3">Voir les listes</p>
+
+				{% set vars = {'btTxt':'Voir la liste', 'list': users} %}
+				{% include 'template-parts/user-list.twig' with vars %}
+
+				<div class="all-lists">
+					<a href="#" class="bt border-white-bt">Voir toutes les listes en même temps</a>
+				</div>
+				
+				
+			</section>
+
+			{% endif %}
+
+		</div>
+
+	</div>	
+
+{% endblock content %}

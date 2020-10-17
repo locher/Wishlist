@@ -4,7 +4,7 @@
 
 {% block content %}
 
-	{% if permissions.owner == false %}
+	{% if permissions.owner == false and permissions.parent == true %}
 	
     <div class="return-profil">
             <a href="user.php?user={{ logedInUser }}" class="bt border-white-bt">Retourner sur mon profil</a>
