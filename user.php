@@ -156,6 +156,14 @@ if (isset($_GET['statut']) && isset($_GET['gift']) && $_GET['statut'] == 'giftRe
     $context['message']['suffixe'] = 'a bien été réservé !';
 }
 
+//Updated gift
+if (isset($_GET['statut']) && isset($_GET['gift']) && $_GET['statut'] == 'giftUpdated' && $_GET['gift'] != '') {
+    $context['message']['object'] = getGift(filter_var($_GET['gift'], FILTER_SANITIZE_NUMBER_INT))['title'];
+    $context['message']['prefixe'] = 'Le cadeau';
+    $context['message']['suffixe'] = 'a bien été modifié !';
+}
+
+
 
 /////////////////////////////////////////
 // CONTEXT & RENDER

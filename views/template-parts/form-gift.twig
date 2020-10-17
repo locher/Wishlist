@@ -1,17 +1,17 @@
 
 
-<form action="form/add-gift.php" method="post" class="gift-form closed">
+<form action="{{ action }}" method="post" class="gift-form closed">
 
 	<div class="overlay"></div>
 
-	<button class="close-modale" id="close-modale" type="button">
+	<button class="close-modale" type="button">
 		<span>x</span>
 	</button>
 
 	<div class="form-wrapper">
 
 		<h2>Cadeau</h2>
-		<p class="h3">Ajouter un cadeau</p>
+		<p class="h3">{{ title }}</p>
 
 		<div class="wrap-form">
 			<div class="label-wrap">
@@ -36,10 +36,14 @@
 			<textarea height=3 name="description"></textarea>
 		</div>
 
+		{#
+
 		<div class="wrap-form wrap-form-borderless" id="switch-child">
 			<div class="label-wrap">
 				<span class="fake-label">Est-ce une liste ?</span>
 			</div>
+
+			
 
 			<div class="switch">
 				<input type="checkbox" id="isList" name="isList" value="true">
@@ -48,11 +52,15 @@
 					<span class="switch-option2">Non</span>
 				</label>
 			</div>
+
 		</div>
+
+		#}
 
 		<div class="bt-wrapper">
 			<input type="hidden" name="userID" value="{{ currentUser.infos.ID }}">
-			<button type="submit" class="bt border-pink-bt">Ajouter ce cadeau</button>
+			<input type="hidden" name="currentGift" value="">
+			<button type="submit" class="bt border-pink-bt">{{ button }}</button>
 		</div>
 
 	</div>

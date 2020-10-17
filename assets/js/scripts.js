@@ -1,17 +1,20 @@
 $(document).ready(function() {
-   
+	
+   	////////////////////////////////
 	//Close modale
+	////////////////////////////////
 
-	$('#close-modale').click(function(){
+	$('.close-modale').click(function(){
 		$(this).parent().toggleClass('closed');
 	});
 
 	$('#add-gift-bt').click(function(){
-		console.log('clic');
-		$(this).parent().find('.closed').toggleClass('closed');
+		$('.add-gift-form').find('.closed').toggleClass('closed');
 	});
 
+	////////////////////////////////
 	//Edit gift
+	////////////////////////////////
 
 	$('.edit-gift').on('click', function(){
 		var giftID = $(this).attr('data-giftid');
@@ -20,12 +23,25 @@ $(document).ready(function() {
 		var giftDescription = $(this).parent().parent().find('.gift-description p').text();
 		console.log(giftID);
 		
-		$('.gift-form').toggleClass('closed');
-		$('.gift-form').find('[name="designation"]').val(giftName);
+		$('.edit-gift-form').find('.gift-form').toggleClass('closed');
+		$('.edit-gift-form').find('[name="designation"]').val(giftName);
+		$('.edit-gift-form').find('[name="link"]').val(giftUrl);
+		$('.edit-gift-form').find('[name="description"]').val(giftDescription);
+		$('.edit-gift-form').find('[name="currentGift"]').val(giftID);
 	});
 
+	//Clean form when close modal
 
+	$('.edit-gift-form .close-modale').on('click', function(){
+		$('.edit-gift-form').find('[name="designation"]').val('');
+		$('.edit-gift-form').find('[name="link"]').val('');
+		$('.edit-gift-form').find('[name="description"]').val('');
+		$('.edit-gift-form').find('[name="currentGift"]').val('');
+	});
+
+	////////////////////////////////
 	//Delete gift
+	////////////////////////////////
 
 	$('.bt-delete-gift').on('click',function(){
 		$(this).parent().parent().find('.overlay-delete-gift').toggleClass('open');

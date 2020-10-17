@@ -90,14 +90,19 @@
 
 	{% if permissions.owner == true or permissions.parent == true %}
 
-	<button class="add-gift-bt" id="add-gift-bt">
-		<span>+</span>
-	</button>
+	<div class="add-gift-form">
+		<button class="add-gift-bt" id="add-gift-bt">
+			<span>+</span>
+		</button>
 
-	{% include 'template-parts/form-gift.twig' %}
+		{% include 'template-parts/form-gift.twig' with {'action':'form/add-gift.php', 'button':'Ajouter ce cadeau', 'title':'Ajouter un cadeau'} %}
+	</div>
+
+	<div class="edit-gift-form">
+		{% include 'template-parts/form-gift.twig' with {'action':'form/edit-gift.php', 'button':'Modifier ce cadeau', 'title':'Modifier ce cadeau'} %}
+	</div>
 
 	{% endif %}
-
 
 	{% if message is not empty %}
 		{% include 'template-parts/form-message.twig' with {'message':message} only %}
