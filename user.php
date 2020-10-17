@@ -14,6 +14,7 @@ if (isset($_GET['user']) && (!isset($_SESSION['userID']) && !isset($_SESSION['gu
 
 if (isset($_SESSION['userID'])) {
     $logedInUser = $_SESSION['userID'];
+    $isguest = false;
 }elseif(isset($_SESSION['guestName'])){
     $isguest = true;
 }else{
