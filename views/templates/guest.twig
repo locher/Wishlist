@@ -4,15 +4,19 @@
 
 {% block content %}
 
-	<section class="home-header">
+	<div class="wrapper">
+			<section class="guest-wrapper">
 	
 		<h1>Ton prénom ?</h1>
 
 		<form action="listusers.php" method="post">
-			<input type="text" name="guestname">
-			<button type="submit">Valider</button>
+			<input type="text" name="guestname" autofocus>
+			<button type="submit" class="bt color-bt">Valider</button>
 		</form>
 
 	</section>
+	</div>
+
+
 
 {% endblock content %}

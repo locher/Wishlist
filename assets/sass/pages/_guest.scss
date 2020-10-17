@@ -1,11 +1,36 @@
-.guest{
-	
-	h1{
-		margin-bottom: .4em;
+.guest{	
+	display: flex;
+	min-height: 100vh;
+
+	@include blob(40vw,125vh,$primary);
+
+	&::after{
+		bottom: -10vh;
+		right: -25vw;
+		position: fixed;
 	}
-	
-	.user-infos{
-		margin-bottom: $padding;
-		
+
+	.wrapper{
+		margin-top: auto;
+		margin-bottom: auto;
+		min-width: 60vw;
+	}
+
+	form{
+		display: flex;
+		margin-top: $padding;
+
+		input[type="text"]{
+			flex: 1;
+			border: 0;
+			border-bottom: 1px solid $primary;
+			background-color: transparent;
+			margin-right: $padding;
+			font-size: 2rem;
+
+			&:focus{
+				outline: 0;
+			}
+		}
 	}
 }
