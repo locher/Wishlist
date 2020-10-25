@@ -194,6 +194,8 @@ function getUserInfo($userID){
 
 	$user = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_users'].' WHERE userID = '.$userID);
 
+	$user_info = array();
+
 	while($export_user = $user->fetch()){
 		$user_info = new user(
 			$export_user['userID'],
