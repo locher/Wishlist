@@ -59,6 +59,8 @@ function getGifts($userID, $nbGifts = 0){
 	}else{
 		$bddGifts = $bdd->query('SELECT * FROM '.CONFIG['db_tables']['db_gifts'].' WHERE userID = '.$userID.' ORDER BY userID DESC');
 	}
+
+	$gifts = array();
 		
 	while($export_gifts = $bddGifts->fetch()){
 		$gifts[] = [

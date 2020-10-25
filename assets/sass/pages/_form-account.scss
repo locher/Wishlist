@@ -1,0 +1,32 @@
+.form-account{
+	padding-top: 75px;
+	padding-bottom: 75px;
+
+	@include blob(40vw,110vh,$primary);
+
+	&::after{
+		bottom: -5vh;
+		right: -30vw;
+		position: fixed;
+	}
+
+	section{
+		max-width: 60vw;
+	}
+
+	h2{
+		margin-left: 0;
+	}
+
+	.wrap-form{
+		border-color: $primary;
+
+		input, textarea{
+			color: $primary;
+		}
+	}
+
+	form{
+		margin-top: 75px;
+	}
+}

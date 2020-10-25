@@ -36,7 +36,7 @@ if(isset($_POST['photoChoice']) && $_POST['photoChoice'] != ''){
 	$photoChoice = rand(1, 15);
 }
 
-if(isset($_POST['choiceParent']) && $_POST['choiceParent'] != ''){
+if(isset($_POST['isChild']) && $_POST['isChild'] != ''){
 	$isChild = 1;
 }else{
 	$isChild = 0;
@@ -50,7 +50,7 @@ if(isset($firstname)){
 
 	include_once('../inc/conf/config.php');
 
-	$currentUser = $_GET['userID'];
+	$currentUser = filter_var($_GET['userID'], FILTER_SANITIZE_NUMBER_INT);
 
 	$saveBDD = $bdd->prepare("UPDATE ".$config['db_tables']['db_users']." SET name = :name, isChildAccount = :child, picture = :picture, birthday_date = :birthday, size_top = :sizetop, size_bottom = :sizebottom, size_feet = :sizefeet WHERE userID = ".$currentUser."");
 
@@ -116,7 +116,7 @@ if($isChild == true){
 
 	if($isBDDsuccess == true && $isBDDsuccessChild == true){
 		//echo 'Réussite avec enfant';
-		header("location:../user.php?user=".$_POST['userID']."&src=EditAccountOk");
+		header("location:../user.php?user=".$currentUser."&src=EditAccountOk");
 		
 	}else{
 		//echo 'Echec avec enfant';
@@ -126,7 +126,7 @@ if($isChild == true){
 }else{
 	if($isBDDsuccess == true){
 		//echo 'Réussite sans enfant';	
-		header("location:../user.php?user=".$_POST['userID']."&src=EditAccountOk");
+		header("location:../user.php?user=".$currentUser."&src=EditAccountOk");
 		
 	}else{
 		//echo 'Echec sans enfant';

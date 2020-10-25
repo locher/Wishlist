@@ -44,7 +44,7 @@
 }
 
 .mini-form{
-	margin-top: 10px;
+	margin-top: 10px !important;
 	
 	.label-wrap{
 		left:50%;
@@ -74,6 +74,9 @@
 }
 
 .single-choice{
+	margin-right: 20px;
+	margin-bottom: 20px;
+
 	input{
 		display: none;
 	}
@@ -87,11 +90,8 @@
 	}
 	
 	input:checked{
-		+ label{
-			
-			img{
-				background-color: $white;
-			}
+		+ label svg{
+			fill: rgba($secondary, .5);
 		}
 	}
 	
@@ -111,7 +111,6 @@
 	padding: $padding;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
 }
 
 .switch{
@@ -125,9 +124,9 @@
 	
 	label{
 		display: flex;
-		background-color: $white;
+		background-color: $primary;
 		position: relative;
-		border:10px solid $white;
+		border:10px solid $primary;
 		border-radius: 30px;
 		cursor: pointer;
 		
@@ -135,7 +134,7 @@
 			content:'';
 			position: absolute;
 			right: 0;
-			background-color: $primary;
+			background-color: $white;
 			//width: 50%;
 			height: 100%;
 			z-index: 2;
@@ -167,11 +166,11 @@
 			}
 			
 			.switch-option1{
-				color:$white;
+				color:$primary;
 			}
 			
 			.switch-option2{
-				color:rgba($primary, .25);
+				color:rgba($white, .25);
 			}
 		}
 		
@@ -193,11 +192,11 @@
 			}
 			
 			.switch-option1{
-				color:rgba($primary, .25);
+				color:rgba($white, .25);
 			}
 			
 			.switch-option2{
-				color:$white;
+				color:$primary;
 			}
 		}
 	} 
@@ -243,11 +242,9 @@
 			color: $primary;
 			margin-left: $padding;
 			opacity: 1;
-			
-			img{
-				margin-right: 35px;
-				position: relative;
-				background-color: $primary;
+
+			svg{
+				fill: rgba($secondary, .5);
 			}
 		}
 		
@@ -257,9 +254,18 @@
 
 form .bt-wrapper{
 	margin-top: $padding;
-	text-align: center;
+
+	@include width-below(700px){
+		text-align: center;
+	}
+
 }
 
 form input{
 	font-size: 1.4rem;
 }
+
+form .hide{
+	display: none;
+}
+

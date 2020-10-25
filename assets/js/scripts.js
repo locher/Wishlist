@@ -51,4 +51,11 @@ $(document).ready(function() {
 		$(this).parent().parent().toggleClass('open');
 	})
 
+	////////////////////////////////
+	// Edit user
+	////////////////////////////////
+	$('#child-account').on('click', function(){
+		$('#choiceParent').toggleClass('hide');
+	});
+
 });
