@@ -33,6 +33,11 @@ body::before{
 	max-width: 1300px;
 	margin-right:auto;
 	margin-left: auto;
+
+	@include width-below(500px){
+		padding-left: $padding/2;
+		padding-right: $padding/2;
+	}
 }
 
 // Typo

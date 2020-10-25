@@ -4,12 +4,24 @@
 	padding-top: $padding;
 	padding-bottom: $padding;
 
-	@include blob(60vw,130vh,$primary);
+	@include width-above(700px){
 
-	&::after{
-		bottom: -10vh;
-		right: -15vw;
-		position: fixed;
+		@include blob(60vw,130vh,$primary);
+		&::after{
+			bottom: -10vh;
+			right: -15vw;
+			position: fixed;
+		}
+	}
+
+	.list-connection{
+		margin-top: $padding;
+		margin-bottom: $padding;
+
+		@include width-below(800px){
+			width: 100%;
+		}
+
 	}
 }
 
@@ -17,15 +29,20 @@
 	margin-top: auto;
 	margin-bottom: auto;
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 }
 
 .home-header{
 
-	margin-right: 70px;
+
+	@include width-above(800px){
+		margin-right: 70px;
+	}
+	
 
 	h1{
-		font-size: 14rem;
+		font-size: clamp(4rem, 15vw, 14rem);
 	}
 
 	.h1-subtitle{

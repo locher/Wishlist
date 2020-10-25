@@ -74,8 +74,6 @@
 }
 
 .single-choice{
-	margin-right: 20px;
-	margin-bottom: 20px;
 
 	input{
 		display: none;
@@ -109,8 +107,9 @@
 
 .content-img-choice{
 	padding: $padding;
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-gap: 20px 20px;
+	grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
 }
 
 .switch{

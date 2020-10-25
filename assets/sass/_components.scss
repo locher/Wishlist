@@ -21,6 +21,10 @@
 	text-align: center;
 	line-height: 1.2em;
 	border: 2px solid transparent;
+
+	@include width-below(500px){
+		font-size: 1.3rem;
+	}
 }
 
 .tiny-bt{
@@ -394,8 +398,6 @@ button.border-red-bt{
 .user-infos{
 	display: inline-flex;
 	align-items: center;
-	flex-wrap: wrap;
-	padding: 0 $padding;
 }
 
 .inner-user-infos{
@@ -405,6 +407,10 @@ button.border-red-bt{
 	font-weight: $regular;
 	flex-grow: 1;
 	color: $primary;
+
+	@include width-below(500px){
+		margin-left: 20px;
+	}
 
 	h1{
 		@extend %h1;
@@ -417,7 +423,13 @@ button.border-red-bt{
 
 .user-infos-details-wrapper{
 	display: inline-flex;
+	flex-wrap: wrap;
 	align-items: center;
+
+	.bt{
+		margin-top: $padding/2;
+		margin-bottom: $padding/2;
+	}
 }
 
 .birthday-infos{
@@ -596,18 +608,29 @@ animation: appear 1s cubic-bezier(.68,-0.25,.27,1.25) .3s forwards, disapear 1s 
 }
 
 .return-profil{
-	position: fixed;
-	background-color: red;
-	top: $padding;
-	right: $padding;
-	z-index: 1000;
 
-	@include blob(575px, 350px, $primary);
+	@include width-above(950px){
 
-	&::after{
 		position: fixed;
-		top:-200px;
-		right: -200px;
+		background-color: red;
+		top: $padding;
+		right: $padding;
+		z-index: 1000;
+
+		@include blob(575px, 350px, $primary);
+
+		&::after{
+			position: fixed;
+			top:-200px;
+			right: -200px;
+		}
+	}
+
+	@include width-below(950px){
+		background-color: $primary;
+		padding:$padding/2 $padding;
+		display: flex;
+		justify-content: flex-end;
 	}
 }
 

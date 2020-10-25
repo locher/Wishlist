@@ -2,17 +2,23 @@
 	padding-top: 75px;
 	padding-bottom: 75px;
 
-	@include blob(40vw,110vh,$primary);
+	@include width-above(700px){
+		@include blob(40vw,110vh,$primary);
 
-	&::after{
-		bottom: -5vh;
-		right: -30vw;
-		position: fixed;
+		&::after{
+			bottom: -5vh;
+			right: -30vw;
+			position: fixed;
+		}
 	}
 
-	section{
-		max-width: 60vw;
+	@include width-above(800px){
+		section{
+			max-width: 60vw;
+		}
 	}
+
+
 
 	h2{
 		margin-left: 0;
@@ -33,6 +39,10 @@
 
 .delete-account-form{
 	margin-top: $padding;
+
+	@include width-below(700px){
+		text-align:center;
+	}
 }
 
 .message{

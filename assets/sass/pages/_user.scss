@@ -73,7 +73,13 @@
 	min-height: 100vh;
 	width: 60vw;
 
-	.overlay{
+	@include width-below(750px){
+		width: 100vw;
+		background-color: $primary;
+	}
+
+	@include width-above(750px){
+			.overlay{
 		transition: all ease .25s .5s;
 		position: fixed;
 		width:100vw;
@@ -83,6 +89,9 @@
 		background-color: rgba($white, .85);
 		z-index: 10;
 	}
+	}
+
+
 
 	&.closed{
 		opacity: 0;
@@ -96,15 +105,18 @@
 		}
 	}
 
-	@include blob(100vw, 150vh, $primary);
+	@include width-above(750px){
+		@include blob(100vw, 150vh, $primary);
 		
-	&::after{
-		position:absolute;
-		right: -20vw;
-		top: 50%;
-		transform: translateY(-50%);
-		z-index: 10;
+		&::after{
+			position:absolute;
+			right: -20vw;
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: 10;
+		}
 	}
+
 
 	.form-wrapper{
 		margin-top: auto;
@@ -117,6 +129,10 @@
 		position: relative;
 		z-index: 110;
 		width: 80%;
+
+		@include width-below(500px){
+			width: 100%;
+		}
 	}
 
 	h2{
