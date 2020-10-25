@@ -1,6 +1,7 @@
 {% extends "base.twig" %}
 
 {% block body_class %}connected-user-profil{% endblock %}
+{% block title %}{{ currentUser.infos.name|e }}{% endblock %}
 
 {% block content %}
 
