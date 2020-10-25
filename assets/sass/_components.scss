@@ -466,8 +466,9 @@ button.border-red-bt{
 
 .response{
 	transition: all ease .5s;
+	padding: $padding;
 	text-align: center;
-	color: $primary;
+	color: $white;
 	font-weight: $medium;
 	position: fixed;
 	left: 50%;
@@ -475,9 +476,8 @@ button.border-red-bt{
 	width: 100%;
 	z-index: 10;
 	font-size: 2rem;
-	background-color: $white;
+	background-color: $primary;
 	border-radius: 10px;
-	border: 5px solid $primary;
 	bottom:-100%;
 
 	&::after{

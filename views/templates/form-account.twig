@@ -6,7 +6,7 @@
 
 	<div class="wrapper">
 
-	<section class="background white-background">
+	<section class="background white-background title-group">
 		<h1>Compte</h1>
 		<h2>{{ content.title }}</h2>
 	</section>
@@ -164,29 +164,33 @@
 
 		{% if mode == 'edit' %}
 
-			<form action="form/delete-account.php" method="POST" id="delete-confirmation">
+			<form action="form/delete-account.php" method="POST" id="delete-confirmation" class="delete-account-form">
 
 				<input type="hidden" name="userID" value="{{ user.ID }}">
 				<input type="hidden" name="userName" value="{{ user.name|e }}">
 
-				<div class="bt-group">
-					<button class="bt red-bt" type="button">
-						Supprimer ce compte
-					</button>
-				</div>
+				<button class="bt red-bt" type="button" id="delete-account">
+					Supprimer ce compte
+				</button>
 
-				<div class="background primary-background message">
+				<div class="background primary-background message hide">
 
-					<p>Supprimer <strong>{{ user.name|e }}</strong> ?</p>
+					<div class="wrapper">
+
+					<h3>Supprimer <strong>{{ user.name|e }}</strong> ?</h3>
 					<p>Toutes ses informations et ses cadeaux associés seront définitivement supprimés !</p>
 					<div class="bt-group">
-						<button class="bt border-white-bt" type="button">
-						Non, annuler
-					</button>
+						<button class="bt border-white-bt" type="button" id="abort-delete">
+							Non, annuler
+						</button>
 						<button type="submit" class="bt red-bt">Oui, supprimer</button>
 					</div>
 
+					</div>
+
 				</div>
+
+				
 
 			</form>
 

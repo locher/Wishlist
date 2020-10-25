@@ -30,5 +30,16 @@ if (isset($_GET['src']) && isset($_GET['user']) && $_GET['user'] != '') {
     }
 }
 
+/////////////////////////////////////////
+// FORM MESSAGES
+/////////////////////////////////////////
+
+//Delete account
+if (isset($_GET['src']) && isset($_GET['user']) && $_GET['src'] == 'DeleteAccountOk' && $_GET['user'] != '') {
+    $context['message']['object'] = filter_var($_GET['user'], FILTER_SANITIZE_STRING);
+    $context['message']['prefixe'] = 'Le compte';
+    $context['message']['suffixe'] = 'a bien été supprimé !';
+}
+
 // Render
 echo $twig->render('templates/frontpage.twig', $context);

@@ -26,7 +26,38 @@
 		}
 	}
 
-	form{
-		margin-top: 75px;
+	.title-group{
+		margin-bottom: 75px;
+	}
+}
+
+.delete-account-form{
+	margin-top: $padding;
+}
+
+.message{
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	background-color: $primary;
+	padding-top: $padding;
+	padding-bottom: $padding;
+	text-align: center;
+
+	p, h3{
+		color: $white;
+	}
+
+	h3{
+		font-family: $title-font;
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+
+	p{
+		font-size: 1.5rem;
+		margin-bottom: $padding;
 	}
 }

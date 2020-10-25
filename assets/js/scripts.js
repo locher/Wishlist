@@ -54,8 +54,19 @@ $(document).ready(function() {
 	////////////////////////////////
 	// Edit user
 	////////////////////////////////
+
 	$('#child-account').on('click', function(){
 		$('#choiceParent').toggleClass('hide');
+	});
+
+	$('#delete-account').on('click', function(){
+		$(this).hide();
+		$('.message').toggleClass('hide');
+	});
+
+	$('#abort-delete').on('click', function(){
+		$('.message').toggleClass('hide');
+		$('#delete-confirmation').find('#delete-account').show();
 	});
 
 });

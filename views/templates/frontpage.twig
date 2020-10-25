@@ -31,22 +31,8 @@
 
 	</div>
 
-
-	{% if pagetype is not empty %}
-
-		<div class="primary-background">
-
-			{% if pagetype.type == 'creation' %}
-				<p><strong>{{ page.type.user }}</strong> a bien été ajouté(e) !</p>
-				<p>Bienvenue dans la famille ! :)</p>
-			{% endif %}
-
-			{% if pagetype.type == 'delete' %}
-				<p><strong>{{ page.type.user }}</strong> a bien été supprimé(e).</p>
-			{% endif %}
-
-		</div>
-
+	{% if message %}
+	{% include 'template-parts/form-message.twig' %}
 	{% endif %}
 
 {% endblock content %}

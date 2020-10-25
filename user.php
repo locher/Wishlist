@@ -163,6 +163,13 @@ if (isset($_GET['statut']) && isset($_GET['gift']) && $_GET['statut'] == 'giftUp
     $context['message']['suffixe'] = 'a bien été modifié !';
 }
 
+//Edit account
+if (isset($_GET['src']) && isset($_GET['user']) && $_GET['src'] == 'EditAccountOk' && $_GET['user'] != '') {
+    $context['message']['object'] = getUserInfo(filter_var($_GET['user'], FILTER_SANITIZE_NUMBER_INT))->name;
+    $context['message']['prefixe'] = 'Le compte';
+    $context['message']['suffixe'] = 'a bien été modifié !';
+}
+
 
 
 /////////////////////////////////////////
