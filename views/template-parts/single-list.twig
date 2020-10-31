@@ -1,0 +1,52 @@
+<li class="list_elt single-gift single-list">
+
+	<div class="gift-content">
+
+		<div class="gift-header">
+
+			<h3>{{ gift.title|e }}</h3>
+			
+			{% if gift.link is not empty %}
+			
+			<a href="{{ gift.link|e }}" target="_blank" class="bt border-pink-bt tiny-bt">Voir</a>
+			
+			{% endif %}
+
+		</div>
+		
+		{% if gift.description is not empty %}
+
+		<div class="gift-description">
+			<p>{{ gift.description|e }}</p>
+		</div>
+		
+		{% endif %}
+
+		{# Gift edit #}
+
+		{% if permissions.owner == true or permissions.parent == true %}
+
+		<div class="gift-edit">
+				<button type="button" class="bt border-red-bt tiny-bt bt-delete-gift">Supprimer</button>
+
+				<button type="button" class="bt border-white-bt tiny-bt edit-gift" data-giftid="{{ gift.ID }}" data-giftlist="{{ gift.is_list }}">Modifer</button>
+		</div>
+
+		<form action="form/delete-gift.php" method="post" class="overlay-delete-gift">
+
+			<div class="wrapper-overlay">
+				<p class="title-delete"><strong>Voulez-vous vraiment supprimer</strong> <br>{{ gift.title|e }} ?
+				</p>
+
+				<input type="hidden" name="giftID" value="{{ gift.ID }}">
+				<input type="hidden" name="userID" value="{{ currentUser.infos.ID }}">
+				<button type="button" class="bt border-white-bt tiny-bt close-delete-bt-overlay">Non, annuler</button>
+				<button type="submit"class="bt border-red-bt tiny-bt">Oui, supprimer</button>
+			</div>
+
+		</form>
+
+		{% endif %}
+
+	</div>
+</li>

@@ -21,13 +21,19 @@ $(document).ready(function() {
 		var giftName = $(this).parent().parent().find('h3').text();
 		var giftUrl = $(this).parent().parent().find('a').attr('href');
 		var giftDescription = $(this).parent().parent().find('.gift-description p').text();
-		console.log(giftID);
+		var isList = $(this).attr('data-giftlist');
 		
 		$('.edit-gift-form').find('.gift-form').toggleClass('closed');
 		$('.edit-gift-form').find('[name="designation"]').val(giftName);
 		$('.edit-gift-form').find('[name="link"]').val(giftUrl);
 		$('.edit-gift-form').find('[name="description"]').val(giftDescription);
 		$('.edit-gift-form').find('[name="currentGift"]').val(giftID);
+
+		if(isList == 1){
+			$('.edit-gift-form').find('[name="isList"]').attr('checked', "checked");
+		}else{
+			$('.edit-gift-form').find('[name="isList"]').removeAttr('checked', 'false');
+		}
 	});
 
 	//Clean form when close modal

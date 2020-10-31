@@ -124,6 +124,25 @@ button.border-red-bt{
 	}
 }
 
+.single-list .gift-content{
+	background-color: $white;
+
+	h3{
+		color: $primary;
+	}
+
+	.gift-edit .border-white-bt{
+		border-color: $primary;
+		color: $primary;
+	}
+
+	.gift-header .border-pink-bt{
+		color: $secondary;
+	}
+
+
+}
+
 // Modale suppression
 
 .single-gift{
@@ -278,6 +297,8 @@ button.border-red-bt{
 .gift-header{
 	display: flex;
 	align-items: center;
+	margin-top: auto;
+	margin-bottom: auto;
 	
 	h3{
 		font-size: 1.7rem;
