@@ -36,8 +36,6 @@
 			<textarea height=3 name="description"></textarea>
 		</div>
 
-		{#
-
 		<div class="wrap-form wrap-form-borderless" id="switch-child">
 			<div class="label-wrap">
 				<span class="fake-label">Est-ce une liste ?</span>
@@ -46,8 +44,8 @@
 			
 
 			<div class="switch">
-				<input type="checkbox" id="isList" name="isList" value="true">
-				<label for="isList" class="">
+				<input type="checkbox" id="{{mode}}isList" name="isList">
+				<label for="{{mode}}isList" class="">
 					<span class="switch-option1">Oui</span>
 					<span class="switch-option2">Non</span>
 				</label>
@@ -55,7 +53,6 @@
 
 		</div>
 
-		#}
 
 		<div class="bt-wrapper">
 			<input type="hidden" name="userID" value="{{ currentUser.infos.ID }}">

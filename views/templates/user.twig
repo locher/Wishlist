@@ -35,6 +35,30 @@
 		{% endif %}
 
 
+		{# Users other lists #}
+
+		{% if currentUser.lists is not empty %}
+
+		<section class="list-lists">
+
+			<h2>Mes listes externes</h2>
+
+			<ul class="grid">
+				
+				{% for list in currentUser.lists %}
+			
+					{% set vars = {'userID' : currentUser.infos.id , 'gift' : list } %}
+					{% include 'template-parts/single-list.twig' with vars %}
+				
+				{% endfor %}
+
+			</ul>
+
+		</section>
+		
+		{% endif %}
+
+
 		{# Users gifts #}
 
 		{% if currentUser.gifts is not empty %}
@@ -103,7 +127,7 @@
 	</div>
 
 	<div class="edit-gift-form">
-		{% include 'template-parts/form-gift.twig' with {'action':'form/edit-gift.php', 'button':'Modifier ce cadeau', 'title':'Modifier ce cadeau'} %}
+		{% include 'template-parts/form-gift.twig' with {'action':'form/edit-gift.php', 'button':'Modifier ce cadeau', 'title':'Modifier ce cadeau', 'mode' : 'edit'} %}
 	</div>
 
 	{% endif %}

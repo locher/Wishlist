@@ -72,7 +72,8 @@ function getGifts($userID, $nbGifts = 0){
 			"reservationUserID" => $export_gifts['reservationUserID'],
 			"isReserved" => $export_gifts['isReserved'],
 			"reservationUserID" => $export_gifts['reservationUserID'],
-			"reservationGuestName" => $export_gifts['reservationGuestName']
+			"reservationGuestName" => $export_gifts['reservationGuestName'],
+			"is_list" => $export_gifts['isList']
 
 		];
 	}
@@ -163,11 +164,12 @@ function is_parent($parentID, $childID){
 }
 
 //Autres
-
+ 	
 setlocale(LC_TIME, 'fr_FR'); 
+date_default_timezone_set('Europe/Paris');
 
 function birthdayDate($date){
-	return strftime('%e %B %Y', strtotime($date));
+	return utf8_encode(strftime('%e %B %Y', strtotime($date)));
 }
 
 function age($date){

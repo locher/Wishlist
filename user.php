@@ -104,6 +104,22 @@ if ($currentUserChildrenList != null) {
 // USER GIFTS
 /////////////////////////////////////////
 
+
+function filterLists($value){
+    return ($value['is_list'] == 1);
+}
+
+function filterGifts($value){
+    return ($value['is_list'] == 0);
+}
+
+// Lists
+$currentUserGiftsLists = array_filter($currentUserGifts, 'filterLists');
+
+//Gifts
+$currentUserGifts = array_filter($currentUserGifts, 'filterGifts');
+
+
 //If the gift is reserved, attached informations of the reserv-er
 foreach ($currentUserGifts as $key=>$gift){
    
@@ -188,6 +204,7 @@ if(isset($logedInUser)){
 
 $context['currentUser']['infos'] = $currentUserInfos;
 $context['currentUser']['gifts'] = $currentUserGifts;
+$context['currentUser']['lists'] = $currentUserGiftsLists;
 
 if (isset($childrenListInfos)) {
     $context['children'] = $childrenListInfos;
