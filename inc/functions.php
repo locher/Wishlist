@@ -167,7 +167,7 @@ function is_parent($parentID, $childID){
 setlocale(LC_TIME, 'fr_FR'); 
 
 function birthdayDate($date){
-	return strftime('%e %B %Y', strtotime($date));
+	return utf8_encode(strftime('%e %B %Y', strtotime($date)));
 }
 
 function age($date){
