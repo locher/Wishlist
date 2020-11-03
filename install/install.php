@@ -100,6 +100,9 @@ if(isset($_POST['dbname']) && $_POST['dbname'] != '' && isset($_POST['dbuser']) 
 	$saveBDD = $bdd->prepare($create_structure);
 
 	if($saveBDD->execute()){
+		//Delete install folder
+		system("rm -rf ".escapeshellarg('../install'));
+		//Back to index
 		header("location:../");
 	}else{
 		header("location:install-form.php?error=bdd");
