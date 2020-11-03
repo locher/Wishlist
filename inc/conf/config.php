@@ -1,25 +1,12 @@
 <?php 
 
-$config = array(
-    "db" => array(
-	  "dbname" => "KDO_herr",
-	  "username" => "root",
-	  "password" => "root",
-	  "host" => "localhost"
-    ),
-	
-	"db_tables" => array(
-		"db_users" => "KDO_peoples",
-		"db_gifts" => "KDO_gifts",
-		"db_parents" => "KDO_parents"
-		
-	),
-    "urls" => array(
-        "baseUrl" => "http://localhost:8888/Wishlist19"
-    )
-);
+include('db.php');
 
-define("CONFIG", $config);
+if(isset($config)){
+	define("CONFIG", $config);
+}else{
+	header("location:install/install-form.php");
+}
 
 //Connexion BDD
 

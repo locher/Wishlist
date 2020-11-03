@@ -79,6 +79,21 @@
 			</ul>
 
 		</section>
+
+		{% else %}
+
+			{% if permissions.owner == true %}
+
+			<section class="no-gifts">
+				<p>Pas encore de cadeau !</p>
+
+				<div class="bt-wrapper">
+					<button type="button" class="bt color-bt" id="add-gift-bt">Ajouter mon premier cadeau</button>
+				</div>
+
+			</section>
+
+			{% endif %}
 		
 		{% endif %}
 

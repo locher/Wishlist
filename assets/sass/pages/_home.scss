@@ -17,9 +17,11 @@
 	.list-connection{
 		margin-top: $padding;
 		margin-bottom: $padding;
+		min-width: 400px;
 
 		@include width-below(800px){
 			width: 100%;
+			min-width: 0;
 		}
 
 	}
