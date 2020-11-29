@@ -6,7 +6,7 @@ require_once 'inc/header.php';
 // SESSION & PERMISSIONS 
 /////////////////////////////////////////
 
-if (isset($_GET['user']) && (!isset($_SESSION['userID']) && !isset($_SESSION['guestName']))) {
+if (isset($_POST['connect']) && isset($_GET['user']) && (!isset($_SESSION['userID']) && !isset($_SESSION['guestName']))) {
     $_SESSION['userID'] = filter_var($_GET['user'], FILTER_SANITIZE_NUMBER_INT);
 }
 
