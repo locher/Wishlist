@@ -37,6 +37,12 @@
 
 .home-header{
 
+	@include width-below(700px){
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
 
 	@include width-above(800px){
 		margin-right: 70px;
