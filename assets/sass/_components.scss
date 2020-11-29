@@ -560,7 +560,7 @@ animation: appear 1s cubic-bezier(.68,-0.25,.27,1.25) .3s forwards, disapear 1s 
 	height: 70px;
 	width: 70px;
 	background-color: $secondary;
-	font-size: 5rem;
+	font-size: 4rem;
 	color: $white;
 	text-decoration: none;
 	position: fixed;
@@ -568,6 +568,7 @@ animation: appear 1s cubic-bezier(.68,-0.25,.27,1.25) .3s forwards, disapear 1s 
 	right: $padding;
 	border:0;
 	cursor: pointer;
+	padding: 0;
 
 	animation-name: morph;
 	animation-duration: 6s;
@@ -606,6 +607,7 @@ animation: appear 1s cubic-bezier(.68,-0.25,.27,1.25) .3s forwards, disapear 1s 
 	z-index: 200;
 	border:0;
 	cursor: pointer;
+	padding: 0;
 
 	animation-name: morph;
 	animation-duration: 20s;
