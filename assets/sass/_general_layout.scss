@@ -33,6 +33,8 @@ body::before{
 	max-width: 1300px;
 	margin-right:auto;
 	margin-left: auto;
+	position: relative;
+	z-index: 2;
 
 	@include width-below(500px){
 		padding-left: $padding/2;

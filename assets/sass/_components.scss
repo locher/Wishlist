@@ -564,6 +564,7 @@ animation: appear 1s cubic-bezier(.68,-0.25,.27,1.25) .3s forwards, disapear 1s 
 	color: $white;
 	text-decoration: none;
 	position: fixed;
+	z-index: 100;
 	bottom: $padding;
 	right: $padding;
 	border:0;
