@@ -76,6 +76,8 @@
 	@include width-below(750px){
 		width: 100vw;
 		background-color: $primary;
+		bottom: 0;
+		overflow-y: scroll;
 	}
 
 	@include width-above(750px){
