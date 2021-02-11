@@ -502,7 +502,7 @@ button.border-red-bt{
 	text-align: center;
 	color: $white;
 	font-weight: $medium;
-	position: fixed;
+	position: fixed !important;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 100%;
