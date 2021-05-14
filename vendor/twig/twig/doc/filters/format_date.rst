@@ -2,7 +2,7 @@
 ===============
 
 The ``format_date`` filter formats a date. It behaves in the exact same way as
-the ``format_datetime`` filter, but without the time.
+the :doc:`format_datetime<format_datetime>` filter, but without the time.
 
 .. note::
 
@@ -11,10 +11,15 @@ the ``format_datetime`` filter, but without the time.
 
     .. code-block:: bash
 
-        $ composer req twig/intl-extra
+        $ composer require twig/intl-extra
 
-    Then, use the ``twig/extra-bundle`` on Symfony projects or add the extension
-    explicitly on the Twig environment::
+    Then, on Symfony projects, install the ``twig/extra-bundle``:
+
+    .. code-block:: bash
+
+        $ composer require twig/extra-bundle
+
+    Otherwise, add the extension explicitly on the Twig environment::
 
         use Twig\Extra\Intl\IntlExtension;
 
@@ -27,3 +32,5 @@ Arguments
 * ``locale``: The locale
 * ``dateFormat``: The date format
 * ``pattern``: A date time pattern
+* ``timezone``: The date timezone
+* ``calendar``: The calendar (Gregorian by default)
