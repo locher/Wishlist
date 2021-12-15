@@ -13,7 +13,7 @@
 
 		<div class="gift-header">
 
-			<h3>{{ gift.title|e }}</h3>
+			<h3>{{ gift.title|raw }}</h3>
 			
 			{% if gift.link is not empty %}
 			
@@ -26,7 +26,7 @@
 		{% if gift.description is not empty %}
 
 		<div class="gift-description">
-			<p>{{ gift.description|e }}</p>
+			<p>{{ gift.description|raw }}</p>
 		</div>
 		
 		{% endif %}
