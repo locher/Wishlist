@@ -51,7 +51,6 @@ if(isset($designation) && $designation != '' && isset($currentGift) && $currentG
 	$saveBDD->bindParam(':giftID', $currentGift, PDO::PARAM_STR);
 
 	if($saveBDD->execute()){
-		echo $userID;
 		header("location:../user.php?user=".$userID."&statut=giftUpdated&gift=".$currentGift);
 	}else{
 		echo "Il y a eu un soucis, déso :(";

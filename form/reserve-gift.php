@@ -52,7 +52,6 @@ if(isset($giftID) && isset($sessionUser) && $isguest == false){
 // Vérifier si tout c'est bien enregistré et messages
 
 if($isBDDsuccess == true){
-	echo 'Réussite';
 	header("location:../user.php?user=".$_POST['userID']."&statut=giftReserved&gift=".$giftID);
 	
 }else{

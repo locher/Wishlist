@@ -50,7 +50,7 @@ if(isset($designation) && $designation != ''){
 
 	if($saveBDD->execute()){
 		$currentGift = $bdd->lastInsertId();
-		header("location:../user.php?user=".$userID."&statut=giftAdded&gift=".$currentGift);
+		header("Location:../user.php?user=".$userID."&statut=giftAdded&gift=".$currentGift);
 	}else{
 		echo "Il y a eu un soucis, déso :(";
 	}

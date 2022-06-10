@@ -105,7 +105,6 @@ if($isChild == true){
 if($isChild == true){
 
 	if($isBDDsuccess == true && $isBDDsuccessChild == true){
-		echo 'Réussite avec enfant';
 		header("location:../user.php?user=".$currentUser);
 		
 	}else{
@@ -115,7 +114,6 @@ if($isChild == true){
 	
 }else{
 	if($isBDDsuccess == true){
-		echo 'Réussite sans enfant';	
 		header("location:../user.php?user=".$currentUser);
 		
 	}else{

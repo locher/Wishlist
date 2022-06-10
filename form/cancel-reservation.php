@@ -24,10 +24,8 @@ if(isset($giftID)){
 // Vérifier si tout c'est bien enregistré et messages
 
 if($isBDDsuccess == true){
-	echo 'Réussite';
-	header("location:../user.php?user=".$_POST['userID']."&statut=giftUnreserved&gift=".$giftID);
-	
+	header("Location:../user.php?user=".$_POST['userID']."&statut=giftUnreserved&gift=".$giftID);
 }else{
 	echo 'Echec';
 }
-	
+?>
