@@ -1,0 +1,37 @@
+html {
+}
+
+body {
+  font-size: var(--p-font-size);
+  font-family: var(--font-primary), 'Arial', sans-serif;
+  font-weight: 400;
+  background-color: var(--color-grey--light);
+  color: var(--color-primary);
+}
+
+.wrapper {
+  width: 100%;
+  max-width: min(1300px, 90vw);
+  padding-left: var(--gap);
+  padding-right: var(--gap);
+  margin-left: auto;
+  margin-right: auto;
+
+  &--tiny {
+    max-width: max(500px, calc(90vw / 12 * 10));
+  }
+
+  p {
+    max-width: 90rem;
+  }
+}
+
+.global-wrapper {
+  overflow-x: clip;
+  padding-top: var(--padding-global);
+  padding-bottom: var(--padding-global);
+}
+
+.v-hidden {
+  visibility: hidden;
+}

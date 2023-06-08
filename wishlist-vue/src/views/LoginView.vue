@@ -1,0 +1,72 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+import UserList from '@/components/UserList.vue'
+import { getUsers } from '@/apis/users'
+import Btn from "@/components/Btn.vue";
+
+const userList = ref([])
+
+onMounted(async () => {
+  try {
+    // Get all users
+    userList.value = await getUsers({ children: 0 })
+  } catch (error) {
+    console.error(error)
+  }
+})
+</script>
+
+<template>
+  <main>
+    <div class="wrapper-home wrapper">
+      <section class="home-header">
+        <h1>Hello</h1>
+        <p class="h1-subtitle">Pas de compte ?</p>
+
+        <div class="multi-button">
+          <Btn>Me connecter en invité</Btn>
+          <Btn border="border">Ajouter un compte</Btn>
+        </div>
+      </section>
+
+      <section class="list-connection">
+        <UserList :users="userList" type="connection" link-title="Me connecter" />
+      </section>
+    </div>
+  </main>
+</template>
+
+<style lang="scss">
+main {
+  display: flex;
+  min-height: 100vh;
+
+  .list-connection {
+    margin-top: var(--padding-global);
+    margin-bottom: var(--padding-global);
+    min-width: 400px;
+
+    @media (width < 800px) {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+}
+
+.wrapper-home {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.home-header {
+  h1 {
+    font-size: clamp(4rem, 15vw, 14rem);
+    font-family: var(--font-secondary);
+  }
+
+  .h1-subtitle {
+    font-weight: bold;
+  }
+}
+</style>

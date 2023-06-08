@@ -1,0 +1,32 @@
+:root {
+  // Colors
+  --color-primary: #202859;
+  --color-secondary: #d56ef6;
+  --color-white: #fff;
+  --color-black: #292929;
+  --color-grey: #9b9aa3;
+  --color-grey--light: #f9f9fc;
+  --color-red: #e36a6a;
+
+  //Fonts
+  --font-heading: 'Roboto Mono';
+  --font-text: 'Lato', sans-serif;
+
+  --font-primary: var(--font-text);
+  --font-secondary: var(--font-heading);
+
+  //Font size
+  --p-font-size: clamp(1.5rem, calc(0.3rem + 1vw), 2.5rem);
+  --h1-font-size: clamp(3.2rem, calc(1rem + 4vw), 13rem);
+  --h2-font-size: clamp(2.5rem, calc(1rem + 2.5vw), 7rem);
+  --h3-font-size: clamp(2.1rem, calc(1rem + 1vw), 3rem);
+
+  //Margins
+  --margin-fluid: clamp(4rem, calc(1rem + 7vh), 10rem);
+  --margin-fluid--tiny: clamp(2rem, calc(1rem + 4vh), 7rem);
+  --padding-global: calc(max(3vw, 2rem));
+  --gap: 20px;
+
+  //Border
+  --border-radius: 10px;
+}
