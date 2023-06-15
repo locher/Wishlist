@@ -23,24 +23,24 @@ export default {
 
       <div class="user-infos-details-wrapper">
         <div class="user-infos-details">
-          <div class="birthday-infos">
+          <div v-if="user.birthdayDate" class="birthday-infos">
             <IconBaby />
             <span class="birthday">{{ user.birthdayDate }}</span>
             <span class="age">{{ user.age }}</span>
           </div>
 
           <div class="size-infos">
-            <div class="wrapper-size" title="Taille haut">
+            <div v-if="user.size_top" class="wrapper-size" title="Taille haut">
               <IconTshirt />
               <span class="top">{{ user.size_top }}</span>
             </div>
 
-            <div class="wrapper-size" title="Taille pantalon">
+            <div v-if="user.size_bottom" class="wrapper-size" title="Taille pantalon">
               <IconPant />
               <span class="bottom">{{ user.size_bottom }}</span>
             </div>
 
-            <div class="wrapper-size" title="Taille chaussure">
+            <div v-if="user.size_feet" class="wrapper-size" title="Taille chaussure">
               <IconShoe />
               <span class="feet">{{ user.size_feet }}</span>
             </div>

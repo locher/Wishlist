@@ -1,7 +1,7 @@
 <script>
 import Btn from '@/components/Btn.vue'
 import { ref } from 'vue'
-import { useAuthStore } from '@/stores/login'
+import { useAuthStore } from '@/stores/auth'
 
 export default {
   name: 'UserCard',
@@ -35,11 +35,13 @@ export default {
         const authStore = useAuthStore()
         authStore.setCurrentUser(this.user)
 
-        //redirect to page
+        //redirect to me page
         this.$router.push('/me')
       } else {
         // Actions when it's a link to user page
-        this.$router.push('/user')
+
+        //redirect to user page
+        this.$router.push(`/user/${this.user?.id}`)
       }
     }
   },

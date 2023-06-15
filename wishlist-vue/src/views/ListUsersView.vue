@@ -5,6 +5,7 @@ import { useAuthStore } from '@/stores/auth'
 import UserDetails from '@/components/UserDetails.vue'
 import GiftList from '@/components/GiftList.vue'
 import { getGiftsPerUserId } from '@/apis/gifts'
+import UserList from "@/components/UserList.vue";
 import {getUsers} from "@/apis/users";
 
 const store = useAuthStore()
@@ -42,10 +43,7 @@ onMounted(async () => {
 
 <template>
   <div class="wrapper">
-    <UserDetails v-if="user" :user="user" />
-    <GiftList :gifts="userGifts" :is-admin="true">
-        <h2>Mes cadeaux</h2>
-    </GiftList>
+    <UserList :users="otherUsers" link-title="Voir la liste" />
   </div>
 </template>
 

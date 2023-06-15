@@ -22,3 +22,14 @@ export async function getUsers(param = {}) {
     throw error
   }
 }
+
+export async function getUser(id) {
+  try {
+    const response = await fetch(BASE_API + '/users/' + id)
+    const data = await response.json()
+    return new User(data[0])
+  } catch (error) {
+    console.error(ERROR_MESSAGE, error)
+    throw error
+  }
+}

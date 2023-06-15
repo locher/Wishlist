@@ -8,6 +8,11 @@ export default {
     gifts: {
       type: Array,
       required: true
+    },
+    isAdmin: {
+        type: Boolean,
+        required: false,
+        default: false
     }
   }
 }
@@ -17,7 +22,7 @@ export default {
   <section class="">
     <slot></slot>
     <div class="list-gifts">
-      <Gift v-for="gift in gifts" v-key="gift.key" :gift="gift" />
+      <Gift v-for="gift in gifts" :key="gift.id" :gift="gift" :isAdmin="isAdmin" />
     </div>
   </section>
 </template>

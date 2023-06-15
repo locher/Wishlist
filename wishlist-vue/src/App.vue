@@ -1,16 +1,25 @@
 <script setup>
-import { RouterView } from 'vue-router'
+  import { RouterView, useRoute } from 'vue-router'
+  import Navigation from "@/components/Navigation.vue"
+  import { computed } from "vue";
+
+  // Vérifie si on est sur la home
+  const isRootPage = computed(() => {
+      return useRoute().path !== '/'
+  })
+
 </script>
 
 <template>
-  <header>
+
+  <header v-if="isRootPage">
     <div class="wrapper">
-      <!--      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>-->
+        <Navigation></Navigation>
     </div>
   </header>
 
-  <RouterView />
+  <main>
+      <RouterView />
+  </main>
+
 </template>

@@ -13,11 +13,15 @@ class User {
   }
 
   get birthdayDate() {
+    if (!this.birthday_date) return null;
+
     let optionsDate = { year: 'numeric', month: 'long', day: 'numeric' }
     return new Date(this.birthday_date).toLocaleDateString('fr-fr', optionsDate)
   }
 
   get age() {
+    if (!this.birthday_date) return null;
+
     const date = new Date(this.birthday_date)
     const now = new Date()
     return Math.floor((now - date) / (1000 * 60 * 60 * 24 * 365.25))
