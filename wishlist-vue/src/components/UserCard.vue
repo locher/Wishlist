@@ -40,12 +40,12 @@ const changePage = () => {
         auth.login(props.user)
 
         //redirect to me page
-        router.replace('/me')
+        router.replace({ name: 'me'} )
     } else {
         // Actions when it's a link to user page
 
         //redirect to user page
-        router.replace(`/user/${this.user?.id}`)
+        router.push({name: 'user', params:{ id: props.user?.id }})
     }
 }
 

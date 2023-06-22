@@ -1,21 +1,18 @@
-<script>
+<script setup>
 import Gift from '@/components/Gift.vue'
 
-export default {
-  name: 'GiftList',
-  components: { Gift },
-  props: {
+const props = defineProps({
     gifts: {
-      type: Array,
-      required: true
+        type: Array,
+        required: true
     },
     isAdmin: {
         type: Boolean,
         required: false,
         default: false
     }
-  }
-}
+})
+
 </script>
 
 <template>

@@ -22,11 +22,6 @@ const router = createRouter({
       beforeEnter: loginBeforeEnter
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
-    },
-    {
       path: '/user/:id',
       name: 'user',
       component: () => import('../views/UserView.vue')

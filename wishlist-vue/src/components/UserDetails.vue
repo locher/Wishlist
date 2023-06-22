@@ -1,19 +1,16 @@
-<script>
+<script setup>
 import IconBaby from '@/components/icons/IconBaby.vue'
 import IconTshirt from '@/components/icons/IconTshirt.vue'
 import IconPant from '@/components/icons/IconPant.vue'
 import IconShoe from '@/components/icons/IconShoe.vue'
 
-export default {
-  name: 'UserDetails',
-  components: { IconShoe, IconPant, IconTshirt, IconBaby },
-  props: {
+const props = defineProps({
     user: {
-      type: Object,
-      required: true
+        type: Object,
+        required: true
     }
-  }
-}
+})
+
 </script>
 
 <template>

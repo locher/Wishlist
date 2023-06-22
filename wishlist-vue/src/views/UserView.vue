@@ -10,17 +10,16 @@ import {useAuthStore} from "@/stores/auth";
 
 const userGifts = ref([])
 const otherUsers = ref([])
-const route = useRoute()
 const user = ref([])
 
-// Get connected user to exclude him in users list
+const route = useRoute()
 const authStore = useAuthStore()
 
 const loadData = async () => {
     try{
         window.scrollTo(0,0)
 
-        // Get user
+        // Get displayed user
         user.value = await getUser(route.params?.id);
 
         // Get all gifts

@@ -4,7 +4,7 @@ import { useAuthStore } from '@/stores/auth'
 import UserDetails from '@/components/UserDetails.vue'
 import GiftList from '@/components/GiftList.vue'
 import { getGiftsPerUserId } from '@/apis/gifts'
-import {getUsers} from "@/apis/users";
+import { getUsers } from "@/apis/users";
 
 const store = useAuthStore()
 const userGifts = ref([])

@@ -3,7 +3,7 @@
   import Navigation from "@/components/Navigation.vue"
   import { computed } from "vue";
 
-  // Vérifie si on est sur la home
+  // Vérifie si on est sur la home pour afficher ou non la nav
   const isRootPage = computed(() => {
       return useRoute().path !== '/'
   })

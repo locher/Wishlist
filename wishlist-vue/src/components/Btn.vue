@@ -1,46 +1,47 @@
-<script>
-export default{
-    props:{
-        type: {
-            type: String,
-            required: false,
-            default: 'button'
-        },
-        href: {
-            type: String,
-            required: false,
-            default: '#'
-        },
-        target: {
-            type: String,
-            required: false,
-            default: '_self'
-        },
-        border: {
-            type: Boolean,
-            required: false,
-            default: false
-        },
-        color: {
-            type: String,
-            required: false,
-            default: 'primary'
-        },
-        size: {
-            type: String,
-            required: false,
-            default: 'normal'
-        }
-    },
-    computed:{
-        btnClasses() {
-            let classes =  ['bt', `bt--${this.color}`, `bt--${this.size}`]
-            this.border && classes.push('bt--border')
+<script setup>
 
-            return classes.join(' ')
-        }
+import {computed} from "vue";
+
+const props = defineProps({
+    type: {
+        type: String,
+        required: false,
+        default: 'button'
+    },
+    href: {
+        type: String,
+        required: false,
+        default: '#'
+    },
+    target: {
+        type: String,
+        required: false,
+        default: '_self'
+    },
+    border: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
+    color: {
+        type: String,
+        required: false,
+        default: 'primary'
+    },
+    size: {
+        type: String,
+        required: false,
+        default: 'normal'
     }
-}
+})
+
+const btnClasses = computed(() =>{
+    let classes =  ['bt', `bt--${this.color}`, `bt--${this.size}`]
+    this.border && classes.push('bt--border')
+
+    return classes.join(' ')
+})
+
 
 </script>
 
