@@ -5,26 +5,29 @@ import GiftList from '@/components/GiftList.vue'
 import { getGiftsPerUserId } from '@/apis/gifts'
 import UserList from "@/components/UserList.vue";
 import {getUser, getUsers} from "@/apis/users";
-import {useRoute, useRouter} from "vue-router";
+import {useRoute} from "vue-router";
+import {useAuthStore} from "@/stores/auth";
 
 const userGifts = ref([])
 const otherUsers = ref([])
 const route = useRoute()
-const router = useRouter()
 const user = ref([])
+
+// Get connected user to exclude him in users list
+const authStore = useAuthStore()
 
 const loadData = async () => {
     try{
         window.scrollTo(0,0)
 
         // Get user
-        user.value = await getUser(route.params.id);
+        user.value = await getUser(route.params?.id);
 
         // Get all gifts
         userGifts.value = await getGiftsPerUserId(user?.value.id)
 
         // Get other users
-        otherUsers.value = await getUsers({exclude: [user?.value.id]})
+        otherUsers.value = await getUsers({exclude: [authStore.currentUser?.id, user?.value.id]})
 
     } catch(error){
         console.error(error)

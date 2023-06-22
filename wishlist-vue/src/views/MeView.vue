@@ -1,6 +1,5 @@
 <script setup>
-import { onBeforeMount, onMounted, ref } from 'vue'
-import router from '@/router'
+import { onMounted, ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import UserDetails from '@/components/UserDetails.vue'
 import GiftList from '@/components/GiftList.vue'
@@ -11,17 +10,6 @@ const store = useAuthStore()
 const userGifts = ref([])
 const user = store.currentUser
 const otherUsers = ref([])
-
-onBeforeMount(async () => {
-  try {
-    // Check if a user is connected, redirect to home if not
-    if (!store.currentUser) {
-      await router.replace('/')
-    }
-  } catch (error) {
-    console.error(error)
-  }
-})
 
 onMounted(async () => {
   try {

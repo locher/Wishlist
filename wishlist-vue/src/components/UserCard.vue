@@ -1,70 +1,60 @@
-<script>
-import Btn from '@/components/Btn.vue'
-import { ref } from 'vue'
-import { useAuthStore } from '@/stores/auth'
+<script setup>
 
-export default {
-  name: 'UserCard',
-  components: { Btn },
-  props: {
+import Btn from '@/components/Btn.vue'
+import {useRouter} from "vue-router";
+import {useAuthStore} from "@/stores/auth";
+const router = useRouter()
+
+const auth = useAuthStore()
+
+// Properties
+
+const props = defineProps({
     user: {
-      type: Object,
-      required: true
+        type: Object,
+        required: true
     },
     link: {
-      type: String,
-      required: false
+        type: String,
+        required: false
     },
     linkTitle: {
-      type: String,
-      required: false,
-      default: 'Voir'
+        type: String,
+        required: false,
+        default: 'Voir'
     },
     type: {
-      type: String,
-      required: false,
-      default: 'view'
+        type: String,
+        required: false,
+        default: 'view'
     }
-  },
-  methods: {
-    changePage() {
-      if (this.type === 'connection') {
+})
+
+// Methods
+
+const changePage = () => {
+    if (props.type === 'connection') {
         // Actions when it's a connection button (from home)
 
         //Memorize user
-        const authStore = useAuthStore()
-        authStore.setCurrentUser(this.user)
+        auth.login(props.user)
 
         //redirect to me page
-        this.$router.push('/me')
-      } else {
+        router.replace('/me')
+    } else {
         // Actions when it's a link to user page
 
         //redirect to user page
-        this.$router.push(`/user/${this.user?.id}`)
-      }
+        router.replace(`/user/${this.user?.id}`)
     }
-  },
-  setup(props) {
-    // Gestion de l'avatar
-    const avatarPath = ref(null)
-    import(`@/assets/img/avatar/avatar${props.user.picture_id}.png`)
-      .then((module) => (avatarPath.value = module.default))
-      .catch(() => {
-        avatarPath.value = null
-      })
-
-    return {
-      avatarPath
-    }
-  }
 }
+
 </script>
 
 <template>
   <div class="user-card">
     <div class="avatar-wrapper">
-      <img :src="avatarPath" alt="" />
+      <img :src="`/src/assets/img/avatar/avatar${user.picture_id}.png`" alt="" />
       <div class="svg-wrapper"></div>
     </div>
     <div class="user-card__content">

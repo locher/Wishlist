@@ -10,8 +10,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@vueuse/core": "^10.2.0",
     "pinia": "^2.0.36",
     "underscore": "^1.13.6",
+    "vite-plugin-imagemin": "^0.6.1",
     "vue": "^3.3.2",
     "vue-router": "^4.2.0"
   },

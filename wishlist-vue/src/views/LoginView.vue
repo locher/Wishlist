@@ -1,12 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import {ref, onBeforeMount} from 'vue'
 import UserList from '@/components/UserList.vue'
 import { getUsers } from '@/apis/users'
 import Btn from "@/components/Btn.vue";
 
 const userList = ref([])
 
-onMounted(async () => {
+onBeforeMount(async () => {
   try {
     // Get all users
     userList.value = await getUsers({ children: 0 })
