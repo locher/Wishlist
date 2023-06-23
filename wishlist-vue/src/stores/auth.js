@@ -9,7 +9,7 @@ export const useAuthStore = defineStore('auth', {
     login(user) {
       this.currentUser = user
     },
-    logout(){
+    logout() {
       this.currentUser = null
     }
   },

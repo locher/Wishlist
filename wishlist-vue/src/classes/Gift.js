@@ -7,6 +7,7 @@ class Gift {
     this.id_user = gift.id_user
     this.date_creation = gift.date_creation
     this.date_modification = gift.date_modification
+    this.type = gift.type
   }
 }
 

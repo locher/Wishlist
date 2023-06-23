@@ -1,8 +1,8 @@
 <script setup>
-import {ref, onBeforeMount} from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import UserList from '@/components/UserList.vue'
 import { getUsers } from '@/apis/users'
-import Btn from "@/components/Btn.vue";
+import BtnDefault from '@/components/BtnDefault.vue'
 
 const userList = ref([])
 
@@ -24,8 +24,8 @@ onBeforeMount(async () => {
         <p class="h1-subtitle">Pas de compte ?</p>
 
         <div class="multi-button">
-          <Btn>Me connecter en invité</Btn>
-          <Btn border="border">Ajouter un compte</Btn>
+          <BtnDefault>Me connecter en invité</BtnDefault>
+          <BtnDefault border="border">Ajouter un compte</BtnDefault>
         </div>
       </section>
 

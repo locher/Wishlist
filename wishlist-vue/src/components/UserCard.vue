@@ -1,8 +1,7 @@
 <script setup>
-
-import Btn from '@/components/Btn.vue'
-import {useRouter} from "vue-router";
-import {useAuthStore} from "@/stores/auth";
+import BtnDefault from '@/components/BtnDefault.vue'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 const router = useRouter()
 
 const auth = useAuthStore()
@@ -10,45 +9,44 @@ const auth = useAuthStore()
 // Properties
 
 const props = defineProps({
-    user: {
-        type: Object,
-        required: true
-    },
-    link: {
-        type: String,
-        required: false
-    },
-    linkTitle: {
-        type: String,
-        required: false,
-        default: 'Voir'
-    },
-    type: {
-        type: String,
-        required: false,
-        default: 'view'
-    }
+  user: {
+    type: Object,
+    required: true
+  },
+  link: {
+    type: String,
+    required: false
+  },
+  linkTitle: {
+    type: String,
+    required: false,
+    default: 'Voir'
+  },
+  type: {
+    type: String,
+    required: false,
+    default: 'view'
+  }
 })
 
 // Methods
 
 const changePage = () => {
-    if (props.type === 'connection') {
-        // Actions when it's a connection button (from home)
+  if (props.type === 'connection') {
+    // Actions when it's a connection button (from home)
 
-        //Memorize user
-        auth.login(props.user)
+    //Memorize user
+    auth.login(props.user)
 
-        //redirect to me page
-        router.replace({ name: 'me'} )
-    } else {
-        // Actions when it's a link to user page
+    //redirect to me page
+    router.replace({ name: 'me' })
+  } else {
+    // Actions when it's a link to user page
 
-        //redirect to user page
-        router.push({name: 'user', params:{ id: props.user?.id }})
-    }
+    //redirect to user page
+    router.push({ name: 'user', params: { id: props.user?.id } })
+  }
 }
-
 </script>
 
 <template>
@@ -59,7 +57,7 @@ const changePage = () => {
     </div>
     <div class="user-card__content">
       <h3 class="user-card__title">{{ user?.name }}</h3>
-      <Btn @click="changePage">{{ linkTitle }}</Btn>
+      <BtnDefault @click="changePage">{{ linkTitle }}</BtnDefault>
     </div>
   </div>
 </template>

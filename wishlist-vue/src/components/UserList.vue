@@ -2,23 +2,22 @@
 import UserCard from '@/components/UserCard.vue'
 
 const props = defineProps({
-    users: {
-        type: Array,
-        required: true,
-        default: []
-    },
-    linkTitle: {
-        type: String,
-        required: false,
-        default: 'Voir'
-    },
-    type: {
-        type: String,
-        required: false,
-        default: 'read'
-    }
+  users: {
+    type: Array,
+    required: true,
+    default: []
+  },
+  linkTitle: {
+    type: String,
+    required: false,
+    default: 'Voir'
+  },
+  type: {
+    type: String,
+    required: false,
+    default: 'read'
+  }
 })
-
 </script>
 
 <template>

@@ -1,64 +1,59 @@
 <script setup>
-
-import { computed } from "vue";
+import { computed } from 'vue'
 
 const props = defineProps({
-    type: {
-        type: String,
-        required: false,
-        default: 'button'
-    },
-    href: {
-        type: String,
-        required: false,
-        default: '#'
-    },
-    target: {
-        type: String,
-        required: false,
-        default: '_self'
-    },
-    border: {
-        type: Boolean,
-        required: false,
-        default: false
-    },
-    color: {
-        type: String,
-        required: false,
-        default: 'primary'
-    },
-    size: {
-        type: String,
-        required: false,
-        default: 'normal'
-    }
+  type: {
+    type: String,
+    required: false,
+    default: 'button'
+  },
+  href: {
+    type: String,
+    required: false,
+    default: '#'
+  },
+  target: {
+    type: String,
+    required: false,
+    default: '_self'
+  },
+  border: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
+  color: {
+    type: String,
+    required: false,
+    default: 'primary'
+  },
+  size: {
+    type: String,
+    required: false,
+    default: 'normal'
+  }
 })
 
 const btnClasses = computed(() => {
-    let classes =  ['bt', `bt--${props.color}`, `bt--${props.size}`]
-    props.border && classes.push('bt--border')
+  let classes = ['bt', `bt--${props.color}`, `bt--${props.size}`]
+  props.border && classes.push('bt--border')
 
-    return classes.join(' ')
+  return classes.join(' ')
 })
-
 </script>
 
 <template>
-
   <button v-if="type === 'button'" :class="btnClasses">
-      <slot></slot>
+    <slot></slot>
   </button>
 
   <a v-else-if="type === 'a'" :href="href" :target="target" :class="btnClasses">
-      <slot></slot>
+    <slot></slot>
   </a>
-
 </template>
 
 <style lang="scss">
-
-.bt{
+.bt {
   border-radius: 2em;
   padding: 1em 2.5em;
   text-decoration: none;
@@ -70,54 +65,54 @@ const btnClasses = computed(() => {
   cursor: pointer;
   border: 2px solid transparent;
 
-  & + .bt{
-    margin-left: .7em;
+  & + .bt {
+    margin-left: 0.7em;
   }
 
-  &--tiny{
+  &--tiny {
     font-size: 1rem;
-    padding: .85em 2.2em .8em;
+    padding: 0.85em 2.2em 0.8em;
   }
 
-  &--primary{
+  &--primary {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
     color: var(--color-white);
   }
 
-  &--red{
+  &--red {
     background-color: var(--color-red);
     border-color: var(--color-red);
     color: var(--color-white);
   }
 
-  &--white{
+  &--white {
     background-color: var(--color-white);
     border-color: var(--color-white);
     color: var(--color-primary);
   }
 
-  &--secondary{
+  &--secondary {
     border-color: var(--color-secondary);
     color: var(--color-white);
   }
 
-  &--border{
+  &--border {
     background-color: transparent;
 
-    &.bt--secondary{
+    &.bt--secondary {
       color: var(--color-white);
     }
 
-    &.bt--primary{
+    &.bt--primary {
       color: var(--color-primary);
     }
 
-    &.bt--white{
+    &.bt--white {
       color: var(--color-white);
     }
 
-    &.bt--red{
+    &.bt--red {
       color: var(--color-red);
     }
   }

@@ -5,12 +5,11 @@ import IconPant from '@/components/icons/IconPant.vue'
 import IconShoe from '@/components/icons/IconShoe.vue'
 
 const props = defineProps({
-    user: {
-        type: Object,
-        required: true
-    }
+  user: {
+    type: Object,
+    required: true
+  }
 })
-
 </script>
 
 <template>
