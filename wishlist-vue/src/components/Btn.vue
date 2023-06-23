@@ -1,6 +1,6 @@
 <script setup>
 
-import {computed} from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
     type: {
@@ -35,13 +35,12 @@ const props = defineProps({
     }
 })
 
-const btnClasses = computed(() =>{
-    let classes =  ['bt', `bt--${this.color}`, `bt--${this.size}`]
-    this.border && classes.push('bt--border')
+const btnClasses = computed(() => {
+    let classes =  ['bt', `bt--${props.color}`, `bt--${props.size}`]
+    props.border && classes.push('bt--border')
 
     return classes.join(' ')
 })
-
 
 </script>
 
