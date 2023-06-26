@@ -1,3 +1,5 @@
+import { getItems } from '@/apis/item'
+
 class User {
   constructor(user) {
     this.id = user.id
@@ -25,6 +27,18 @@ class User {
     const date = new Date(this.birthday_date)
     const now = new Date()
     return Math.floor((now - date) / (1000 * 60 * 60 * 24 * 365.25))
+  }
+
+  getGifts() {
+    return getItems(this.id, 'gift')
+  }
+
+  async getLists() {
+    return await getItems(this.id, 'list')
+  }
+
+  async getDonation() {
+    return await getItems(this.id, 'donation')
   }
 }
 

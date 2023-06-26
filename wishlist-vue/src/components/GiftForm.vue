@@ -47,6 +47,8 @@ const submitForm = () => {
     result = addItem('gift')
   } else if (props.type === 'addList') {
     result = addItem('list')
+  } else if (props.type === 'addDonation') {
+    result = addItem('donation')
   }
 
   if (result) {
@@ -58,7 +60,7 @@ const submitForm = () => {
 <template>
   <form>
     <button class="close-modale" type="button">
-      <span>x</span>
+      <span>Close modal</span>
     </button>
 
     <div class="form-wrapper">

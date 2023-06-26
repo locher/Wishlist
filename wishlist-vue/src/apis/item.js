@@ -1,8 +1,7 @@
 import { BASE_API } from '@/config/constants'
-import Gift from '@/classes/Gift'
-import List from '@/classes/List'
+import Item from '@/classes/Item'
 
-const ERROR_MESSAGE = 'Erreur lors de la récupération de la liste des cadeaux'
+const ERROR_MESSAGE = 'Erreur lors de la récupération de la liste des items'
 
 export async function getItems(userID, type) {
   try {
@@ -10,12 +9,7 @@ export async function getItems(userID, type) {
       method: 'GET'
     })
     const data = await response.json()
-
-    if (type === 'gift') {
-      return data.map((i) => new Gift(i))
-    } else if (type === 'list') {
-      return data.map((i) => new List(i))
-    }
+    return data.map((i) => new Item(i))
   } catch (error) {
     console.error(ERROR_MESSAGE, error)
     throw error
@@ -57,4 +51,9 @@ export function insertItem(item) {
       reject(error)
     }
   })
+}
+
+export function updateItem(item) {
+  console.log(item)
+  return true
 }

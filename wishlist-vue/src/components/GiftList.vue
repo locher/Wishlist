@@ -2,7 +2,7 @@
 import GiftSingle from '@/components/GiftSingle.vue'
 
 const props = defineProps({
-  gifts: {
+  items: {
     type: Array,
     required: true
   },
@@ -18,7 +18,7 @@ const props = defineProps({
   <section class="">
     <slot></slot>
     <div class="list-gifts">
-      <GiftSingle v-for="gift in gifts" :key="gift.id" :gift="gift" :isAdmin="isAdmin" />
+      <GiftSingle v-for="item in items" :key="`item${item.id}`" :item="item" :isAdmin="isAdmin" />
     </div>
   </section>
 </template>

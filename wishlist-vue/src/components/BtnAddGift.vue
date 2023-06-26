@@ -22,7 +22,7 @@ const addDonation = () => {
 <template>
   <button @click="addGift">Ajouter un cadeau</button>
   <button @click="addList">Ajouter une liste</button>
-  <button @click="addDonation">Ajouter une don</button>
+  <button @click="addDonation">Ajouter un don</button>
 </template>
 
 <style scoped></style>

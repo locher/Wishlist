@@ -15,7 +15,6 @@ export async function getUsers(param = {}) {
     const response = await fetch(BASE_API + '/users?' + queryString)
     const data = await response.json()
     const sortedUsers = data.sort((a, b) => a.name.localeCompare(b.name))
-
     return sortedUsers.map((user) => new User(user))
   } catch (error) {
     console.error(ERROR_MESSAGE, error)

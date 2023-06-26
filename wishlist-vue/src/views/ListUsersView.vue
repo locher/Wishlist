@@ -1,26 +1,19 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
-import { getItems } from '@/apis/item'
 import UserList from '@/components/UserList.vue'
 import { getUsers } from '@/apis/users'
+import User from '@/classes/User'
 
 const store = useAuthStore()
-const userGifts = ref([])
 const user = store.currentUser
 const otherUsers = ref([])
 
-onMounted(async () => {
-  try {
-    // Get all gifts
-    userGifts.value = await getItems(user?.id, 'gifts')
-  } catch (error) {
-    console.error(error)
-  }
-
+onBeforeMount(async () => {
   try {
     // Get other users
     otherUsers.value = await getUsers({ exclude: [user?.id] })
+    otherUsers.value = otherUsers.value.map((user) => new User(user))
   } catch (error) {
     console.error(error)
   }

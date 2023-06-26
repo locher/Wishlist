@@ -1,10 +1,15 @@
 <script setup>
 import BtnDefault from '@/components/BtnDefault.vue'
 import { defineProps, onBeforeUpdate, ref } from 'vue'
-import { deleteItem, insertItem } from '@/apis/item'
+import { deleteItem, insertItem, updateItem } from '@/apis/item'
+import { useItemStore } from '@/stores/item'
+import { useAuthStore } from '@/stores/auth'
 
+const itemStore = useItemStore()
+
+// Props
 const props = defineProps({
-  gift: {
+  item: {
     type: Object,
     required: true
   },
@@ -14,12 +19,15 @@ const props = defineProps({
   }
 })
 
+// Refs
 const isDeleted = ref(false)
+const giftElement = ref(null)
 
+// Methods
 const deleteTheGift = async () => {
   isDeleted.value = true
 
-  if (await deleteItem(props.gift?.id)) {
+  if (await deleteItem(props.item?.id)) {
     console.log('gift deleted')
   } else {
     console.error('gift pas deleted')
@@ -27,29 +35,31 @@ const deleteTheGift = async () => {
   }
 }
 
-const restoreGift = async () => {
-  await insertItem(props.gift, 'gift')
-  console.log(props.gift)
+const restoreItem = async () => {
+  await insertItem(props.item)
   isDeleted.value = false
 }
 
-const giftElement = ref(null)
+const updateTheGift = async () => {
+  // open form
+  console.log('update')
 
-// Fixer une hauteur pour éviter un flash au moment de la suppression
-onBeforeUpdate(() => {
-  const giftHeight = giftElement.value.clientHeight
-  giftElement.value.style.height = `${giftHeight}px`
-})
+  const authStore = useAuthStore()
+
+  // Pré-rempli le form
+
+  //
+}
 </script>
 
 <template>
   <div :class="`gift ${isDeleted && 'deleted'}`" ref="giftElement">
     <div class="gift__header">
-      <h3>{{ props.gift.title }}</h3>
+      <h3>{{ props.item.title }}</h3>
       <BtnDefault
-        v-if="props.gift.link && !isDeleted"
+        v-if="props.item.link && !isDeleted"
         type="a"
-        :href="props.gift.link"
+        :href="props.item.link"
         target="_blank"
         size="tiny"
         :border="true"
@@ -58,15 +68,17 @@ onBeforeUpdate(() => {
       >
     </div>
 
-    <div v-if="props.gift.description" class="gift__description">
-      <p>{{ props.gift.description }}</p>
+    <div v-if="props.item.description" class="gift__description">
+      <p>{{ props.item.description }}</p>
     </div>
 
     <div v-if="props.isAdmin && !isDeleted" class="gift__edit">
       <BtnDefault color="red" size="tiny" :border="true" @click="deleteTheGift"
         >Supprimer</BtnDefault
       >
-      <BtnDefault color="white" size="tiny" :border="true">Modifier</BtnDefault>
+      <BtnDefault color="white" size="tiny" :border="true" @click="updateTheGift"
+        >Modifier</BtnDefault
+      >
     </div>
 
     <div v-if="!props.isAdmin && !isDeleted" class="gift__edit">
@@ -75,7 +87,7 @@ onBeforeUpdate(() => {
 
     <div v-if="isDeleted" class="gift__deleted-message">
       <p>Cadeau supprimé !</p>
-      <BtnDefault size="tiny" :border="true" @click="restoreGift"
+      <BtnDefault size="tiny" :border="true" @click="restoreItem"
         >Annuler la suppression</BtnDefault
       >
     </div>

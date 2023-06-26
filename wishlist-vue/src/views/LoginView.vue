@@ -3,13 +3,15 @@ import { ref, onBeforeMount } from 'vue'
 import UserList from '@/components/UserList.vue'
 import { getUsers } from '@/apis/users'
 import BtnDefault from '@/components/BtnDefault.vue'
+import User from "@/classes/User";
 
 const userList = ref([])
 
 onBeforeMount(async () => {
   try {
     // Get all users
-    userList.value = await getUsers({ children: 0 })
+    const allUsers = await getUsers({ children: 0 })
+    userList.value = allUsers.map((user) => new User(user))
   } catch (error) {
     console.error(error)
   }
