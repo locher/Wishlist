@@ -1,10 +1,12 @@
 <script setup>
 import BtnDefault from '@/components/BtnDefault.vue'
-import { defineProps, ref } from 'vue'
-import { deleteItem, insertItem } from '@/apis/item'
+import {defineProps, ref} from 'vue'
+import {deleteItem, insertItem, reserveItem} from '@/apis/item'
 import {useItemStore} from "@/stores/item";
+import {useAuthStore} from "@/stores/auth";
 
 const itemStore = useItemStore()
+const authStore = useAuthStore()
 
 // Props
 const props = defineProps({
@@ -20,6 +22,7 @@ const props = defineProps({
 
 // Refs
 const isDeleted = ref(false)
+const isReserved = ref(false)
 const giftElement = ref(null)
 
 // Methods
@@ -39,8 +42,14 @@ const restoreItem = async () => {
   isDeleted.value = false
 }
 
-const updateTheGift = async () => {
+const updateTheItem = async () => {
   itemStore.item = props.item
+}
+
+const reserveTheItem = async () => {
+    await reserveItem(props.item, authStore?.currentUser)
+    isReserved.value = true
+    console.log('réservé')
 }
 
 </script>
@@ -69,13 +78,13 @@ const updateTheGift = async () => {
       <BtnDefault color="red" size="tiny" :border="true" @click="deleteTheGift"
         >Supprimer</BtnDefault
       >
-      <BtnDefault color="white" size="tiny" :border="true" @click="updateTheGift"
+      <BtnDefault color="white" size="tiny" :border="true" @click="updateTheItem"
         >Modifier</BtnDefault
       >
     </div>
 
     <div v-if="!props.isAdmin && !isDeleted" class="gift__edit">
-      <BtnDefault color="white" size="tiny" :border="true">Réserver</BtnDefault>
+      <BtnDefault color="white" size="tiny" :border="true" @click="reserveTheItem">Réserver</BtnDefault>
     </div>
 
     <div v-if="isDeleted" class="gift__deleted-message">

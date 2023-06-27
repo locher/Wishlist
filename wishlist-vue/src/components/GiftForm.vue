@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, reactive, ref, watch} from 'vue'
+import {onUnmounted, ref, watch} from 'vue'
 import {insertItem, updateItem} from '@/apis/item'
 import {useItemStore} from "@/stores/item";
 
@@ -12,8 +12,8 @@ const link = ref(itemStore?.item.link || '')
 const type = ref(itemStore?.item.type || 'gift')
 const id = ref(itemStore?.item.id || null)
 
-onMounted(() => {
-    console.log(type.value)
+onUnmounted(() => {
+    itemStore.item = {}
 })
 
 watch(itemStore, () => {

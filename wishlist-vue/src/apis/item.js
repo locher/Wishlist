@@ -64,9 +64,28 @@ export function updateItem(item) {
         body: JSON.stringify(item)
       })
 
-
       const data = await response.json()
       console.log('Item modifié avec succès :', data)
+      resolve(true)
+    } catch (error) {
+      console.error(ERROR_MESSAGE, error)
+      reject(error)
+    }
+  })
+}
+
+export function reserveItem(item, user) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch(BASE_API + `/items/${item.id}/reserve/${user.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const data = await response.json()
+      console.log('Item réservé avec succès :', data)
       resolve(true)
     } catch (error) {
       console.error(ERROR_MESSAGE, error)
