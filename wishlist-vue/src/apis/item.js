@@ -54,6 +54,23 @@ export function insertItem(item) {
 }
 
 export function updateItem(item) {
-  console.log(item)
-  return true
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch(BASE_API + `/items/${item.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(item)
+      })
+
+
+      const data = await response.json()
+      console.log('Item modifié avec succès :', data)
+      resolve(true)
+    } catch (error) {
+      console.error(ERROR_MESSAGE, error)
+      reject(error)
+    }
+  })
 }

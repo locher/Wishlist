@@ -4,8 +4,7 @@ import UserCard from '@/components/UserCard.vue'
 const props = defineProps({
   users: {
     type: Array,
-    required: true,
-    default: []
+    required: true
   },
   linkTitle: {
     type: String,

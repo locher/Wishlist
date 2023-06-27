@@ -3,7 +3,7 @@ import { ref, onBeforeMount } from 'vue'
 import UserList from '@/components/UserList.vue'
 import { getUsers } from '@/apis/users'
 import BtnDefault from '@/components/BtnDefault.vue'
-import User from "@/classes/User";
+import User from '@/classes/User'
 
 const userList = ref([])
 
@@ -38,7 +38,7 @@ onBeforeMount(async () => {
   </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 main {
   display: flex;
   min-height: 100vh;

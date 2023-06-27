@@ -5,7 +5,7 @@ import UserDetails from '@/components/UserDetails.vue'
 import GiftList from '@/components/GiftList.vue'
 import BtnAddGift from '@/components/BtnAddGift.vue'
 import GiftForm from '@/components/GiftForm.vue'
-import User from "@/classes/User";
+import User from '@/classes/User'
 
 // Stores
 const authStore = useAuthStore()
@@ -15,7 +15,7 @@ const user = new User(authStore.currentUser)
 const gifts = ref([])
 const lists = ref([])
 const donations = ref([])
-const formType = ref(null)
+const openForm = ref(false)
 
 // Hooks
 onMounted(async () => {
@@ -32,17 +32,16 @@ onMounted(async () => {
       <h2>Mes cadeaux</h2>
     </GiftList>
     <GiftList v-if="donations.length > 0" :items="donations" :is-admin="true">
-        <h2>Mes dons</h2>
+      <h2>Mes dons</h2>
     </GiftList>
     <GiftList v-if="lists.length > 0" :items="lists" :is-admin="true">
-    <h2>Mes listes</h2>
-  </GiftList>
-
+      <h2>Mes listes</h2>
+    </GiftList>
   </div>
 
-  <BtnAddGift @open-form-type="(type) => (formType = type)" />
+  <BtnAddGift @add-item="openForm = true" />
 
-  <GiftForm v-if="formType" :id-user="user.id" :type="formType" />
+  <GiftForm :id-user="user.id"/>
 </template>
 
 <style lang="scss"></style>

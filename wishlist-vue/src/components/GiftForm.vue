@@ -1,37 +1,65 @@
 <script setup>
-import { ref } from 'vue'
-import { insertItem } from '@/apis/item'
+import {onMounted, reactive, ref, watch} from 'vue'
+import {insertItem, updateItem} from '@/apis/item'
+import {useItemStore} from "@/stores/item";
+
+const itemStore = useItemStore()
 
 // Refs
-const title = ref('')
-const description = ref('')
-const link = ref('')
+const title = ref(itemStore?.item.title || '')
+const description = ref(itemStore?.item.description || '')
+const link = ref(itemStore?.item.link || '')
+const type = ref(itemStore?.item.type || 'gift')
+const id = ref(itemStore?.item.id || null)
+
+onMounted(() => {
+    console.log(type.value)
+})
+
+watch(itemStore, () => {
+    title.value = itemStore.item.title
+    description.value = itemStore.item.description
+    link.value = itemStore.item.link
+    type.value = itemStore.item.type
+    id.value = itemStore.item.id
+})
 
 // Props
 const props = defineProps({
   idUser: {
     type: Number,
     required: true
-  },
-  type: {
-    type: String,
-    required: true
   }
 })
 
 // Methods
-const addItem = async (type) => {
+const addItem = async () => {
   try {
     return await insertItem({
       title: title.value,
       description: description.value,
       link: link.value,
       id_user: props.idUser,
-      type: type
+      type: type.value
     })
   } catch (error) {
     console.error(error)
   }
+}
+
+const updateTheItem = async () => {
+    try {
+        return updateItem({
+            title: title.value,
+            description: description.value,
+            link: link.value,
+            id_user: props.idUser,
+            type: type.value,
+            id: id.value
+        })
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 const clearForm = () => {
@@ -41,20 +69,21 @@ const clearForm = () => {
 }
 
 const submitForm = () => {
-  let result = null
 
-  if (props.type === 'addGift') {
-    result = addItem('gift')
-  } else if (props.type === 'addList') {
-    result = addItem('list')
-  } else if (props.type === 'addDonation') {
-    result = addItem('donation')
+    let result = null
+
+  // Ajout
+  if(!id.value){
+      result = addItem()
+  }else{
+      result = updateTheItem()
   }
 
   if (result) {
     clearForm()
   }
 }
+
 </script>
 
 <template>
@@ -64,8 +93,19 @@ const submitForm = () => {
     </button>
 
     <div class="form-wrapper">
-      <h2>Titre</h2>
-      <p class="h3">{{ title }}</p>
+      <h2 v-if="!id">Ajouter un élément</h2>
+      <h2 v-else>Modifier un élément</h2>
+        <div class="wrap-form">
+            <div class="label-wrap">
+                <label for="">Type d'élément</label>
+            </div>
+            <input type="radio" name="type" value="gift" id="gift" v-model="type" />
+            <label for="gift">Cadeau</label>
+            <input type="radio" name="type" value="list" id="list" v-model="type" />
+            <label for="list">Liste</label>
+            <input type="radio" name="type" value="donation" id="donation" v-model="type" />
+            <label for="donation">Don</label>
+        </div>
 
       <div class="wrap-form">
         <div class="label-wrap">
@@ -91,7 +131,8 @@ const submitForm = () => {
       </div>
 
       <div class="bt-wrapper">
-        <button type="submit" @click.prevent="submitForm">Ajouter</button>
+        <button v-if="id" type="submit" @click.prevent="submitForm">Modifier</button>
+        <button v-else type="submit" @click.prevent="submitForm">Ajouter</button>
       </div>
     </div>
   </form>

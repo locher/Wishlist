@@ -1,9 +1,8 @@
 <script setup>
 import BtnDefault from '@/components/BtnDefault.vue'
-import { defineProps, onBeforeUpdate, ref } from 'vue'
-import { deleteItem, insertItem, updateItem } from '@/apis/item'
-import { useItemStore } from '@/stores/item'
-import { useAuthStore } from '@/stores/auth'
+import { defineProps, ref } from 'vue'
+import { deleteItem, insertItem } from '@/apis/item'
+import {useItemStore} from "@/stores/item";
 
 const itemStore = useItemStore()
 
@@ -41,15 +40,9 @@ const restoreItem = async () => {
 }
 
 const updateTheGift = async () => {
-  // open form
-  console.log('update')
-
-  const authStore = useAuthStore()
-
-  // Pré-rempli le form
-
-  //
+  itemStore.item = props.item
 }
+
 </script>
 
 <template>
