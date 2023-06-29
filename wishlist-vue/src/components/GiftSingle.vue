@@ -88,6 +88,8 @@ const cancelReservation = async () => {
       >
     </div>
 
+      {{props.item.getReservationName()}}
+
     <div v-if="!props.isAdmin && !isDeleted" class="gift__edit">
       <BtnDefault v-if="!isReserved" color="white" size="tiny" :border="true" @click="reserveTheItem">Réserver</BtnDefault>
       <BtnDefault v-else color="white" size="tiny" :border="true" @click="cancelReservation">Annuler la réservation</BtnDefault>

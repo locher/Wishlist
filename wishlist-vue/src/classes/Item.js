@@ -1,6 +1,5 @@
 class Item {
   constructor(item) {
-    console.log(item)
     this.id = item.id
     this.title = item.title
     this.description = item.description
@@ -16,6 +15,10 @@ class Item {
 
   isReserved = () => {
     return !!(this.guest_name || this.id_user_reservation)
+  }
+
+  getReservationName = () => {
+    return this.guest_name || this.id_user_reservation
   }
 }
 
