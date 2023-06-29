@@ -1,7 +1,7 @@
 <script setup>
 import BtnDefault from '@/components/BtnDefault.vue'
-import {defineProps, ref} from 'vue'
-import {deleteItem, insertItem, reserveItem} from '@/apis/item'
+import {computed, defineProps, ref} from 'vue'
+import {deleteItem, deleteReservation, insertItem, reserveItem} from '@/apis/item'
 import {useItemStore} from "@/stores/item";
 import {useAuthStore} from "@/stores/auth";
 
@@ -22,8 +22,8 @@ const props = defineProps({
 
 // Refs
 const isDeleted = ref(false)
-const isReserved = ref(false)
 const giftElement = ref(null)
+const isReserved = ref(props.item.isReserved())
 
 // Methods
 const deleteTheGift = async () => {
@@ -47,15 +47,20 @@ const updateTheItem = async () => {
 }
 
 const reserveTheItem = async () => {
-    await reserveItem(props.item, authStore?.currentUser)
-    isReserved.value = true
-    console.log('réservé')
+    const reservation = await reserveItem(props.item, authStore?.currentUser)
+    props.item.reservation_id = reservation.id
+    isReserved.value = !isReserved.value
+}
+
+const cancelReservation = async () => {
+    await deleteReservation(props.item)
+    isReserved.value = !isReserved.value
 }
 
 </script>
 
 <template>
-  <div :class="`gift ${isDeleted && 'deleted'}`" ref="giftElement">
+  <div :class="`gift ${isDeleted ? 'deleted' : ''} ${ isReserved ? 'reserved' : ''}`" ref="giftElement">
     <div class="gift__header">
       <h3>{{ props.item.title }}</h3>
       <BtnDefault
@@ -84,7 +89,8 @@ const reserveTheItem = async () => {
     </div>
 
     <div v-if="!props.isAdmin && !isDeleted" class="gift__edit">
-      <BtnDefault color="white" size="tiny" :border="true" @click="reserveTheItem">Réserver</BtnDefault>
+      <BtnDefault v-if="!isReserved" color="white" size="tiny" :border="true" @click="reserveTheItem">Réserver</BtnDefault>
+      <BtnDefault v-else color="white" size="tiny" :border="true" @click="cancelReservation">Annuler la réservation</BtnDefault>
     </div>
 
     <div v-if="isDeleted" class="gift__deleted-message">
@@ -116,6 +122,15 @@ const reserveTheItem = async () => {
   &.deleted {
     --bg-color: var(--color-disabled-bg);
     --text-color: var(--color-disabled-text);
+  }
+
+  &.reserved {
+    background-color: transparent;
+    color: var(--color-primary);
+
+    .border-pink-bt{
+      color: var(--color-primary) !important;
+    }
   }
 
   &__header {

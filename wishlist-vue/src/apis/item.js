@@ -81,12 +81,33 @@ export function reserveItem(item, user) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(item)
       })
 
       const data = await response.json()
       console.log('Item réservé avec succès :', data)
-      resolve(true)
+      resolve(data)
+    } catch (error) {
+      console.error(ERROR_MESSAGE, error)
+      reject(error)
+    }
+  })
+}
+
+export function deleteReservation(item) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch(BASE_API + `/reservation/${item.reservation_id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      const data = await response.json()
+      console.log('Réservation supprimée :', data)
+      resolve(data)
     } catch (error) {
       console.error(ERROR_MESSAGE, error)
       reject(error)
