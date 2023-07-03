@@ -7,7 +7,6 @@ const EmitAddItem = () => {
   console.log('ajouter un élément')
   emit('addItem', true)
 }
-
 </script>
 
 <template>

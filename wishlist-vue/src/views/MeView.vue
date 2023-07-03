@@ -41,7 +41,7 @@ onMounted(async () => {
 
   <BtnAddGift @add-item="openForm = true" />
 
-  <GiftForm :id-user="user.id"/>
+  <GiftForm :id-user="user.id" />
 </template>
 
 <style lang="scss"></style>

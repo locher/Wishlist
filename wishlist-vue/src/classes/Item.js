@@ -13,12 +13,8 @@ class Item {
     this.id_user_reservation = item.id_user_reservation
   }
 
-  isReserved = () => {
+  get isReserved() {
     return !!(this.guest_name || this.id_user_reservation)
-  }
-
-  getReservationName = () => {
-    return this.guest_name || this.id_user_reservation
   }
 }
 

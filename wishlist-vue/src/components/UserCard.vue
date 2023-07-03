@@ -52,7 +52,7 @@ const changePage = () => {
 <template>
   <div class="user-card">
     <div class="avatar-wrapper">
-<!--      <img :src="`/src/assets/img/avatar/avatar${user.picture_id}.png`" alt="" />-->
+      <!--      <img :src="`/src/assets/img/avatar/avatar${user.picture_id}.png`" alt="" />-->
       <div class="svg-wrapper"></div>
     </div>
     <div class="user-card__content">

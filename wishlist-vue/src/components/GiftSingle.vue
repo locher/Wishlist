@@ -1,12 +1,14 @@
 <script setup>
 import BtnDefault from '@/components/BtnDefault.vue'
-import {computed, defineProps, ref} from 'vue'
-import {deleteItem, deleteReservation, insertItem, reserveItem} from '@/apis/item'
-import {useItemStore} from "@/stores/item";
-import {useAuthStore} from "@/stores/auth";
+import { computed, defineProps, onBeforeMount, ref } from 'vue'
+import { deleteItem, deleteReservation, insertItem, reserveItem } from '@/apis/item'
+import { useItemStore } from '@/stores/item'
+import { useAuthStore } from '@/stores/auth'
+import { useUsersStore } from '@/stores/users'
 
 const itemStore = useItemStore()
 const authStore = useAuthStore()
+const usersStore = useUsersStore()
 
 // Props
 const props = defineProps({
@@ -22,8 +24,6 @@ const props = defineProps({
 
 // Refs
 const isDeleted = ref(false)
-const giftElement = ref(null)
-const isReserved = ref(props.item.isReserved())
 
 // Methods
 const deleteTheGift = async () => {
@@ -47,20 +47,48 @@ const updateTheItem = async () => {
 }
 
 const reserveTheItem = async () => {
-    const reservation = await reserveItem(props.item, authStore?.currentUser)
-    props.item.reservation_id = reservation.id
-    isReserved.value = !isReserved.value
+  const reservation = await reserveItem(props.item, authStore?.currentUser)
+  props.item.reservation_id = reservation.id
+  props.item.id_user_reservation = authStore.currentUser.id
 }
 
 const cancelReservation = async () => {
-    await deleteReservation(props.item)
-    isReserved.value = !isReserved.value
+  await deleteReservation(props.item)
+  props.item.id_user_reservation = null
 }
+
+// Computed
+
+const isReservedByAuthUser = computed(() => {
+  return props.item.id_user_reservation === authStore.currentUser.id
+})
+
+const isReservedByOther = computed(() => {
+  return props.item.id_user_reservation !== authStore.currentUser.id
+})
+
+const reservationName = computed(() => {
+    // Pas réservé
+    if (!props.item.isReserved) return false
+
+    // Réservé par guest
+    if (props.item.guest_name) return props.item.guest_name
+
+    // Réservé par moi
+    if (isReservedByAuthUser.value) {
+        return 'moi'
+    }
+
+    // Réservé par un autre
+    if (isReservedByOther.value) {
+        return usersStore.users.filter((user) => user.id === props.item.id_user_reservation)[0]?.name
+    }
+})
 
 </script>
 
 <template>
-  <div :class="`gift ${isDeleted ? 'deleted' : ''} ${ isReserved ? 'reserved' : ''}`" ref="giftElement">
+  <div :class="`gift ${isDeleted ? 'deleted' : ''} ${props.item.isReserved ? 'reserved' : ''}`">
     <div class="gift__header">
       <h3>{{ props.item.title }}</h3>
       <BtnDefault
@@ -88,11 +116,29 @@ const cancelReservation = async () => {
       >
     </div>
 
-      {{props.item.getReservationName()}}
+    <!-- Réservé par moi-->
+    <div v-if="props.item.isReserved && isReservedByAuthUser">
+      <p>Réservé par moi</p>
+      <BtnDefault color="white" size="tiny" :border="true" @click="cancelReservation"
+        >Annuler la réservation</BtnDefault
+      >
+    </div>
+
+    <!-- Réservé par qqun d'autre-->
+     <div v-else-if="!props.isAdmin && !isDeleted && props.item.isReserved && isReservedByOther">
+        <p>Réservé par {{ reservationName }}</p>
+     </div>
+
 
     <div v-if="!props.isAdmin && !isDeleted" class="gift__edit">
-      <BtnDefault v-if="!isReserved" color="white" size="tiny" :border="true" @click="reserveTheItem">Réserver</BtnDefault>
-      <BtnDefault v-else color="white" size="tiny" :border="true" @click="cancelReservation">Annuler la réservation</BtnDefault>
+      <BtnDefault
+        v-if="!props.item.isReserved"
+        color="white"
+        size="tiny"
+        :border="true"
+        @click="reserveTheItem"
+        >Réserver</BtnDefault
+      >
     </div>
 
     <div v-if="isDeleted" class="gift__deleted-message">
@@ -130,7 +176,7 @@ const cancelReservation = async () => {
     background-color: transparent;
     color: var(--color-primary);
 
-    .border-pink-bt{
+    .border-pink-bt {
       color: var(--color-primary) !important;
     }
   }
