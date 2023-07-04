@@ -1,6 +1,6 @@
 <script setup>
 import BtnDefault from '@/components/BtnDefault.vue'
-import { computed, defineProps, onBeforeMount, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { deleteItem, deleteReservation, insertItem, reserveItem } from '@/apis/item'
 import { useItemStore } from '@/stores/item'
 import { useAuthStore } from '@/stores/auth'

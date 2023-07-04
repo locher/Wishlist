@@ -4,8 +4,10 @@ import UserList from '@/components/UserList.vue'
 import { getUsers } from '@/apis/users'
 import BtnDefault from '@/components/BtnDefault.vue'
 import User from '@/classes/User'
+import UserForm from "@/components/UserForm.vue";
 
 const userList = ref([])
+const openForm = ref(false)
 
 onBeforeMount(async () => {
   try {
@@ -27,7 +29,7 @@ onBeforeMount(async () => {
 
         <div class="multi-button">
           <BtnDefault>Me connecter en invité</BtnDefault>
-          <BtnDefault border="border">Ajouter un compte</BtnDefault>
+          <BtnDefault border="border" @click="openForm = !openForm">Ajouter un compte</BtnDefault>
         </div>
       </section>
 
@@ -36,6 +38,9 @@ onBeforeMount(async () => {
       </section>
     </div>
   </main>
+
+  <UserForm v-if="openForm" :parents="userList"/>
+
 </template>
 
 <style lang="scss" scoped>

@@ -32,3 +32,24 @@ export async function getUser(id) {
     throw error
   }
 }
+
+export function insertUser(user) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch(BASE_API + `/user`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+
+      const data = await response.json()
+      console.log('User ajouté avec succès :', data)
+      resolve(true)
+    } catch (error) {
+      console.error(ERROR_MESSAGE, error)
+      reject(error)
+    }
+  })
+}
