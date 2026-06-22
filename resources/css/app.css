@@ -1,0 +1,576 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f9f9fc;
+  --foreground: #292929;
+  --card: #ffffff;
+  --card-foreground: var(--foreground);
+  --popover: #ffffff;
+  --popover-foreground: var(--foreground);
+  --primary: #202859;
+  --primary-foreground: #f9f9fc;
+  --secondary: #d56ef6;
+  --secondary-foreground: #202859;
+  --muted: #f1f1f7;
+  --muted-foreground: #6f6e78;
+  --accent: #d56ef6;
+  --accent-foreground: #202859;
+  --destructive: #e36a6a;
+  --destructive-foreground: #f9f9fc;
+  --border: rgba(32, 40, 89, 0.12);
+  --input: var(--border);
+  --ring: rgba(32, 40, 89, 0.35);
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    line-height: 1.35;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url('/images/background.svg');
+    background-position: center;
+    background-size: cover;
+    opacity: 0.3;
+  }
+
+  a {
+    @apply underline-offset-4;
+  }
+}
+
+@layer components {
+  .kdo-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: clamp(4rem, 14vw, 14rem);
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.08em;
+    color: var(--primary);
+  }
+
+  .kdo-section-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: var(--primary);
+  }
+
+  .kdo-blob {
+    position: relative;
+  }
+
+  .kdo-blob::after {
+    animation: kdo-morph 12s ease-in-out infinite;
+    background: var(--primary);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .kdo-home-blob::after {
+    bottom: -18vh;
+    height: 130vh;
+    right: -18vw;
+    width: min(760px, 54vw);
+  }
+
+  .kdo-avatar-blob {
+    position: absolute;
+    inset: -12% -24% -10% -18%;
+    z-index: 0;
+  }
+
+  .kdo-avatar-blob svg {
+    fill: rgba(32, 40, 89, 0.06);
+    height: 100%;
+    width: 100%;
+  }
+
+  .kdo-primary-band {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .kdo-primary-band::before {
+    animation: kdo-morph 12s ease-in-out infinite;
+    background: var(--primary);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    content: '';
+    height: 120%;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: 250vw;
+    z-index: -1;
+  }
+
+  .kdo-account-page {
+    min-height: calc(100svh - 4rem);
+    overflow: hidden;
+    padding-block: 42px 75px;
+    position: relative;
+  }
+
+  .kdo-account-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .kdo-account-title {
+    margin-bottom: 75px;
+  }
+
+  .kdo-account-title .kdo-title {
+    font-size: clamp(4rem, 9vw, 8rem);
+    margin-left: -0.08em;
+  }
+
+  .kdo-account-title h2 {
+    color: var(--foreground);
+    font-family: 'Roboto Mono', monospace;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1;
+    margin-top: -0.15em;
+  }
+
+  .kdo-account-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .kdo-wrap-form,
+  .kdo-mini-form,
+  .kdo-child-field {
+    border: 2px solid var(--primary);
+    border-radius: 2em;
+    color: var(--primary);
+    position: relative;
+  }
+
+  .kdo-wrap-form {
+    background: transparent;
+  }
+
+  .kdo-wrap-form + .kdo-wrap-form,
+  .kdo-wrap-form + .kdo-child-field,
+  .kdo-child-field + .kdo-wrap-form {
+    margin-top: 60px;
+  }
+
+  .kdo-label-wrap {
+    align-items: center;
+    background: var(--background);
+    border-radius: 5px;
+    color: var(--primary);
+    display: flex;
+    gap: 0.35rem;
+    left: 2.5rem;
+    padding: 0.3em 1em 0.2em;
+    position: absolute;
+    top: -1rem;
+    z-index: 2;
+  }
+
+  .kdo-label-wrap label,
+  .kdo-label-wrap span {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .kdo-label-wrap small {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.55;
+    text-transform: uppercase;
+  }
+
+  .kdo-input-plain,
+  .kdo-mini-form input {
+    background: transparent;
+    border: 0;
+    color: var(--primary);
+    font-size: 1.2rem;
+    outline: none;
+    width: 100%;
+  }
+
+  .kdo-input-plain {
+    padding: 1.05em 2.5rem 0.8em;
+  }
+
+  .kdo-field-error {
+    color: var(--destructive);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0.5rem 2.5rem 0;
+  }
+
+  .kdo-wrap-form-group {
+    padding: 2.4rem 2.5rem;
+  }
+
+  .kdo-size-grid {
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kdo-mini-form {
+    margin-top: 10px;
+  }
+
+  .kdo-mini-form .kdo-label-wrap {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .kdo-mini-form .kdo-label-wrap label {
+    font-size: 1rem;
+  }
+
+  .kdo-mini-form input {
+    padding: 0.95em 0.5rem 0.7em;
+    text-align: center;
+  }
+
+  .kdo-avatar-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  }
+
+  .kdo-avatar-choice {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    opacity: 0.4;
+    position: relative;
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
+  }
+
+  .kdo-avatar-choice[data-selected='true'] {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .kdo-avatar-choice input,
+  .kdo-parent-choice input {
+    height: 0;
+    opacity: 0;
+    position: absolute;
+    width: 0;
+  }
+
+  .kdo-avatar-choice img {
+    max-height: 88%;
+    max-width: 112%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .kdo-avatar-choice-blob {
+    background: rgba(32, 40, 89, 0.06);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    height: 76px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: background 0.35s ease;
+    width: 68px;
+    z-index: 1;
+  }
+
+  .kdo-avatar-choice[data-selected='true'] .kdo-avatar-choice-blob,
+  .kdo-parent-choice[data-selected='true'] .kdo-avatar-choice-blob {
+    background: rgba(213, 110, 246, 0.5);
+  }
+
+  .kdo-child-field {
+    border: 0;
+    margin-top: 60px;
+  }
+
+  .kdo-child-field .kdo-label-wrap {
+    left: 2.5rem;
+  }
+
+  .kdo-child-switch {
+    background: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 2em;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+  }
+
+  .kdo-child-switch button {
+    border-radius: 2em;
+    color: rgba(249, 249, 252, 0.28);
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 0.85em 2rem 0.75em;
+    text-align: center;
+    text-transform: uppercase;
+    transition:
+      background 0.35s ease,
+      color 0.35s ease;
+  }
+
+  .kdo-child-switch button.is-active {
+    background: var(--background);
+    color: var(--primary);
+  }
+
+  .kdo-parent-grid {
+    display: grid;
+    gap: 1rem 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .kdo-parent-choice {
+    align-items: center;
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    font-size: 1.1rem;
+    font-weight: 700;
+    gap: 0.9rem;
+    opacity: 0.4;
+    position: relative;
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
+  }
+
+  .kdo-parent-choice[data-selected='true'] {
+    opacity: 1;
+    transform: translateX(1rem);
+  }
+
+  .kdo-parent-avatar {
+    align-items: center;
+    display: flex;
+    height: 58px;
+    justify-content: center;
+    position: relative;
+    width: 58px;
+  }
+
+  .kdo-parent-avatar img {
+    max-height: 85%;
+    max-width: 110%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .kdo-parent-avatar .kdo-avatar-choice-blob {
+    height: 58px;
+    width: 52px;
+  }
+
+  .kdo-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 40px;
+  }
+
+  .kdo-guest-page {
+    align-items: center;
+    display: flex;
+    min-height: calc(100svh - 4rem);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .kdo-guest-content {
+    margin-inline: auto;
+    max-width: 880px;
+    min-width: min(760px, 60vw);
+    position: relative;
+    z-index: 1;
+  }
+
+  .kdo-guest-title {
+    font-size: clamp(4rem, 9vw, 8rem);
+    white-space: nowrap;
+  }
+
+  .kdo-guest-form {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+  }
+
+  .kdo-guest-form input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--primary);
+    color: var(--primary);
+    flex: 1;
+    font-size: 2rem;
+    outline: 0;
+    min-width: 0;
+  }
+
+  .kdo-guest-error {
+    color: var(--destructive);
+    font-weight: 700;
+    margin-top: 1rem;
+  }
+}
+
+@keyframes kdo-morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+@media (max-width: 767px) {
+  .kdo-home-blob::after {
+    display: none;
+  }
+
+  .kdo-account-page {
+    padding-block: 16px 48px;
+  }
+
+  .kdo-account-title {
+    margin-bottom: 56px;
+  }
+
+  .kdo-size-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kdo-wrap-form-group {
+    padding: 2.2rem 1.25rem;
+  }
+
+  .kdo-input-plain {
+    padding-inline: 1.25rem;
+  }
+
+  .kdo-label-wrap {
+    left: 1.25rem;
+  }
+
+  .kdo-avatar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(62px, 1fr));
+  }
+
+  .kdo-form-actions {
+    justify-content: center;
+  }
+
+  .kdo-guest-content {
+    min-width: 100%;
+  }
+
+  .kdo-guest-title {
+    white-space: normal;
+  }
+
+  .kdo-guest-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 800px) {
+  .kdo-account-content {
+    max-width: 60vw;
+  }
+}
+
+@media (min-width: 700px) {
+  .kdo-account-page::after {
+    animation: kdo-morph 12s ease-in-out infinite;
+    background: var(--primary);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    bottom: -5vh;
+    content: '';
+    height: 110vh;
+    position: fixed;
+    right: -30vw;
+    width: 40vw;
+    z-index: -1;
+  }
+
+  .kdo-guest-page::after {
+    animation: kdo-morph 12s ease-in-out infinite;
+    background: var(--primary);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    bottom: -10vh;
+    content: '';
+    height: 125vh;
+    position: fixed;
+    right: -25vw;
+    width: 40vw;
+    z-index: -1;
+  }
+}
